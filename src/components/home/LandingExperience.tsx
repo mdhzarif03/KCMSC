@@ -4,15 +4,28 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import type { Locale } from "@/i18n/config";
 
-const FALLBACK_IMAGES = [
-  "/assets/pictures/landing-page/1.jpg",
-  "/assets/pictures/landing-page/2.jpg",
-];
+/* ============================================================
+   IMAGE PATHS
+
+   IMPORTANT:
+   Files inside /public are accessed from the browser WITHOUT
+   writing "public/" in the URL.
+
+   public/landing-page/1.jpg
+   becomes:
+   /landing-page/1.jpg
+============================================================ */
+
+const FALLBACK_IMAGES = ["/landing-page/1.jpg", "/landing-page/2.jpg"];
 
 const LOCAL_CANDIDATES = Array.from(
   { length: 12 },
-  (_, i) => `/assets/pictures/landing-page/${i + 1}.jpg`,
+  (_, i) => `/landing-page/${i + 1}.jpg`,
 );
+
+/* ============================================================
+   HERO CAPTIONS
+============================================================ */
 
 const captions = [
   {
@@ -47,6 +60,10 @@ const captions = [
   },
 ];
 
+/* ============================================================
+   COMPONENT
+============================================================ */
+
 export function LandingExperience({ locale }: { locale: Locale }) {
   const [active, setActive] = useState(0);
   const [localImages, setLocalImages] = useState<string[]>([]);
@@ -55,11 +72,9 @@ export function LandingExperience({ locale }: { locale: Locale }) {
   const railRef = useRef<HTMLDivElement>(null);
   const graphRef = useRef<HTMLElement>(null);
 
-  /*
-   * ------------------------------------------------------------
-   * FIND AVAILABLE LANDING IMAGES
-   * ------------------------------------------------------------
-   */
+  /* ==========================================================
+     FIND AVAILABLE LANDING IMAGES
+  ========================================================== */
 
   useEffect(() => {
     let cancelled = false;
@@ -89,11 +104,9 @@ export function LandingExperience({ locale }: { locale: Locale }) {
     };
   }, []);
 
-  /*
-   * ------------------------------------------------------------
-   * IMAGE LIST
-   * ------------------------------------------------------------
-   */
+  /* ==========================================================
+     IMAGE LIST
+  ========================================================== */
 
   const images = useMemo(() => {
     if (localImages.length > 0) {
@@ -103,11 +116,9 @@ export function LandingExperience({ locale }: { locale: Locale }) {
     return FALLBACK_IMAGES;
   }, [localImages]);
 
-  /*
-   * ------------------------------------------------------------
-   * KEEP ACTIVE SLIDE VALID
-   * ------------------------------------------------------------
-   */
+  /* ==========================================================
+     KEEP ACTIVE SLIDE VALID
+  ========================================================== */
 
   useEffect(() => {
     if (active >= images.length) {
@@ -115,11 +126,9 @@ export function LandingExperience({ locale }: { locale: Locale }) {
     }
   }, [active, images.length]);
 
-  /*
-   * ------------------------------------------------------------
-   * AUTOMATIC HERO SLIDESHOW
-   * ------------------------------------------------------------
-   */
+  /* ==========================================================
+     AUTOMATIC HERO SLIDESHOW
+  ========================================================== */
 
   useEffect(() => {
     if (images.length < 2) {
@@ -135,14 +144,12 @@ export function LandingExperience({ locale }: { locale: Locale }) {
     };
   }, [images.length]);
 
-  /*
-   * ------------------------------------------------------------
-   * MOVE ONLY THE THUMBNAIL RAIL
-   *
-   * DO NOT USE scrollIntoView()
-   * because that can move the entire webpage vertically.
-   * ------------------------------------------------------------
-   */
+  /* ==========================================================
+     MOVE ONLY THUMBNAIL RAIL
+
+     DO NOT USE scrollIntoView().
+     It can move the entire webpage vertically.
+  ========================================================== */
 
   useEffect(() => {
     const rail = railRef.current;
@@ -166,11 +173,9 @@ export function LandingExperience({ locale }: { locale: Locale }) {
     });
   }, [active]);
 
-  /*
-   * ------------------------------------------------------------
-   * ANIMATED GRAPH OBSERVER
-   * ------------------------------------------------------------
-   */
+  /* ==========================================================
+     ANIMATED GRAPH OBSERVER
+  ========================================================== */
 
   useEffect(() => {
     const element = graphRef.current;
@@ -204,19 +209,19 @@ export function LandingExperience({ locale }: { locale: Locale }) {
     };
   }, []);
 
-  /*
-   * ------------------------------------------------------------
-   * CURRENT HERO CAPTION
-   * ------------------------------------------------------------
-   */
+  /* ==========================================================
+     CURRENT HERO CAPTION
+
+     The ! guarantees TypeScript that the array access exists.
+  ========================================================== */
 
   const caption = captions[active % captions.length]!;
 
   return (
     <div className="kcmsc-landing bg-background">
-      {/* ========================================================
+      {/* ======================================================
           HERO
-      ========================================================= */}
+      ====================================================== */}
 
       <section
         className="
@@ -545,9 +550,9 @@ export function LandingExperience({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      {/* ========================================================
+      {/* ======================================================
           STORY
-      ========================================================= */}
+      ====================================================== */}
 
       <section className="border-b border-border bg-background">
         <div
@@ -609,9 +614,9 @@ export function LandingExperience({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      {/* ========================================================
+      {/* ======================================================
           LARGE CAMPUS IMAGE
-      ========================================================= */}
+      ====================================================== */}
 
       <section className="bg-surface py-6 sm:py-10">
         <div
@@ -633,9 +638,15 @@ export function LandingExperience({ locale }: { locale: Locale }) {
             "
           >
             <img
-              src={images[0]}
+              src="/photos/1.jpg"
               alt="KCMSC campus life"
               className="h-full w-full object-cover"
+              onError={(event) => {
+                console.error(
+                  "Could not load campus image:",
+                  event.currentTarget.src,
+                );
+              }}
             />
 
             <div
@@ -686,9 +697,9 @@ export function LandingExperience({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      {/* ========================================================
+      {/* ======================================================
           BEYOND THE CLASSROOM
-      ========================================================= */}
+      ====================================================== */}
 
       <section className="border-y border-border bg-background">
         <div
@@ -785,9 +796,9 @@ export function LandingExperience({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      {/* ========================================================
+      {/* ======================================================
           HORIZONTAL IMAGE STORY
-      ========================================================= */}
+      ====================================================== */}
 
       <section className="border-b border-border bg-surface">
         <div
@@ -921,9 +932,9 @@ export function LandingExperience({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      {/* ========================================================
+      {/* ======================================================
           DISCOVER KCMSC
-      ========================================================= */}
+      ====================================================== */}
 
       <section className="border-b border-border bg-background">
         <div
@@ -1011,31 +1022,31 @@ export function LandingExperience({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      {/* ========================================================
+      {/* ======================================================
           ANIMATED STUDENT GROWTH GRAPH
-      ========================================================= */}
+      ====================================================== */}
 
-      <section ref={graphRef} className="border-b border-border bg-surface">
+      <section ref={graphRef} className="border-b border-border bg-background">
         <div
           className="
             mx-auto
             max-w-[1500px]
             px-6
-            py-16
+            py-20
             sm:px-10
-            sm:py-20
+            sm:py-28
             lg:px-14
           "
         >
           <div
             className="
               grid
-              gap-12
+              gap-14
               lg:grid-cols-[0.72fr_1.28fr]
               lg:items-center
             "
           >
-            {/* Graph introduction */}
+            {/* LEFT */}
 
             <div className="max-w-md">
               <p
@@ -1043,7 +1054,7 @@ export function LandingExperience({ locale }: { locale: Locale }) {
                   text-[10px]
                   font-semibold
                   uppercase
-                  tracking-[0.25em]
+                  tracking-[0.28em]
                   text-brass
                 "
               >
@@ -1052,10 +1063,11 @@ export function LandingExperience({ locale }: { locale: Locale }) {
 
               <h2
                 className="
-                  mt-3
+                  mt-4
                   font-heading
-                  text-3xl
-                  leading-tight
+                  text-4xl
+                  leading-[1.02]
+                  tracking-[-0.02em]
                   text-ink
                   sm:text-5xl
                 "
@@ -1065,7 +1077,7 @@ export function LandingExperience({ locale }: { locale: Locale }) {
 
               <p
                 className="
-                  mt-5
+                  mt-6
                   max-w-sm
                   text-sm
                   leading-7
@@ -1078,11 +1090,308 @@ export function LandingExperience({ locale }: { locale: Locale }) {
                 focus on learning and character.
               </p>
 
-              <div className="mt-8 flex items-end gap-8">
+              <div className="mt-10 flex items-start">
                 <div>
                   <p
                     className="
                       text-[10px]
+                      font-semibold
+                      uppercase
+                      tracking-[0.2em]
+                      text-ink-muted
+                    "
+                  >
+                    2015
+                  </p>
+
+                  <p
+                    className="
+                      mt-2
+                      font-heading
+                      text-4xl
+                      tracking-[-0.02em]
+                      text-ink
+                    "
+                  >
+                    2,200+
+                  </p>
+
+                  <p className="mt-1 text-xs text-ink-muted">students</p>
+                </div>
+
+                <div className="mx-8 mt-1 h-16 w-px bg-border" />
+
+                <div>
+                  <p
+                    className="
+                      text-[10px]
+                      font-semibold
+                      uppercase
+                      tracking-[0.2em]
+                      text-brass
+                    "
+                  >
+                    2025
+                  </p>
+
+                  <p
+                    className="
+                      mt-2
+                      font-heading
+                      text-4xl
+                      tracking-[-0.02em]
+                      text-primary
+                    "
+                  >
+                    2,336
+                  </p>
+
+                  <p className="mt-1 text-xs text-ink-muted">students</p>
+                </div>
+              </div>
+            </div>
+
+            {/* RIGHT GRAPH */}
+
+            <div className="relative min-w-0">
+              <div
+                className="
+                  relative
+                  h-[280px]
+                  w-full
+                  sm:h-[340px]
+                "
+              >
+                {/* Reference lines */}
+
+                <div
+                  className="
+                    pointer-events-none
+                    absolute
+                    inset-x-0
+                    top-[18%]
+                    h-px
+                    bg-border/40
+                  "
+                />
+
+                <div
+                  className="
+                    pointer-events-none
+                    absolute
+                    inset-x-0
+                    top-[50%]
+                    h-px
+                    bg-border/40
+                  "
+                />
+
+                <div
+                  className="
+                    pointer-events-none
+                    absolute
+                    inset-x-0
+                    top-[82%]
+                    h-px
+                    bg-border/40
+                  "
+                />
+
+                {/* Axis labels */}
+
+                <div
+                  className="
+                    pointer-events-none
+                    absolute
+                    left-0
+                    top-[13%]
+                    text-[9px]
+                    tracking-[0.08em]
+                    text-ink-muted/70
+                  "
+                >
+                  2,400
+                </div>
+
+                <div
+                  className="
+                    pointer-events-none
+                    absolute
+                    left-0
+                    top-[45%]
+                    text-[9px]
+                    tracking-[0.08em]
+                    text-ink-muted/70
+                  "
+                >
+                  2,300
+                </div>
+
+                <div
+                  className="
+                    pointer-events-none
+                    absolute
+                    left-0
+                    top-[77%]
+                    text-[9px]
+                    tracking-[0.08em]
+                    text-ink-muted/70
+                  "
+                >
+                  2,200
+                </div>
+
+                {/* SVG GRAPH */}
+
+                <svg
+                  viewBox="0 0 900 340"
+                  preserveAspectRatio="none"
+                  className="
+                    absolute
+                    inset-0
+                    h-full
+                    w-full
+                    overflow-visible
+                  "
+                  aria-label="Student population growth from 2015 to 2025"
+                  role="img"
+                >
+                  {/* Area */}
+
+                  <path
+                    d="
+                      M 80 255
+                      C 230 245, 380 235, 520 218
+                      C 610 207, 690 193, 820 155
+                      L 820 285
+                      L 80 285
+                      Z
+                    "
+                    className={`
+                      fill-primary/5
+                      transition-opacity
+                      duration-1000
+                      ${graphVisible ? "opacity-100" : "opacity-0"}
+                    `}
+                  />
+
+                  {/* Main line */}
+
+                  <path
+                    d="
+                      M 80 255
+                      C 230 245, 380 235, 520 218
+                      C 610 207, 690 193, 820 155
+                    "
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    className="
+                      text-primary
+                      transition-all
+                      duration-[1800ms]
+                      ease-out
+                    "
+                    style={{
+                      strokeDasharray: 900,
+                      strokeDashoffset: graphVisible ? 0 : 900,
+                    }}
+                  />
+
+                  {/* Soft highlight */}
+
+                  <path
+                    d="
+                      M 80 255
+                      C 230 245, 380 235, 520 218
+                      C 610 207, 690 193, 820 155
+                    "
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="8"
+                    strokeLinecap="round"
+                    className="
+                      text-primary/10
+                      transition-all
+                      duration-[1800ms]
+                      ease-out
+                    "
+                    style={{
+                      strokeDasharray: 900,
+                      strokeDashoffset: graphVisible ? 0 : 900,
+                    }}
+                  />
+
+                  {/* Starting point */}
+
+                  <circle
+                    cx="80"
+                    cy="255"
+                    r="6"
+                    className="
+                      fill-background
+                      stroke-primary
+                      transition-all
+                      duration-500
+                    "
+                    strokeWidth="3"
+                    style={{
+                      opacity: graphVisible ? 1 : 0,
+                    }}
+                  />
+
+                  {/* Ending point */}
+
+                  <circle
+                    cx="820"
+                    cy="155"
+                    r="7"
+                    className="
+                      fill-primary
+                      transition-all
+                      duration-500
+                    "
+                    style={{
+                      opacity: graphVisible ? 1 : 0,
+                      transitionDelay: "1500ms",
+                    }}
+                  />
+
+                  {/* Halo */}
+
+                  <circle
+                    cx="820"
+                    cy="155"
+                    r="18"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1"
+                    className="
+                      text-primary/20
+                      transition-opacity
+                      duration-700
+                    "
+                    style={{
+                      opacity: graphVisible ? 1 : 0,
+                      transitionDelay: "1700ms",
+                    }}
+                  />
+                </svg>
+
+                {/* Start label */}
+
+                <div
+                  className="
+                    absolute
+                    bottom-[15%]
+                    left-[7%]
+                    -translate-x-1/2
+                  "
+                >
+                  <p
+                    className="
+                      text-[9px]
                       uppercase
                       tracking-[0.18em]
                       text-ink-muted
@@ -1095,236 +1404,12 @@ export function LandingExperience({ locale }: { locale: Locale }) {
                     className="
                       mt-1
                       font-heading
-                      text-3xl
-                      text-ink
-                      sm:text-4xl
-                    "
-                  >
-                    2,200+
-                  </p>
-
-                  <p className="mt-1 text-xs text-ink-muted">Students</p>
-                </div>
-
-                <div className="h-12 w-px bg-border" />
-
-                <div>
-                  <p
-                    className="
-                      text-[10px]
-                      uppercase
-                      tracking-[0.18em]
-                      text-ink-muted
-                    "
-                  >
-                    2025
-                  </p>
-
-                  <p
-                    className="
-                      mt-1
-                      font-heading
-                      text-3xl
-                      text-primary
-                      sm:text-4xl
-                    "
-                  >
-                    2,336
-                  </p>
-
-                  <p className="mt-1 text-xs text-ink-muted">Students</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Graph */}
-
-            <div className="relative min-w-0">
-              <div
-                className="
-                  relative
-                  h-[300px]
-                  w-full
-                  overflow-hidden
-                  sm:h-[360px]
-                "
-              >
-                {/* Horizontal grid */}
-
-                <div
-                  className="
-                    pointer-events-none
-                    absolute
-                    inset-0
-                    flex
-                    flex-col
-                    justify-between
-                    py-5
-                  "
-                >
-                  <div className="h-px w-full bg-border/70" />
-                  <div className="h-px w-full bg-border/50" />
-                  <div className="h-px w-full bg-border/50" />
-                  <div className="h-px w-full bg-border/70" />
-                </div>
-
-                {/* Y axis */}
-
-                <div
-                  className="
-                    pointer-events-none
-                    absolute
-                    bottom-5
-                    left-0
-                    top-2
-                    flex
-                    flex-col
-                    justify-between
-                    text-[10px]
-                    text-ink-muted
-                  "
-                >
-                  <span>2,400</span>
-                  <span>2,300</span>
-                  <span>2,200</span>
-                  <span>2,100</span>
-                </div>
-
-                {/* Graph SVG */}
-
-                <svg
-                  viewBox="0 0 800 360"
-                  className="
-                    absolute
-                    inset-0
-                    h-full
-                    w-full
-                    overflow-visible
-                    pl-8
-                  "
-                  preserveAspectRatio="none"
-                  role="img"
-                  aria-label="Student population growth from more than 2200 students in 2015 to 2336 students in 2025"
-                >
-                  {/* Area */}
-
-                  <path
-                    d="
-                      M 60 260
-                      L 740 205
-                      L 740 320
-                      L 60 320
-                      Z
-                    "
-                    fill="currentColor"
-                    className={`
-                      text-primary/5
-                      transition-opacity
-                      duration-1000
-                      ${graphVisible ? "opacity-100" : "opacity-0"}
-                    `}
-                  />
-
-                  {/* Main line */}
-
-                  <path
-                    d="M 60 260 L 740 205"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                    strokeLinecap="round"
-                    className="
-                      text-primary
-                      transition-all
-                      duration-[1800ms]
-                      ease-out
-                    "
-                    style={{
-                      strokeDasharray: 700,
-                      strokeDashoffset: graphVisible ? 0 : 700,
-                    }}
-                  />
-
-                  {/* Start point */}
-
-                  <circle
-                    cx="60"
-                    cy="260"
-                    r="7"
-                    fill="currentColor"
-                    className="
-                      text-primary
-                      transition-all
-                      duration-500
-                    "
-                    style={{
-                      opacity: graphVisible ? 1 : 0,
-                      transform: graphVisible ? "scale(1)" : "scale(0)",
-                      transformOrigin: "60px 260px",
-                    }}
-                  />
-
-                  {/* End point */}
-
-                  <circle
-                    cx="740"
-                    cy="205"
-                    r="9"
-                    fill="currentColor"
-                    className="
-                      text-primary
-                      transition-all
-                      duration-500
-                    "
-                    style={{
-                      opacity: graphVisible ? 1 : 0,
-                      transform: graphVisible ? "scale(1)" : "scale(0)",
-                      transformOrigin: "740px 205px",
-                      transitionDelay: "1500ms",
-                    }}
-                  />
-
-                  {/* End pulse */}
-
-                  <circle
-                    cx="740"
-                    cy="205"
-                    r="18"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1"
-                    className="text-primary/30"
-                    style={{
-                      opacity: graphVisible ? 1 : 0,
-                      transitionDelay: "1800ms",
-                    }}
-                  />
-                </svg>
-
-                {/* Start label */}
-
-                <div
-                  className="
-                    absolute
-                    bottom-[47px]
-                    left-[8%]
-                    -translate-x-1/2
-                  "
-                >
-                  <div
-                    className="
-                      rounded-full
-                      border
-                      border-border
-                      bg-background
-                      px-3
-                      py-1.5
-                      text-xs
+                      text-lg
                       text-ink
                     "
                   >
                     2,200+
-                  </div>
+                  </p>
                 </div>
 
                 {/* End label */}
@@ -1332,54 +1417,111 @@ export function LandingExperience({ locale }: { locale: Locale }) {
                 <div
                   className="
                     absolute
-                    right-[4%]
-                    top-[43%]
+                    right-[1%]
+                    top-[29%]
+                    sm:right-[2%]
                   "
                 >
                   <div
                     className="
-                      rounded-xl
+                      relative
+                      rounded-2xl
+                      border
+                      border-primary/10
                       bg-primary
-                      px-4
-                      py-3
+                      px-5
+                      py-4
                       text-white
-                      shadow-sm
+                      shadow-[0_12px_35px_rgba(12,105,72,0.14)]
                     "
                   >
                     <p
                       className="
                         text-[9px]
+                        font-medium
                         uppercase
-                        tracking-[0.18em]
+                        tracking-[0.2em]
                         text-white/60
                       "
                     >
                       2025
                     </p>
 
-                    <p className="mt-0.5 font-heading text-2xl">2,336</p>
+                    <p
+                      className="
+                        mt-1
+                        font-heading
+                        text-3xl
+                        leading-none
+                      "
+                    >
+                      2,336
+                    </p>
 
-                    <p className="text-[10px] text-white/70">students</p>
+                    <p
+                      className="
+                        mt-1
+                        text-[10px]
+                        text-white/65
+                      "
+                    >
+                      students
+                    </p>
                   </div>
                 </div>
 
-                {/* X axis */}
+                {/* Timeline */}
 
                 <div
                   className="
                     absolute
-                    inset-x-[8%]
+                    inset-x-[7%]
                     bottom-0
                     flex
+                    items-center
                     justify-between
-                    text-[10px]
-                    uppercase
-                    tracking-[0.15em]
-                    text-ink-muted
                   "
                 >
-                  <span>2015</span>
-                  <span>2025</span>
+                  <div className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+
+                    <span
+                      className="
+                        text-[9px]
+                        font-medium
+                        uppercase
+                        tracking-[0.18em]
+                        text-ink-muted
+                      "
+                    >
+                      2015
+                    </span>
+                  </div>
+
+                  <div
+                    className="
+                      mx-5
+                      h-px
+                      flex-1
+                      bg-border
+                    "
+                  />
+
+                  <div className="flex items-center gap-2">
+                    <span
+                      className="
+                        text-[9px]
+                        font-medium
+                        uppercase
+                        tracking-[0.18em]
+                        text-primary
+                      "
+                    >
+                      2025
+                    </span>
+
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                  </div>
                 </div>
               </div>
 
@@ -1387,7 +1529,7 @@ export function LandingExperience({ locale }: { locale: Locale }) {
 
               <div
                 className="
-                  mt-5
+                  mt-6
                   flex
                   items-center
                   justify-between
@@ -1396,10 +1538,26 @@ export function LandingExperience({ locale }: { locale: Locale }) {
                   pt-4
                 "
               >
-                <p className="text-xs text-ink-muted">Student population</p>
+                <p
+                  className="
+                    text-[10px]
+                    uppercase
+                    tracking-[0.18em]
+                    text-ink-muted
+                  "
+                >
+                  Student population
+                </p>
 
-                <p className="text-xs font-medium text-primary">
-                  10-year growth
+                <p
+                  className="
+                    text-[10px]
+                    uppercase
+                    tracking-[0.18em]
+                    text-primary
+                  "
+                >
+                  10-year view
                 </p>
               </div>
             </div>
@@ -1407,9 +1565,9 @@ export function LandingExperience({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      {/* ========================================================
+      {/* ======================================================
           ACHIEVEMENTS
-      ========================================================= */}
+      ====================================================== */}
 
       <section className="border-b border-border bg-background">
         <div
@@ -1507,9 +1665,9 @@ export function LandingExperience({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      {/* ========================================================
+      {/* ======================================================
           CAMPUS & FACILITIES
-      ========================================================= */}
+      ====================================================== */}
 
       <section className="border-b border-border bg-surface">
         <div
@@ -1633,9 +1791,9 @@ export function LandingExperience({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      {/* ========================================================
+      {/* ======================================================
           ADMISSIONS CTA
-      ========================================================= */}
+      ====================================================== */}
 
       <section className="border-b border-border bg-primary-dark text-white">
         <div
