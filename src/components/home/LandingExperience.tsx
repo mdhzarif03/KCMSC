@@ -4,19 +4,6 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import type { Locale } from "@/i18n/config";
 
-/*
-|--------------------------------------------------------------------------
-| IMAGES
-|--------------------------------------------------------------------------
-|
-| Physical files:
-| F:\KCMSC\public\assets\pictures\landing-page\
-|
-| Browser paths:
-| /assets/pictures/landing-page/1.jpg
-|
-*/
-
 const FALLBACK_IMAGES = [
   "/assets/pictures/landing-page/1.jpg",
   "/assets/pictures/landing-page/2.jpg",
@@ -26,12 +13,6 @@ const LOCAL_CANDIDATES = Array.from(
   { length: 12 },
   (_, i) => `/assets/pictures/landing-page/${i + 1}.jpg`,
 );
-
-/*
-|--------------------------------------------------------------------------
-| HERO CAPTIONS
-|--------------------------------------------------------------------------
-*/
 
 const captions = [
   {
@@ -66,23 +47,19 @@ const captions = [
   },
 ];
 
-/*
-|--------------------------------------------------------------------------
-| COMPONENT
-|--------------------------------------------------------------------------
-*/
-
 export function LandingExperience({ locale }: { locale: Locale }) {
   const [active, setActive] = useState(0);
   const [localImages, setLocalImages] = useState<string[]>([]);
+  const [graphVisible, setGraphVisible] = useState(false);
 
   const railRef = useRef<HTMLDivElement>(null);
+  const graphRef = useRef<HTMLElement>(null);
 
   /*
-  |--------------------------------------------------------------------------
-  | FIND AVAILABLE IMAGES
-  |--------------------------------------------------------------------------
-  */
+   * ------------------------------------------------------------
+   * FIND AVAILABLE LANDING IMAGES
+   * ------------------------------------------------------------
+   */
 
   useEffect(() => {
     let cancelled = false;
@@ -100,7 +77,9 @@ export function LandingExperience({ locale }: { locale: Locale }) {
           }),
       ),
     ).then((results) => {
-      if (cancelled) return;
+      if (cancelled) {
+        return;
+      }
 
       setLocalImages(results.filter((src): src is string => Boolean(src)));
     });
@@ -111,10 +90,10 @@ export function LandingExperience({ locale }: { locale: Locale }) {
   }, []);
 
   /*
-  |--------------------------------------------------------------------------
-  | IMAGE LIST
-  |--------------------------------------------------------------------------
-  */
+   * ------------------------------------------------------------
+   * IMAGE LIST
+   * ------------------------------------------------------------
+   */
 
   const images = useMemo(() => {
     if (localImages.length > 0) {
@@ -125,10 +104,10 @@ export function LandingExperience({ locale }: { locale: Locale }) {
   }, [localImages]);
 
   /*
-  |--------------------------------------------------------------------------
-  | KEEP ACTIVE INDEX VALID
-  |--------------------------------------------------------------------------
-  */
+   * ------------------------------------------------------------
+   * KEEP ACTIVE SLIDE VALID
+   * ------------------------------------------------------------
+   */
 
   useEffect(() => {
     if (active >= images.length) {
@@ -137,10 +116,10 @@ export function LandingExperience({ locale }: { locale: Locale }) {
   }, [active, images.length]);
 
   /*
-  |--------------------------------------------------------------------------
-  | AUTOMATIC HERO SLIDESHOW
-  |--------------------------------------------------------------------------
-  */
+   * ------------------------------------------------------------
+   * AUTOMATIC HERO SLIDESHOW
+   * ------------------------------------------------------------
+   */
 
   useEffect(() => {
     if (images.length < 2) {
@@ -157,16 +136,13 @@ export function LandingExperience({ locale }: { locale: Locale }) {
   }, [images.length]);
 
   /*
-  |--------------------------------------------------------------------------
-  | IMPORTANT:
-  | ONLY SCROLL THE THUMBNAIL RAIL.
-  |
-  | DO NOT USE:
-  | item.scrollIntoView()
-  |
-  | That can scroll the ENTIRE PAGE vertically.
-  |--------------------------------------------------------------------------
-  */
+   * ------------------------------------------------------------
+   * MOVE ONLY THE THUMBNAIL RAIL
+   *
+   * DO NOT USE scrollIntoView()
+   * because that can move the entire webpage vertically.
+   * ------------------------------------------------------------
+   */
 
   useEffect(() => {
     const rail = railRef.current;
@@ -191,18 +167,56 @@ export function LandingExperience({ locale }: { locale: Locale }) {
   }, [active]);
 
   /*
-  |--------------------------------------------------------------------------
-  | CURRENT CAPTION
-  |--------------------------------------------------------------------------
-  */
+   * ------------------------------------------------------------
+   * ANIMATED GRAPH OBSERVER
+   * ------------------------------------------------------------
+   */
 
-  const caption = captions[active % captions.length] ?? captions[0];
+  useEffect(() => {
+    const element = graphRef.current;
+
+    if (!element) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+
+        if (!entry) {
+          return;
+        }
+
+        if (entry.isIntersecting) {
+          setGraphVisible(true);
+          observer.disconnect();
+        }
+      },
+      {
+        threshold: 0.25,
+      },
+    );
+
+    observer.observe(element);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  /*
+   * ------------------------------------------------------------
+   * CURRENT HERO CAPTION
+   * ------------------------------------------------------------
+   */
+
+  const caption = captions[active % captions.length]!;
 
   return (
     <div className="kcmsc-landing bg-background">
-      {/* =========================================================
+      {/* ========================================================
           HERO
-      ========================================================== */}
+      ========================================================= */}
 
       <section
         className="
@@ -214,9 +228,7 @@ export function LandingExperience({ locale }: { locale: Locale }) {
           text-white
         "
       >
-        {/* -------------------------------------------------------
-            TOP GRADIENT FOR TRANSPARENT NAVBAR
-        -------------------------------------------------------- */}
+        {/* Navigation readability gradient */}
 
         <div
           className="
@@ -227,15 +239,13 @@ export function LandingExperience({ locale }: { locale: Locale }) {
             z-20
             h-44
             bg-gradient-to-b
-            from-black/55
-            via-black/20
+            from-black/60
+            via-black/25
             to-transparent
           "
         />
 
-        {/* -------------------------------------------------------
-            HERO IMAGES
-        -------------------------------------------------------- */}
+        {/* Hero images */}
 
         <div className="absolute inset-0">
           {images.map((src, index) => (
@@ -262,38 +272,38 @@ export function LandingExperience({ locale }: { locale: Locale }) {
             />
           ))}
 
-          {/* Left-side readability */}
+          {/* Left readability */}
+
           <div
             className="
               pointer-events-none
               absolute
               inset-0
               bg-gradient-to-r
-              from-black/65
+              from-black/70
               via-black/30
               to-black/5
             "
           />
 
           {/* Bottom readability */}
+
           <div
             className="
               pointer-events-none
               absolute
               inset-x-0
               bottom-0
-              h-72
+              h-80
               bg-gradient-to-t
-              from-black/60
+              from-black/65
               via-black/20
               to-transparent
             "
           />
         </div>
 
-        {/* -------------------------------------------------------
-            HERO CONTENT
-        -------------------------------------------------------- */}
+        {/* Hero content */}
 
         <div
           className="
@@ -322,9 +332,7 @@ export function LandingExperience({ locale }: { locale: Locale }) {
               lg:grid-cols-[minmax(0,1fr)_minmax(260px,420px)]
             "
           >
-            {/* =================================================
-                HERO TEXT
-            ================================================== */}
+            {/* Hero text */}
 
             <div className="max-w-3xl">
               <p
@@ -374,8 +382,6 @@ export function LandingExperience({ locale }: { locale: Locale }) {
                 {caption.body}
               </p>
 
-              {/* HERO CTAs */}
-
               <div className="mt-7 flex flex-wrap gap-3">
                 <Link
                   href={`/${locale}/admissions`}
@@ -416,9 +422,7 @@ export function LandingExperience({ locale }: { locale: Locale }) {
               </div>
             </div>
 
-            {/* =================================================
-                SLIDE COUNTER
-            ================================================== */}
+            {/* Slide counter */}
 
             <div className="hidden lg:block">
               <p
@@ -465,9 +469,7 @@ export function LandingExperience({ locale }: { locale: Locale }) {
             </div>
           </div>
 
-          {/* =====================================================
-              THUMBNAIL RAIL
-          ====================================================== */}
+          {/* Thumbnail rail */}
 
           <div
             ref={railRef}
@@ -543,9 +545,9 @@ export function LandingExperience({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      {/* =========================================================
-          THE STORY
-      ========================================================== */}
+      {/* ========================================================
+          STORY
+      ========================================================= */}
 
       <section className="border-b border-border bg-background">
         <div
@@ -607,9 +609,9 @@ export function LandingExperience({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      {/* =========================================================
-          CAMPUS LIFE
-      ========================================================== */}
+      {/* ========================================================
+          LARGE CAMPUS IMAGE
+      ========================================================= */}
 
       <section className="bg-surface py-6 sm:py-10">
         <div
@@ -641,7 +643,7 @@ export function LandingExperience({ locale }: { locale: Locale }) {
                 absolute
                 inset-0
                 bg-gradient-to-t
-                from-black/60
+                from-black/65
                 via-transparent
                 to-transparent
               "
@@ -684,9 +686,9 @@ export function LandingExperience({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      {/* =========================================================
+      {/* ========================================================
           BEYOND THE CLASSROOM
-      ========================================================== */}
+      ========================================================= */}
 
       <section className="border-y border-border bg-background">
         <div
@@ -783,9 +785,9 @@ export function LandingExperience({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      {/* =========================================================
-          HORIZONTAL STORY GALLERY
-      ========================================================== */}
+      {/* ========================================================
+          HORIZONTAL IMAGE STORY
+      ========================================================= */}
 
       <section className="border-b border-border bg-surface">
         <div
@@ -910,7 +912,7 @@ export function LandingExperience({ locale }: { locale: Locale }) {
                   </span>
 
                   <p className="mt-1 font-heading text-xl">
-                    {captions[index % captions.length]?.kicker}
+                    {captions[index % captions.length]!.kicker}
                   </p>
                 </div>
               </div>
@@ -919,9 +921,9 @@ export function LandingExperience({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      {/* =========================================================
+      {/* ========================================================
           DISCOVER KCMSC
-      ========================================================== */}
+      ========================================================= */}
 
       <section className="border-b border-border bg-background">
         <div
@@ -1009,9 +1011,631 @@ export function LandingExperience({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      {/* =========================================================
+      {/* ========================================================
+          ANIMATED STUDENT GROWTH GRAPH
+      ========================================================= */}
+
+      <section ref={graphRef} className="border-b border-border bg-surface">
+        <div
+          className="
+            mx-auto
+            max-w-[1500px]
+            px-6
+            py-16
+            sm:px-10
+            sm:py-20
+            lg:px-14
+          "
+        >
+          <div
+            className="
+              grid
+              gap-12
+              lg:grid-cols-[0.72fr_1.28fr]
+              lg:items-center
+            "
+          >
+            {/* Graph introduction */}
+
+            <div className="max-w-md">
+              <p
+                className="
+                  text-[10px]
+                  font-semibold
+                  uppercase
+                  tracking-[0.25em]
+                  text-brass
+                "
+              >
+                Our growth
+              </p>
+
+              <h2
+                className="
+                  mt-3
+                  font-heading
+                  text-3xl
+                  leading-tight
+                  text-ink
+                  sm:text-5xl
+                "
+              >
+                Growing with every generation.
+              </h2>
+
+              <p
+                className="
+                  mt-5
+                  max-w-sm
+                  text-sm
+                  leading-7
+                  text-ink-muted
+                  sm:text-base
+                "
+              >
+                From more than 2,200 students in 2015 to 2,336 students in 2025,
+                KC Model School and College continues to grow while keeping its
+                focus on learning and character.
+              </p>
+
+              <div className="mt-8 flex items-end gap-8">
+                <div>
+                  <p
+                    className="
+                      text-[10px]
+                      uppercase
+                      tracking-[0.18em]
+                      text-ink-muted
+                    "
+                  >
+                    2015
+                  </p>
+
+                  <p
+                    className="
+                      mt-1
+                      font-heading
+                      text-3xl
+                      text-ink
+                      sm:text-4xl
+                    "
+                  >
+                    2,200+
+                  </p>
+
+                  <p className="mt-1 text-xs text-ink-muted">Students</p>
+                </div>
+
+                <div className="h-12 w-px bg-border" />
+
+                <div>
+                  <p
+                    className="
+                      text-[10px]
+                      uppercase
+                      tracking-[0.18em]
+                      text-ink-muted
+                    "
+                  >
+                    2025
+                  </p>
+
+                  <p
+                    className="
+                      mt-1
+                      font-heading
+                      text-3xl
+                      text-primary
+                      sm:text-4xl
+                    "
+                  >
+                    2,336
+                  </p>
+
+                  <p className="mt-1 text-xs text-ink-muted">Students</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Graph */}
+
+            <div className="relative min-w-0">
+              <div
+                className="
+                  relative
+                  h-[300px]
+                  w-full
+                  overflow-hidden
+                  sm:h-[360px]
+                "
+              >
+                {/* Horizontal grid */}
+
+                <div
+                  className="
+                    pointer-events-none
+                    absolute
+                    inset-0
+                    flex
+                    flex-col
+                    justify-between
+                    py-5
+                  "
+                >
+                  <div className="h-px w-full bg-border/70" />
+                  <div className="h-px w-full bg-border/50" />
+                  <div className="h-px w-full bg-border/50" />
+                  <div className="h-px w-full bg-border/70" />
+                </div>
+
+                {/* Y axis */}
+
+                <div
+                  className="
+                    pointer-events-none
+                    absolute
+                    bottom-5
+                    left-0
+                    top-2
+                    flex
+                    flex-col
+                    justify-between
+                    text-[10px]
+                    text-ink-muted
+                  "
+                >
+                  <span>2,400</span>
+                  <span>2,300</span>
+                  <span>2,200</span>
+                  <span>2,100</span>
+                </div>
+
+                {/* Graph SVG */}
+
+                <svg
+                  viewBox="0 0 800 360"
+                  className="
+                    absolute
+                    inset-0
+                    h-full
+                    w-full
+                    overflow-visible
+                    pl-8
+                  "
+                  preserveAspectRatio="none"
+                  role="img"
+                  aria-label="Student population growth from more than 2200 students in 2015 to 2336 students in 2025"
+                >
+                  {/* Area */}
+
+                  <path
+                    d="
+                      M 60 260
+                      L 740 205
+                      L 740 320
+                      L 60 320
+                      Z
+                    "
+                    fill="currentColor"
+                    className={`
+                      text-primary/5
+                      transition-opacity
+                      duration-1000
+                      ${graphVisible ? "opacity-100" : "opacity-0"}
+                    `}
+                  />
+
+                  {/* Main line */}
+
+                  <path
+                    d="M 60 260 L 740 205"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                    strokeLinecap="round"
+                    className="
+                      text-primary
+                      transition-all
+                      duration-[1800ms]
+                      ease-out
+                    "
+                    style={{
+                      strokeDasharray: 700,
+                      strokeDashoffset: graphVisible ? 0 : 700,
+                    }}
+                  />
+
+                  {/* Start point */}
+
+                  <circle
+                    cx="60"
+                    cy="260"
+                    r="7"
+                    fill="currentColor"
+                    className="
+                      text-primary
+                      transition-all
+                      duration-500
+                    "
+                    style={{
+                      opacity: graphVisible ? 1 : 0,
+                      transform: graphVisible ? "scale(1)" : "scale(0)",
+                      transformOrigin: "60px 260px",
+                    }}
+                  />
+
+                  {/* End point */}
+
+                  <circle
+                    cx="740"
+                    cy="205"
+                    r="9"
+                    fill="currentColor"
+                    className="
+                      text-primary
+                      transition-all
+                      duration-500
+                    "
+                    style={{
+                      opacity: graphVisible ? 1 : 0,
+                      transform: graphVisible ? "scale(1)" : "scale(0)",
+                      transformOrigin: "740px 205px",
+                      transitionDelay: "1500ms",
+                    }}
+                  />
+
+                  {/* End pulse */}
+
+                  <circle
+                    cx="740"
+                    cy="205"
+                    r="18"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1"
+                    className="text-primary/30"
+                    style={{
+                      opacity: graphVisible ? 1 : 0,
+                      transitionDelay: "1800ms",
+                    }}
+                  />
+                </svg>
+
+                {/* Start label */}
+
+                <div
+                  className="
+                    absolute
+                    bottom-[47px]
+                    left-[8%]
+                    -translate-x-1/2
+                  "
+                >
+                  <div
+                    className="
+                      rounded-full
+                      border
+                      border-border
+                      bg-background
+                      px-3
+                      py-1.5
+                      text-xs
+                      text-ink
+                    "
+                  >
+                    2,200+
+                  </div>
+                </div>
+
+                {/* End label */}
+
+                <div
+                  className="
+                    absolute
+                    right-[4%]
+                    top-[43%]
+                  "
+                >
+                  <div
+                    className="
+                      rounded-xl
+                      bg-primary
+                      px-4
+                      py-3
+                      text-white
+                      shadow-sm
+                    "
+                  >
+                    <p
+                      className="
+                        text-[9px]
+                        uppercase
+                        tracking-[0.18em]
+                        text-white/60
+                      "
+                    >
+                      2025
+                    </p>
+
+                    <p className="mt-0.5 font-heading text-2xl">2,336</p>
+
+                    <p className="text-[10px] text-white/70">students</p>
+                  </div>
+                </div>
+
+                {/* X axis */}
+
+                <div
+                  className="
+                    absolute
+                    inset-x-[8%]
+                    bottom-0
+                    flex
+                    justify-between
+                    text-[10px]
+                    uppercase
+                    tracking-[0.15em]
+                    text-ink-muted
+                  "
+                >
+                  <span>2015</span>
+                  <span>2025</span>
+                </div>
+              </div>
+
+              {/* Graph footer */}
+
+              <div
+                className="
+                  mt-5
+                  flex
+                  items-center
+                  justify-between
+                  border-t
+                  border-border
+                  pt-4
+                "
+              >
+                <p className="text-xs text-ink-muted">Student population</p>
+
+                <p className="text-xs font-medium text-primary">
+                  10-year growth
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================
+          ACHIEVEMENTS
+      ========================================================= */}
+
+      <section className="border-b border-border bg-background">
+        <div
+          className="
+            mx-auto
+            grid
+            max-w-[1500px]
+            gap-10
+            px-6
+            py-16
+            sm:px-10
+            sm:py-20
+            lg:grid-cols-[0.85fr_1.15fr]
+            lg:items-center
+            lg:px-14
+          "
+        >
+          <div>
+            <p
+              className="
+                text-[10px]
+                font-semibold
+                uppercase
+                tracking-[0.25em]
+                text-brass
+              "
+            >
+              Recognition
+            </p>
+
+            <h2
+              className="
+                mt-3
+                max-w-lg
+                font-heading
+                text-3xl
+                leading-tight
+                text-ink
+                sm:text-4xl
+              "
+            >
+              What students carry beyond the campus.
+            </h2>
+          </div>
+
+          <div className="divide-y divide-border">
+            <div className="flex items-center gap-5 py-4">
+              <span
+                className="
+                  text-[10px]
+                  font-semibold
+                  text-brass
+                "
+              >
+                01
+              </span>
+
+              <span className="text-sm text-ink">
+                National ICT Olympiad Award Winner
+              </span>
+            </div>
+
+            <div className="flex items-center gap-5 py-4">
+              <span
+                className="
+                  text-[10px]
+                  font-semibold
+                  text-brass
+                "
+              >
+                02
+              </span>
+
+              <span className="text-sm text-ink">
+                National IQ Olympiad Winner
+              </span>
+            </div>
+
+            <div className="flex items-center gap-5 py-4">
+              <span
+                className="
+                  text-[10px]
+                  font-semibold
+                  text-brass
+                "
+              >
+                03
+              </span>
+
+              <span className="text-sm text-ink">
+                PBGS Government Grant Recipient
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================
+          CAMPUS & FACILITIES
+      ========================================================= */}
+
+      <section className="border-b border-border bg-surface">
+        <div
+          className="
+            mx-auto
+            grid
+            max-w-[1500px]
+            gap-10
+            px-6
+            py-16
+            sm:px-10
+            sm:py-20
+            lg:grid-cols-[0.85fr_1.15fr]
+            lg:items-center
+            lg:px-14
+          "
+        >
+          <div>
+            <p
+              className="
+                text-[10px]
+                font-semibold
+                uppercase
+                tracking-[0.25em]
+                text-brass
+              "
+            >
+              The campus
+            </p>
+
+            <h2
+              className="
+                mt-3
+                max-w-lg
+                font-heading
+                text-3xl
+                leading-tight
+                text-ink
+                sm:text-4xl
+              "
+            >
+              Spaces for study, practice, curiosity, and community.
+            </h2>
+
+            <Link
+              href={`/${locale}/campus`}
+              className="
+                mt-5
+                inline-flex
+                text-xs
+                font-semibold
+                text-primary
+                hover:underline
+              "
+            >
+              Explore facilities →
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-2 gap-x-8 gap-y-0">
+            <div
+              className="
+                border-t
+                border-border
+                py-4
+                text-xs
+                leading-5
+                text-ink-muted
+              "
+            >
+              Air-conditioned computer lab
+              <br />
+              50+ PCs · high-speed internet
+            </div>
+
+            <div
+              className="
+                border-t
+                border-border
+                py-4
+                text-xs
+                leading-5
+                text-ink-muted
+              "
+            >
+              Library
+              <br />
+              10,000+ books and digital resources
+            </div>
+
+            <div
+              className="
+                border-t
+                border-border
+                py-4
+                text-xs
+                leading-5
+                text-ink-muted
+              "
+            >
+              Rooftop garden
+              <br />
+              Botany projects
+            </div>
+
+            <div
+              className="
+                border-t
+                border-border
+                py-4
+                text-xs
+                leading-5
+                text-ink-muted
+              "
+            >
+              Science labs
+              <br />
+              Physics, Chemistry, Biology & Mathematics
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================
           ADMISSIONS CTA
-      ========================================================== */}
+      ========================================================= */}
 
       <section className="border-b border-border bg-primary-dark text-white">
         <div
