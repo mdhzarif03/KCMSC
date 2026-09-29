@@ -1,0 +1,259 @@
+// K C Model School and College — database schema
+// Phase 1 scope: foundation models only (auth/RBAC, navigation, generic
+// content section, media, audit log). Content-type models named in the
+// brief (Notice, Achievement, Club, Facility, AdmissionApplication, etc.)
+// are stubbed with just enough shape to compile and to let Phase 2/3
+// build against a stable contract; their full field sets are filled in
+// when those phases are implemented against real requirements.
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  ADMIN
+  ADMISSION_OFFICER
+}
+
+// A User can be an ADMIN or an ADMISSION_OFFICER. Deliberately no
+// super-admin flag or tier — brief §22 requires every admin to have
+// identical permissions, and the "delete own account only" rule is
+// enforced in application code (see src/lib/auth.ts), not the schema.
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String
+  passwordHash String
+  role         Role
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Admission-officer specific relations. onDelete: SetNull so that
+  // removing an officer's account (brief §21) never deletes the
+  // applications, reviews, or audit history they touched — only
+  // detaches their name from future lookups.
+  assignedApplications AdmissionApplication[] @relation("AssignedOfficer")
+  reviews              AdmissionReview[]
+
+  auditLogs         AuditLog[]
+  invitationsIssued AccountInvitation[] @relation("InvitationIssuedBy")
+}
+
+// Secure account-creation flow (brief §22/§41/§42): an existing admin
+// never sets another person's password directly. Instead they issue an
+// invitation; the recipient follows a one-time link to set their own
+// password. Only tokenHash is stored — the raw token exists only in the
+// URL handed to the invitee, the same pattern as a password-reset flow.
+model AccountInvitation {
+  id          String    @id @default(cuid())
+  email       String
+  role        Role
+  tokenHash   String    @unique
+  expiresAt   DateTime
+  acceptedAt  DateTime?
+  createdById String?
+  createdBy   User?     @relation("InvitationIssuedBy", fields: [createdById], references: [id], onDelete: SetNull)
+  createdAt   DateTime  @default(now())
+}
+
+// --- Bilingual content primitives -----------------------------------
+
+// Generic pattern used across Notice/Achievement/Club/Facility/etc.:
+// every public-facing text field is duplicated titleEn/titleBn rather
+// than modeled as a separate Translation table, because the content
+// volume here doesn't warrant that complexity yet. Revisit only if a
+// future locale (a third language) is actually requested.
+
+model NavigationItem {
+  id        String   @id @default(cuid())
+  labelEn   String
+  labelBn   String
+  href      String
+  order     Int      @default(0)
+  isVisible Boolean  @default(true)
+  parentId  String?
+  parent    NavigationItem?  @relation("NavChildren", fields: [parentId], references: [id])
+  children  NavigationItem[] @relation("NavChildren")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Media {
+  id        String   @id @default(cuid())
+  url       String
+  altEn     String?
+  altBn     String?
+  kind      String // "image" | "document" — kept as string, not enum, so Phase 3 can extend without a migration
+  createdAt DateTime @default(now())
+}
+
+// --- Content models (stubs — full fields land with Phase 3 CMS) -----
+
+model Notice {
+  id          String    @id @default(cuid())
+  titleEn     String
+  titleBn     String
+  bodyEn      String
+  bodyBn      String
+  isImportant Boolean   @default(false)
+  isPublished Boolean   @default(false)
+  publishedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Achievement {
+  id          String   @id @default(cuid())
+  titleEn     String
+  titleBn     String
+  descriptionEn String
+  descriptionBn String
+  year        Int
+  category    String
+  isFeatured  Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Club {
+  id          String   @id @default(cuid())
+  nameEn      String
+  nameBn      String
+  descriptionEn String
+  descriptionBn String
+  isFeatured  Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Facility {
+  id          String   @id @default(cuid())
+  titleEn     String
+  titleBn     String
+  descriptionEn String
+  descriptionBn String
+  isFeatured  Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Career {
+  id           String    @id @default(cuid())
+  titleEn      String
+  titleBn      String
+  descriptionEn String
+  descriptionBn String
+  deadline     DateTime?
+  isPublished  Boolean   @default(false)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}
+
+// --- Admissions -------------------------------------------------------
+
+enum ApplicationStatus {
+  UNASSIGNED
+  ASSIGNED
+  UNDER_REVIEW
+  AWAITING_APPLICANT
+  ELIGIBLE
+  NOT_ELIGIBLE
+  EXAM_ELIGIBLE
+  EXAM_COMPLETED
+  FINAL_DECISION
+}
+
+model AdmissionCycle {
+  id           String   @id @default(cuid())
+  nameEn       String
+  nameBn       String
+  isActive     Boolean  @default(false)
+  opensAt      DateTime
+  closesAt     DateTime
+  applications AdmissionApplication[]
+}
+
+// Reference number is what the public tracker (brief §19) looks up —
+// deliberately separate from the internal cuid so it can be a
+// human-shareable, non-guessable code without exposing DB internals.
+model AdmissionApplication {
+  id            String            @id @default(cuid())
+  referenceCode String            @unique
+  cycleId       String
+  cycle         AdmissionCycle    @relation(fields: [cycleId], references: [id])
+  status        ApplicationStatus @default(UNASSIGNED)
+
+  // Applicant information
+  applicantName        String
+  dateOfBirth          DateTime
+  gender               String
+  applyingClass        String
+  previousInstitution  String?
+
+  // Guardian information
+  guardianName         String
+  guardianRelationship String
+  guardianPhone        String
+  guardianEmail        String?
+
+  // Address
+  presentAddress   String
+  permanentAddress String
+
+  // Supporting information — a simple acknowledgement checkbox for now;
+  // actual document upload needs blob storage, not yet wired up (see README).
+  declarationAccepted Boolean @default(false)
+
+  // Detached, never deleted, if the assigned officer's account is
+  // removed — see brief §21 and §43 on data retention.
+  assignedOfficerId String?
+  assignedOfficer   User?   @relation("AssignedOfficer", fields: [assignedOfficerId], references: [id], onDelete: SetNull)
+
+  reviews   AdmissionReview[]
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+}
+
+// Internal notes are kept separate from anything applicant-facing —
+// the public tracker (brief §19) must never expose this model's
+// `internalNote` field. onDelete: SetNull preserves the review history
+// itself even after the reviewing officer's account is gone.
+// Internal notes are kept separate from anything applicant-facing —
+// the public tracker (brief §19) must never expose this model's
+// `internalNote` field. `applicantMessage` is the deliberate exception:
+// an officer-written note meant to be shown to the applicant (e.g. "please
+// submit your birth certificate", or the final decision text). The public
+// tracker reads applicantMessage only, never internalNote. onDelete:
+// SetNull preserves the review history itself even after the reviewing
+// officer's account is gone.
+model AdmissionReview {
+  id             String   @id @default(cuid())
+  applicationId  String
+  application    AdmissionApplication @relation(fields: [applicationId], references: [id])
+  officerId      String?
+  officer        User?    @relation(fields: [officerId], references: [id], onDelete: SetNull)
+  internalNote   String
+  applicantMessage String?
+  statusAtReview ApplicationStatus
+  createdAt      DateTime @default(now())
+}
+
+// Append-only. Never updated or deleted by application code — a
+// record of who did what, kept even after the acting user's account
+// is removed (userId nullable + SetNull, actorLabel keeps a readable
+// name for history even then).
+model AuditLog {
+  id         String   @id @default(cuid())
+  userId     String?
+  user       User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  actorLabel String
+  action     String
+  targetType String
+  targetId   String
+  createdAt  DateTime @default(now())
+}

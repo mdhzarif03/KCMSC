@@ -1,0 +1,508 @@
+{
+  "site": {
+    "name": "K C Model School and College",
+    "shortName": "KCMSC",
+    "tagline": "Knowledge · Discipline · Morality"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "academics": "Academics",
+    "admissions": "Admissions",
+    "studentLife": "Student Life",
+    "clubs": "Clubs & Activities",
+    "achievements": "Achievements",
+    "facilities": "Campus & Facilities",
+    "notices": "Notices",
+    "careers": "Careers",
+    "contact": "Contact"
+  },
+  "hero": {
+    "eyebrow": "Established 2014 · Dakshinkhan, Uttara, Dhaka",
+    "heading": "A ten-storied campus, one mission: capable citizens for the 21st century.",
+    "subheading": "From Play Group to Grade Twelve, in Bangla and English, K C Model School and College has grown from 2,200 students in 2015 to 2,336 today.",
+    "ctaPrimary": "Explore Admissions",
+    "ctaSecondary": "About the Institution"
+  },
+  "about": {
+    "heading": "Background & Heritage",
+    "body": "K C Model School and College (KCMSC) was founded in 2014 by Al-Hajj Md. Khashru Chowdhury (CIP), founder of Nipa Group, near Uttara at 275 Prembagan, Dakshinkhan, Dhaka-1230. Housed in a ten-storied building, KCMSC began its journey on 1 January 2015 with 2,200 students and now offers both Bangla and English Versions of the National Curriculum from Play Group through Grade Twelve.",
+    "mission": "KCMSC empowers students from Play Group to Grade Twelve to discover and maximize their physical, mental, and spiritual potential through rigorous national curricula, innovative teaching, and guidance from expert faculty.",
+    "vision": "To be the premier institution in Bangladesh, realizing our founder's dream of nurturing capable, responsible global citizens equipped to excel in the 21st century.",
+    "messagesHeading": "Messages from Leadership",
+    "messages": [
+      {
+        "name": "Md. Khasru Chowdhury",
+        "role": "Founder & Chairman",
+        "quote": "My sincere hope is that students here will achieve success by acquiring time-relevant and effective education, and grow into global citizens."
+      },
+      {
+        "name": "Nipa Chowdhury",
+        "role": "Founder & Vice Chairman",
+        "quote": "Education does not merely mean memorizing textbook knowledge. True education is the ability to acquire knowledge from all surroundings."
+      },
+      {
+        "name": "Brigadier General A.S.M. Mushfiqur Rahman (Retd.), SPP, psc",
+        "role": "Chief Advisor",
+        "quote": "Education today should be learner-friendly, life-oriented, humane, science-driven, and holistic."
+      },
+      {
+        "name": "Professor Md. Abdul Baten",
+        "role": "Principal",
+        "quote": "Education is a fundamental right of every human being — it enlightens individuals, helps unlock hidden talents, and plays a vital role in building a just society."
+      }
+    ]
+  },
+  "leadership": [
+    {
+      "name": "Md. Khasru Chowdhury",
+      "role": "Founder & Chairman, KC Model School and College"
+    },
+    {
+      "name": "Nipa Chowdhury",
+      "role": "Founder & Vice Chairman"
+    },
+    {
+      "name": "Brigadier General A.S.M. Mushfiqur Rahman (Retd.), SPP, psc",
+      "role": "Chief Advisor"
+    },
+    {
+      "name": "Professor Md. Abdul Baten",
+      "role": "Principal"
+    },
+    {
+      "name": "Md. Sharwar Alam",
+      "role": "Vice Principal (Senior Wing)"
+    },
+    {
+      "name": "Salma Fouzia Noor",
+      "role": "Vice Principal (Junior Wing)"
+    }
+  ],
+  "trusteeBoard": {
+    "heading": "Trustee Board",
+    "members": [
+      {
+        "name": "Md. Khosru Chowdhury",
+        "designation": "President"
+      },
+      {
+        "name": "Nipa Chowdhury",
+        "designation": "Vice-President"
+      },
+      {
+        "name": "Rafiqul Islam Chowdhury",
+        "designation": "Member"
+      },
+      {
+        "name": "Farzana Habib",
+        "designation": "Member"
+      },
+      {
+        "name": "Dr. Sanjid Chowdhury",
+        "designation": "Member"
+      },
+      {
+        "name": "Prof. Md Abdul Baten",
+        "designation": "Member"
+      }
+    ]
+  },
+  "quickFacts": {
+    "heading": "School at a Glance",
+    "items": [
+      {
+        "label": "Total students (2025)",
+        "value": "2,336"
+      },
+      {
+        "label": "Medium of instruction",
+        "value": "Bangla (53%) & English (47%) versions"
+      },
+      {
+        "label": "Grades offered",
+        "value": "Play Group to Grade Twelve"
+      },
+      {
+        "label": "Operating hours",
+        "value": "7:45 AM – 2:30 PM, Sunday–Thursday"
+      }
+    ]
+  },
+  "academicsPage": {
+    "heading": "Academics",
+    "intro": "KCMSC follows a dual-wing structure under unified leadership: a Junior Wing covering Pre-Primary and Primary education, and a Senior Wing covering Secondary and Higher Secondary education. Both wings offer Bangla and English Versions of the National Curriculum.",
+    "mediumTable": {
+      "heading": "Student Enrollment by Medium of Instruction (2025)",
+      "columns": [
+        "Version",
+        "Students",
+        "Percentage"
+      ],
+      "rows": [
+        [
+          "Bangla",
+          "1,240",
+          "53%"
+        ],
+        [
+          "English",
+          "1,096",
+          "47%"
+        ],
+        [
+          "Total",
+          "2,336",
+          "100%"
+        ]
+      ]
+    },
+    "wingsHeading": "Wing Structure",
+    "wings": [
+      {
+        "name": "Junior Wing",
+        "sections": "Pre-Primary (English Version) and Primary (Bangla & English Versions)",
+        "administration": "1 Vice Principal, 1 Coordinator, 2 Acting Coordinators",
+        "teachingStaff": "76 teachers"
+      },
+      {
+        "name": "Senior Wing",
+        "sections": "Secondary (Bangla & English Versions) and Higher Secondary (Bangla & English Versions)",
+        "administration": "1 Vice Principal, 2 Coordinators, 2 Acting Coordinators",
+        "teachingStaff": "22 Lecturers, 20 Senior Teachers, 22 Assistant Teachers"
+      }
+    ],
+    "ageGroupsHeading": "Age-Appropriate Class Placement",
+    "ageGroups": {
+      "columns": [
+        "Age Group",
+        "Class / Grade"
+      ],
+      "rows": [
+        [
+          "3.5 – 4.5 years",
+          "Playgroup"
+        ],
+        [
+          "4.5 – 5.5 years",
+          "Nursery / KG"
+        ],
+        [
+          "5.5 – 6.5 years",
+          "Class 1"
+        ],
+        [
+          "6.5 – 7.5 years",
+          "Class 2"
+        ],
+        [
+          "7.5 – 8.5 years",
+          "Class 3"
+        ],
+        [
+          "8.5 – 9.5 years",
+          "Class 4"
+        ],
+        [
+          "9.5 – 10.5 years",
+          "Class 5"
+        ]
+      ]
+    },
+    "operatingHours": "7:45 AM – 2:30 PM, Sunday–Thursday",
+    "resultsHeading": "Academic Results — 2024",
+    "results": [
+      {
+        "label": "SSC 2024",
+        "appeared": "130",
+        "passed": "128",
+        "passRate": "98.48%",
+        "gpa5": "67"
+      },
+      {
+        "label": "HSC 2024",
+        "appeared": "47",
+        "passed": "47",
+        "passRate": "100%",
+        "gpa5": "13"
+      }
+    ]
+  },
+  "studentLifePage": {
+    "heading": "Student Life",
+    "intro": "Co-curricular activities are directed by the school's Cultural Department and integrated into the academic framework across both wings.",
+    "coCurricularHeading": "Co-Curricular Activities",
+    "coCurricular": [
+      {
+        "title": "Performing Arts",
+        "items": "Dance, music, poetry recitation, acting"
+      },
+      {
+        "title": "Speech & Expression",
+        "items": "Extempore and prepared speeches, debates"
+      },
+      {
+        "title": "Cultural Traditions",
+        "items": "Hamd, Na'at"
+      },
+      {
+        "title": "Visual Arts",
+        "items": "Drawing and painting, including themes of the Liberation War and Bangladesh's seasons"
+      },
+      {
+        "title": "Practical Skills",
+        "items": "Paper cutting, craft making, cooking (roti-making)"
+      }
+    ],
+    "culturalEducationHeading": "Cultural Education",
+    "culturalEducation": [
+      {
+        "title": "National Legacy Celebrations",
+        "body": "International Mother Language Day, Independence Day, Victory Day, and Pahela Baishakh, marked with patriotic songs, traditional dance, thematic dramas, and poetry recitation."
+      },
+      {
+        "title": "Literary Tributes",
+        "body": "Rabindra-Nazrul Jayanti celebrations through musical performances, recitation competitions, and staged interpretations of literary classics."
+      },
+      {
+        "title": "Heritage Immersion",
+        "body": "Cultural fairs and Pitha Utsab (a traditional food festival), folk game revivals such as Ha-du-du and Gollachut, and showcases of Bengali attire, handicrafts, and music."
+      }
+    ],
+    "highlightsHeading": "Beyond the Classroom",
+    "highlights": [
+      "Taekwondo training for interested students",
+      "Student participation in the \"Safe Roads Movement\" road-safety initiative",
+      "Students plant and maintain the rooftop gardens themselves as part of hands-on botany learning",
+      "Junior Wing co-curricular classes cover traffic rules, personal health awareness, dengue-prevention posters, and self-protection guidance"
+    ],
+    "rooftopGarden": {
+      "heading": "Rooftop Garden",
+      "body": "KCMSC has created gardens on the rooftops of its four ten-storied buildings, growing fruit-bearing trees, vegetables, and native and foreign flowering plants. Students plant and care for the trees themselves, gaining practical knowledge while the gardens help maintain the balance of oxygen and carbon dioxide in the local environment."
+    }
+  },
+  "clubsPage": {
+    "heading": "Clubs & Activities",
+    "intro": "Facilities at KCMSC support a range of student-run and faculty-guided clubs.",
+    "clubs": [
+      {
+        "name": "Sports Club",
+        "description": "Cricket, football, and basketball courts."
+      },
+      {
+        "name": "KC Information and Communication Club (KCICT)",
+        "description": "Robotics and coding."
+      },
+      {
+        "name": "Music Club",
+        "description": "Instruments including piano, guitar, and tabla."
+      },
+      {
+        "name": "Scout Troop",
+        "description": "Community service and leadership."
+      },
+      {
+        "name": "Language Club",
+        "description": ""
+      },
+      {
+        "name": "Alumni Association",
+        "description": "Reunions, career talks, and mentorship programs connecting alumni with current students. 50 active members as of the most recent count."
+      }
+    ]
+  },
+  "achievementsTeaser": {
+    "heading": "Recent Achievements",
+    "items": [
+      "National ICT Olympiad 2025 — Champion (Class 2, English Version) and two First Runner-Up placements",
+      "National IQ Olympiad 2025 — two Medal of Excellence winners",
+      "PBGSI Government Grant recipient for institutional development",
+      "SSC 2024: 98.48% pass rate; HSC 2024: 100% pass rate"
+    ]
+  },
+  "achievementsPage": {
+    "heading": "Achievements",
+    "intro": "A record of KCMSC's recent academic and competition results.",
+    "entries": [
+      {
+        "year": "2025",
+        "category": "National ICT Olympiad",
+        "title": "National ICT Olympiad Award Winner",
+        "details": "Aymanur Rahman (Class 2, English Version) — Champion; Syed Adiyan Ahsan (Class 3, English Version) — First Runner-Up; Khan Jarif Al Nasib (Class 8, English Version) — First Runner-Up"
+      },
+      {
+        "year": "2025",
+        "category": "National IQ Olympiad",
+        "title": "National IQ Olympiad Winner",
+        "details": "Nabiha Nur (Class 3, English Version) — Medal of Excellence; Nabila Nur (Preschool/KG, English Version) — Medal of Excellence"
+      },
+      {
+        "year": "2025",
+        "category": "Institutional Recognition",
+        "title": "PBGSI Government Grant Recipient",
+        "details": "KCMSC was awarded the Performance Based Grants to Secondary Institutions (PBGSI) grant under government funding initiatives, in recognition of its commitment to quality education and institutional development."
+      },
+      {
+        "year": "2024",
+        "category": "Board Exam Results",
+        "title": "SSC 2024 Results",
+        "details": "130 appeared, 128 passed — 98.48% pass rate, 67 students achieved GPA 5."
+      },
+      {
+        "year": "2024",
+        "category": "Board Exam Results",
+        "title": "HSC 2024 Results",
+        "details": "47 appeared, 47 passed — 100% pass rate, 13 students achieved GPA 5."
+      },
+      {
+        "year": "2022",
+        "category": "Primary Scholarship Examination",
+        "title": "2022 Primary Scholarship Examination Results",
+        "details": "12 total scholarship holders — 9 in the Talent Pool category and 3 in the General Grade category."
+      }
+    ]
+  },
+  "facilitiesTeaser": {
+    "heading": "Campus & Facilities",
+    "items": [
+      "Air-conditioned computer lab with 50+ PCs",
+      "Physics, Chemistry, Biology and Mathematics labs",
+      "Library with 10,000+ books and digital resources",
+      "Rooftop gardens across four ten-storied buildings",
+      "Sports Club, KC Information & Communication Club (KCICT), Music Club, Scout Troop"
+    ]
+  },
+  "facilitiesPage": {
+    "heading": "Campus & Facilities",
+    "intro": "KCMSC's ten-storied campus houses academic, cultural, and welfare facilities for students from Play Group to Grade Twelve.",
+    "generalHeading": "Facilities",
+    "general": [
+      "Air-conditioned computer lab (50+ PCs, high-speed internet)",
+      "Science labs — Physics, Chemistry, Biology, and Mathematics",
+      "Library with 10,000+ books and digital resources",
+      "Rooftop garden with botany projects",
+      "Sports Club — cricket, football, and basketball courts",
+      "KC Information and Communication Club (KCICT) — robotics and coding",
+      "Music Club — piano, guitar, tabla",
+      "Scout Troop — community service and leadership",
+      "Day Care room",
+      "Conference room",
+      "Alumni Association",
+      "Language Club"
+    ],
+    "studentFacilitiesHeading": "Students' Facilities",
+    "studentFacilities": [
+      "Two modern, air-conditioned computer labs; separate, fully equipped laboratories for Physics, Chemistry, Biology, and Agricultural Science",
+      "Two separate library rooms for primary and secondary level students",
+      "Classes conducted with projectors and laptops",
+      "Modern toilets with round-the-clock cleaning services",
+      "Classrooms with ample natural light and ventilation",
+      "High-capacity backup generator system for power outages",
+      "Advanced water purification filters on every floor",
+      "Organized transportation facilities for students",
+      "Residential facilities for students living in remote areas",
+      "A childcare centre for working mothers",
+      "Security and academic activities monitored through CCTV surveillance"
+    ],
+    "rooftopGarden": {
+      "heading": "Rooftop Garden",
+      "body": "Gardens on the rooftops of KCMSC's four ten-storied buildings grow fruit-bearing trees, vegetables, and native and foreign flowering plants. Students plant and maintain the trees themselves, gaining hands-on agricultural knowledge while the gardens contribute to the balance of oxygen and carbon dioxide in the surrounding area."
+    }
+  },
+  "admissionsPage": {
+    "heading": "Admissions",
+    "intro": "KCMSC admits students from Play Group through Grade Twelve, in Bangla and English Versions.",
+    "ageGroupsNote": "Class placement follows the age brackets shown on the Academics page — from Playgroup (3.5–4.5 years) through Class 5 (9.5–10.5 years) at the Junior Wing level, continuing through Secondary and Higher Secondary in the Senior Wing.",
+    "pendingHeading": "Admission Process — Details Coming Soon",
+    "pendingBody": "The step-by-step admission process, eligibility criteria, required documents, application fee, and important dates for the current academic cycle have not yet been provided by the institution. This section is a content slot ready for the school office to fill in — once supplied, it will appear here rather than as invented placeholder text.",
+    "onlinePortalNote": "Applications are submitted online. If you need help, contact the admission office directly.",
+    "contactCta": "Contact the Admission Office",
+    "applyCta": "Start Application",
+    "trackCta": "Track an Application",
+    "openBanner": "Applications are open",
+    "closedBanner": "Applications are not currently open"
+  },
+  "noticesPage": {
+    "heading": "Notices",
+    "empty": "No notices have been published yet. Once the school office begins posting announcements, they will appear here."
+  },
+  "careersPage": {
+    "heading": "Careers",
+    "empty": "There are no open positions at this time. Vacancies will be posted here as they become available."
+  },
+  "contactPage": {
+    "heading": "Contact",
+    "intro": "Reach K C Model School and College directly using the details below.",
+    "mapLabel": "View on Google Maps",
+    "mapUrl": "https://maps.app.goo.gl/M44EP9Q8Xt2tCtjV8"
+  },
+  "footer": {
+    "address": "House 275, Prembagan Road, Khilgaon, Dhaka-1230",
+    "phone": "028999685",
+    "mobile": "01793560466",
+    "email": "kcmodelcollege@gmail.com",
+    "website": "www.kcmsc.edu.bd",
+    "adminLogin": "Admin Login",
+    "rights": "All rights reserved."
+  },
+  "admissionsApplyPage": {
+    "heading": "Admission Application",
+    "closedHeading": "Applications Are Not Currently Open",
+    "closedBody": "There is no active admission cycle at the moment. Please check back later or contact the admission office.",
+    "sections": {
+      "applicant": "Applicant Information",
+      "guardian": "Guardian Information",
+      "address": "Address",
+      "declaration": "Declaration"
+    },
+    "fields": {
+      "applicantName": "Full name",
+      "dateOfBirth": "Date of birth",
+      "gender": "Gender",
+      "genderOptions": [
+        "Female",
+        "Male",
+        "Other"
+      ],
+      "applyingClass": "Applying for class",
+      "previousInstitution": "Previous institution (if any)",
+      "guardianName": "Guardian's full name",
+      "guardianRelationship": "Relationship to applicant",
+      "guardianPhone": "Guardian's phone number",
+      "guardianEmail": "Guardian's email (optional)",
+      "presentAddress": "Present address",
+      "permanentAddress": "Permanent address",
+      "declarationLabel": "I declare that the information provided above is accurate to the best of my knowledge."
+    },
+    "submit": "Submit Application",
+    "submitting": "Submitting…"
+  },
+  "admissionsSuccessPage": {
+    "heading": "Application Submitted",
+    "body": "Your application has been received. Save this reference code — you will need it to track your application status.",
+    "referenceLabel": "Reference code",
+    "trackCta": "Track this application",
+    "guardianPhoneNote": "You'll also need the guardian phone number you provided to look up status."
+  },
+  "admissionsTrackPage": {
+    "heading": "Track Your Application",
+    "intro": "Enter your reference code and the guardian phone number used on the application.",
+    "referenceLabel": "Reference code",
+    "guardianPhoneLabel": "Guardian's phone number",
+    "submit": "Check status",
+    "notFound": "No application found matching that reference code and phone number. Double-check both and try again.",
+    "statusLabels": {
+      "UNASSIGNED": "Submitted — awaiting review",
+      "ASSIGNED": "Submitted — awaiting review",
+      "UNDER_REVIEW": "Under review",
+      "AWAITING_APPLICANT": "Additional information requested",
+      "ELIGIBLE": "Eligible for admission",
+      "NOT_ELIGIBLE": "Not eligible at this time",
+      "EXAM_ELIGIBLE": "Eligible for the admission exam",
+      "EXAM_COMPLETED": "Admission exam completed",
+      "FINAL_DECISION": "Final decision issued"
+    },
+    "latestUpdateLabel": "Latest update",
+    "submittedOn": "Submitted on"
+  }
+}
