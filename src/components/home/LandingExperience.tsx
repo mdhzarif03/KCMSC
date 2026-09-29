@@ -6,17 +6,14 @@ import type { Locale } from "@/i18n/config";
 
 /*
 |--------------------------------------------------------------------------
-| IMAGE CONFIG
+| IMAGES
 |--------------------------------------------------------------------------
 |
-| IMPORTANT:
-| Files physically live in:
-|
+| Physical files:
 | F:\KCMSC\public\assets\pictures\landing-page\
 |
-| Browser URLs therefore start with:
-|
-| /assets/pictures/landing-page/
+| Browser paths:
+| /assets/pictures/landing-page/1.jpg
 |
 */
 
@@ -32,7 +29,7 @@ const LOCAL_CANDIDATES = Array.from(
 
 /*
 |--------------------------------------------------------------------------
-| HERO CONTENT
+| HERO CAPTIONS
 |--------------------------------------------------------------------------
 */
 
@@ -71,7 +68,7 @@ const captions = [
 
 /*
 |--------------------------------------------------------------------------
-| LANDING EXPERIENCE
+| COMPONENT
 |--------------------------------------------------------------------------
 */
 
@@ -83,35 +80,30 @@ export function LandingExperience({ locale }: { locale: Locale }) {
 
   /*
   |--------------------------------------------------------------------------
-  | FIND AVAILABLE LOCAL IMAGES
+  | FIND AVAILABLE IMAGES
   |--------------------------------------------------------------------------
   */
 
   useEffect(() => {
     let cancelled = false;
 
-    const checkImages = async () => {
-      const results = await Promise.all(
-        LOCAL_CANDIDATES.map(
-          (src) =>
-            new Promise<string | null>((resolve) => {
-              const image = new Image();
+    Promise.all(
+      LOCAL_CANDIDATES.map(
+        (src) =>
+          new Promise<string | null>((resolve) => {
+            const image = new Image();
 
-              image.onload = () => resolve(src);
+            image.onload = () => resolve(src);
+            image.onerror = () => resolve(null);
 
-              image.onerror = () => resolve(null);
+            image.src = src;
+          }),
+      ),
+    ).then((results) => {
+      if (cancelled) return;
 
-              image.src = src;
-            }),
-        ),
-      );
-
-      if (!cancelled) {
-        setLocalImages(results.filter((src): src is string => Boolean(src)));
-      }
-    };
-
-    checkImages();
+      setLocalImages(results.filter((src): src is string => Boolean(src)));
+    });
 
     return () => {
       cancelled = true;
@@ -120,7 +112,7 @@ export function LandingExperience({ locale }: { locale: Locale }) {
 
   /*
   |--------------------------------------------------------------------------
-  | FINAL IMAGE LIST
+  | IMAGE LIST
   |--------------------------------------------------------------------------
   */
 
@@ -146,7 +138,7 @@ export function LandingExperience({ locale }: { locale: Locale }) {
 
   /*
   |--------------------------------------------------------------------------
-  | AUTO SLIDESHOW
+  | AUTOMATIC HERO SLIDESHOW
   |--------------------------------------------------------------------------
   */
 
@@ -156,9 +148,7 @@ export function LandingExperience({ locale }: { locale: Locale }) {
     }
 
     const timer = window.setInterval(() => {
-      setActive((current) => {
-        return (current + 1) % images.length;
-      });
+      setActive((current) => (current + 1) % images.length);
     }, 5200);
 
     return () => {
@@ -168,7 +158,13 @@ export function LandingExperience({ locale }: { locale: Locale }) {
 
   /*
   |--------------------------------------------------------------------------
-  | SCROLL THUMBNAIL RAIL TO ACTIVE IMAGE
+  | IMPORTANT:
+  | ONLY SCROLL THE THUMBNAIL RAIL.
+  |
+  | DO NOT USE:
+  | item.scrollIntoView()
+  |
+  | That can scroll the ENTIRE PAGE vertically.
   |--------------------------------------------------------------------------
   */
 
@@ -181,10 +177,16 @@ export function LandingExperience({ locale }: { locale: Locale }) {
 
     const item = rail.children[active] as HTMLElement | undefined;
 
-    item?.scrollIntoView({
+    if (!item) {
+      return;
+    }
+
+    const targetLeft =
+      item.offsetLeft - rail.clientWidth / 2 + item.clientWidth / 2;
+
+    rail.scrollTo({
+      left: Math.max(0, targetLeft),
       behavior: "smooth",
-      inline: "center",
-      block: "nearest",
     });
   }, [active]);
 
@@ -213,8 +215,7 @@ export function LandingExperience({ locale }: { locale: Locale }) {
         "
       >
         {/* -------------------------------------------------------
-            TOP NAVBAR GRADIENT
-            Makes the transparent navbar readable.
+            TOP GRADIENT FOR TRANSPARENT NAVBAR
         -------------------------------------------------------- */}
 
         <div
@@ -264,6 +265,7 @@ export function LandingExperience({ locale }: { locale: Locale }) {
           {/* Left-side readability */}
           <div
             className="
+              pointer-events-none
               absolute
               inset-0
               bg-gradient-to-r
@@ -276,6 +278,7 @@ export function LandingExperience({ locale }: { locale: Locale }) {
           {/* Bottom readability */}
           <div
             className="
+              pointer-events-none
               absolute
               inset-x-0
               bottom-0
@@ -319,9 +322,9 @@ export function LandingExperience({ locale }: { locale: Locale }) {
               lg:grid-cols-[minmax(0,1fr)_minmax(260px,420px)]
             "
           >
-            {/* ---------------------------------------------------
+            {/* =================================================
                 HERO TEXT
-            ---------------------------------------------------- */}
+            ================================================== */}
 
             <div className="max-w-3xl">
               <p
@@ -371,14 +374,7 @@ export function LandingExperience({ locale }: { locale: Locale }) {
                 {caption.body}
               </p>
 
-              {/* -------------------------------------------------
-                  HERO BUTTONS
-
-                  KEEP THESE.
-
-                  Navbar has NO admissions button.
-                  Hero has ONE admissions button.
-                -------------------------------------------------- */}
+              {/* HERO CTAs */}
 
               <div className="mt-7 flex flex-wrap gap-3">
                 <Link
@@ -420,9 +416,9 @@ export function LandingExperience({ locale }: { locale: Locale }) {
               </div>
             </div>
 
-            {/* ---------------------------------------------------
-                SLIDE INDICATOR
-            ---------------------------------------------------- */}
+            {/* =================================================
+                SLIDE COUNTER
+            ================================================== */}
 
             <div className="hidden lg:block">
               <p
@@ -469,9 +465,9 @@ export function LandingExperience({ locale }: { locale: Locale }) {
             </div>
           </div>
 
-          {/* -----------------------------------------------------
-              IMAGE THUMBNAIL RAIL
-          ------------------------------------------------------ */}
+          {/* =====================================================
+              THUMBNAIL RAIL
+          ====================================================== */}
 
           <div
             ref={railRef}
@@ -637,11 +633,7 @@ export function LandingExperience({ locale }: { locale: Locale }) {
             <img
               src={images[0]}
               alt="KCMSC campus life"
-              className="
-                h-full
-                w-full
-                object-cover
-              "
+              className="h-full w-full object-cover"
             />
 
             <div
