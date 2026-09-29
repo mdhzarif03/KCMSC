@@ -1,7 +1,8 @@
-import { getDictionary, isLocale, defaultLocale, type Locale } from "@/i18n/config";
+import { getDictionary, isLocale, type Locale } from "@/i18n/config";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { prisma } from "@/lib/db";
+import { LandingExperience } from "@/components/home/LandingExperience";
 
 async function getFeaturedAchievements(locale: Locale, fallback: string[]): Promise<string[]> {
   try {
@@ -33,6 +34,7 @@ async function getFeaturedFacilities(locale: Locale, fallback: string[]): Promis
 
 export default async function HomePage({ params }: { params: { locale: string } }) {
   if (!isLocale(params.locale)) notFound();
+
   const locale: Locale = params.locale;
   const dict = getDictionary(locale);
   const achievementItems = await getFeaturedAchievements(locale, dict.achievementsTeaser.items);
@@ -40,129 +42,78 @@ export default async function HomePage({ params }: { params: { locale: string } 
 
   return (
     <>
-      {/* HERO
-          Phase 2 note: this is the structural/content skeleton only.
-          The immersive depth/3D treatment described in the brief
-          (§6) belongs here once real campus photography and the
-          animation system land in Phase 2 — keep this section's DOM
-          shape stable so that upgrade doesn't require a rewrite. */}
+      <LandingExperience locale={locale} />
+
+      <section className="border-b border-border bg-background">
+        <div className="mx-auto max-w-content px-6 py-16 sm:py-20">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-brass">At a glance</p>
+          <h2 className="mt-2 font-heading text-3xl text-ink">{dict.quickFacts.heading}</h2>
+          <dl className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+            {dict.quickFacts.items.map((item) => (
+              <div key={item.label} className="bg-background p-6 sm:p-7">
+                <dt className="text-xs uppercase tracking-[0.12em] text-ink-muted">{item.label}</dt>
+                <dd className="mt-3 font-heading text-xl leading-snug text-primary-dark">{item.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
       <section className="border-b border-border bg-surface">
-        <div className="mx-auto max-w-content px-6 py-24">
-          <p className="text-sm font-medium uppercase tracking-wide text-brass">
-            {dict.hero.eyebrow}
-          </p>
-          <h1 className="mt-4 max-w-3xl font-heading text-4xl font-semibold leading-tight text-ink sm:text-5xl">
-            {dict.hero.heading}
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg text-ink-muted">{dict.hero.subheading}</p>
-          <div className="mt-8 flex flex-wrap gap-4">
-            <Link
-              href={`/${locale}/admissions`}
-              className="rounded-full bg-primary px-6 py-3 text-sm font-medium text-white hover:bg-primary-dark"
-            >
-              {dict.hero.ctaPrimary}
-            </Link>
-            <Link
-              href={`/${locale}/about`}
-              className="rounded-full border border-border px-6 py-3 text-sm font-medium text-ink hover:bg-white"
-            >
-              {dict.hero.ctaSecondary}
-            </Link>
+        <div className="mx-auto max-w-content px-6 py-16 sm:py-20">
+          <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-end">
+            <div>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-brass">Recognition</p>
+              <h2 className="mt-3 max-w-xl font-heading text-3xl leading-tight text-ink sm:text-4xl">
+                What students carry beyond the campus.
+              </h2>
+            </div>
+            <ul className="grid gap-2">
+              {achievementItems.map((item, index) => (
+                <li key={item} className="flex items-center gap-4 border-t border-border py-4">
+                  <span className="font-heading text-sm text-brass">{String(index + 1).padStart(2, "0")}</span>
+                  <span className="text-sm text-ink-muted">{item}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
 
-      {/* QUICK FACTS */}
-      <section className="mx-auto max-w-content px-6 py-16">
-        <h2 className="font-heading text-2xl text-ink">{dict.quickFacts.heading}</h2>
-        <dl className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {dict.quickFacts.items.map((item) => (
-            <div key={item.label} className="rounded-lg border border-border bg-surface p-5">
-              <dt className="text-sm text-ink-muted">{item.label}</dt>
-              <dd className="mt-1 font-heading text-xl text-primary-dark">{item.value}</dd>
-            </div>
-          ))}
-        </dl>
-      </section>
-
-      {/* ABOUT / MISSION / VISION */}
-      <section className="border-y border-border bg-surface">
-        <div className="mx-auto grid max-w-content gap-10 px-6 py-16 lg:grid-cols-2">
+      <section className="border-b border-border bg-background">
+        <div className="mx-auto grid max-w-content gap-10 px-6 py-16 sm:py-20 lg:grid-cols-[0.75fr_1.25fr] lg:items-center">
           <div>
-            <h2 className="font-heading text-2xl text-ink">{dict.about.heading}</h2>
-            <p className="mt-4 text-ink-muted">{dict.about.body}</p>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-brass">The campus</p>
+            <h2 className="mt-3 font-heading text-3xl leading-tight text-ink sm:text-4xl">
+              Spaces for study, practice, curiosity, and community.
+            </h2>
+            <Link href={`/${locale}/facilities`} className="mt-6 inline-flex text-sm font-semibold text-primary hover:underline">
+              Explore facilities →
+            </Link>
           </div>
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wide text-primary">
-                Mission
-              </h3>
-              <p className="mt-2 text-ink-muted">{dict.about.mission}</p>
-            </div>
-            <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wide text-primary">
-                Vision
-              </h3>
-              <p className="mt-2 text-ink-muted">{dict.about.vision}</p>
-            </div>
+          <div className="grid gap-2 sm:grid-cols-2">
+            {facilityItems.map((item) => (
+              <div key={item} className="border-t border-border px-1 py-4 text-sm leading-6 text-ink-muted">
+                {item}
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ACHIEVEMENTS TEASER — featured Achievement rows, falling back
-          to the static dictionary if the database is empty/unreachable. */}
-      <section className="mx-auto max-w-content px-6 py-16">
-        <div className="flex items-center justify-between">
-          <h2 className="font-heading text-2xl text-ink">{dict.achievementsTeaser.heading}</h2>
-          <Link href={`/${locale}/achievements`} className="text-sm text-primary hover:underline">
-            {locale === "bn" ? "সব দেখুন" : "View all"}
+      <section className="border-b border-border bg-primary-dark text-white">
+        <div className="mx-auto flex max-w-content flex-col gap-8 px-6 py-16 sm:px-10 sm:py-20 lg:flex-row lg:items-end lg:justify-between">
+          <div className="max-w-2xl">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-brass">Admissions</p>
+            <h2 className="mt-3 font-heading text-4xl leading-tight sm:text-5xl">Ready to begin the journey?</h2>
+            <p className="mt-4 max-w-xl text-sm leading-7 text-white/70">
+              Explore the admission process, available classes, and the next steps for joining KCMSC.
+            </p>
+          </div>
+          <Link href={`/${locale}/admissions`} className="inline-flex w-fit rounded-full bg-white px-5 py-3 text-sm font-semibold text-primary-dark transition hover:bg-background">
+            Explore admissions
           </Link>
         </div>
-        <ul className="mt-6 grid gap-4 sm:grid-cols-2">
-          {achievementItems.map((item) => (
-            <li
-              key={item}
-              className="rounded-lg border border-border bg-white p-5 text-ink-muted"
-            >
-              {item}
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      {/* FACILITIES TEASER */}
-      <section className="border-t border-border bg-surface">
-        <div className="mx-auto max-w-content px-6 py-16">
-          <h2 className="font-heading text-2xl text-ink">{dict.facilitiesTeaser.heading}</h2>
-          <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {facilityItems.map((item) => (
-              <li key={item} className="rounded-lg border border-border bg-white p-5 text-ink-muted">
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* LEADERSHIP SNAPSHOT */}
-      <section className="mx-auto max-w-content px-6 py-16">
-        <h2 className="font-heading text-2xl text-ink">
-          {locale === "bn" ? "নেতৃত্ব" : "Leadership"}
-        </h2>
-        <ul className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {dict.leadership.map((person) => (
-            <li key={person.name} className="rounded-lg border border-border p-5">
-              {/* Media placeholder — real portraits replace this in Phase 2/3
-                  via the Media model, once photography is available. */}
-              <div
-                aria-hidden
-                className="mb-4 h-16 w-16 rounded-full bg-soft-green/30"
-              />
-              <p className="font-medium text-ink">{person.name}</p>
-              <p className="text-sm text-ink-muted">{person.role}</p>
-            </li>
-          ))}
-        </ul>
       </section>
     </>
   );

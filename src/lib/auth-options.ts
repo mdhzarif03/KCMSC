@@ -45,6 +45,10 @@ function clearAttempts(email: string) {
 }
 
 export const authOptions: AuthOptions = {
+  // Keep NextAuth and middleware on the exact same signing secret.
+  // The project uses AUTH_SECRET consistently across the stack.
+  secret: process.env.AUTH_SECRET,
+  debug: process.env.NODE_ENV !== "production",
   session: { strategy: "jwt" },
   pages: {
     signIn: "/admin/login"

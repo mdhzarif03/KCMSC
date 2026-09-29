@@ -36,3 +36,33 @@ body {
   outline: 2px solid theme("colors.primary.DEFAULT");
   outline-offset: 2px;
 }
+
+/* Immersive landing treatment: the homepage hero owns the first viewport. */
+body:has(.kcmsc-landing) .kcmsc-site-nav {
+  position: absolute;
+  inset: 0 0 auto;
+  width: 100%;
+  border-color: rgba(255,255,255,.16);
+  background: linear-gradient(to bottom, rgba(0,0,0,.38), transparent);
+  color: white;
+}
+
+body:has(.kcmsc-landing) .kcmsc-site-nav .kcmsc-brand,
+body:has(.kcmsc-landing) .kcmsc-site-nav .kcmsc-nav-link,
+body:has(.kcmsc-landing) .kcmsc-site-nav .kcmsc-more,
+body:has(.kcmsc-landing) .kcmsc-site-nav .kcmsc-language {
+  color: rgba(255,255,255,.9);
+}
+
+@keyframes landing-reveal {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.landing-reveal {
+  animation: landing-reveal .7s ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing-reveal { animation: none; }
+}
