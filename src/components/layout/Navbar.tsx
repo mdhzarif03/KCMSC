@@ -4,33 +4,19 @@ import type { Locale } from "@/i18n/config";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { prisma } from "@/lib/db";
 
-type NavItem = {
-  href: string;
-  label: string;
-};
-
 async function getNavItems(
   locale: Locale,
-  fallback: NavItem[],
-): Promise<NavItem[]> {
+  fallback: Array<{ href: string; label: string }>,
+): Promise<Array<{ href: string; label: string }>> {
   try {
     const rows = await prisma.navigationItem.findMany({
-      where: {
-        isVisible: true,
-        parentId: null,
-      },
-      orderBy: {
-        order: "asc",
-      },
+      where: { isVisible: true, parentId: null },
+      orderBy: { order: "asc" },
     });
-
-    if (rows.length === 0) {
-      return fallback;
-    }
-
-    return rows.map((row) => ({
-      href: row.href.replace(/^\//, ""),
-      label: locale === "bn" ? row.labelBn : row.labelEn,
+    if (rows.length === 0) return fallback;
+    return rows.map((r) => ({
+      href: r.href.replace(/^\//, ""),
+      label: locale === "bn" ? r.labelBn : r.labelEn,
     }));
   } catch {
     return fallback;
@@ -39,224 +25,51 @@ async function getNavItems(
 
 export async function Navbar({ locale }: { locale: Locale }) {
   const dict = getDictionary(locale);
-
-  const fallbackItems: NavItem[] = [
-    {
-      href: "about",
-      label: dict.nav.about,
-    },
-    {
-      href: "academics",
-      label: dict.nav.academics,
-    },
-    {
-      href: "admissions",
-      label: dict.nav.admissions,
-    },
-    {
-      href: "student-life",
-      label: dict.nav.studentLife,
-    },
-    {
-      href: "facilities",
-      label: "Campus",
-    },
-    {
-      href: "clubs",
-      label: dict.nav.clubs,
-    },
-    {
-      href: "achievements",
-      label: dict.nav.achievements,
-    },
-    {
-      href: "notices",
-      label: dict.nav.notices,
-    },
-    {
-      href: "careers",
-      label: dict.nav.careers,
-    },
-    {
-      href: "contact",
-      label: dict.nav.contact,
-    },
+  const fallbackItems: Array<{ href: string; label: string }> = [
+    { href: "about", label: dict.nav.about },
+    { href: "academics", label: dict.nav.academics },
+    { href: "admissions", label: dict.nav.admissions },
+    { href: "student-life", label: dict.nav.studentLife },
+    { href: "facilities", label: dict.nav.facilities },
+    { href: "achievements", label: dict.nav.achievements },
+    { href: "notices", label: dict.nav.notices },
+    { href: "contact", label: dict.nav.contact },
   ];
-
   const items = await getNavItems(locale, fallbackItems);
 
-  /*
-   * Keep the visible navbar intentionally minimal.
-   *
-   * Visible:
-   * About
-   * Academics
-   * Admissions
-   * Student Life
-   * Campus
-   * More
-   *
-   * Secondary pages go inside More.
-   */
-
-  const moreRoutes = new Set([
-    "clubs",
-    "achievements",
-    "notices",
-    "careers",
-    "contact",
-  ]);
-
-  const primaryItems = items.filter((item) => !moreRoutes.has(item.href));
-
-  const moreItems = items.filter((item) => moreRoutes.has(item.href));
-
   return (
-    <header className="absolute inset-x-0 top-0 z-50">
-      <div className="mx-auto flex h-[78px] max-w-[1440px] items-center px-6 lg:px-10">
-        {/* =====================================================
-            LOGO
-        ====================================================== */}
-
-        <Link
-          href={`/${locale}`}
-          className="
-            shrink-0
-            font-heading
-            text-[24px]
-            font-semibold
-            tracking-[-0.04em]
-            text-white
-          "
-        >
-          {dict.site.shortName}
+    <header className="relative z-50 border-b border-border/80 bg-background/95 backdrop-blur-xl">
+      <div className="mx-auto flex min-h-[72px] max-w-[1500px] items-center gap-6 px-5 sm:px-8 lg:px-12">
+        <Link href={`/${locale}`} className="group flex min-w-0 items-center gap-3">
+          <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-primary/20 bg-primary text-xs font-bold tracking-tight text-white shadow-sm">
+            KC
+          </span>
+          <span className="min-w-0">
+            <span className="block truncate font-heading text-base font-semibold leading-none text-primary-dark sm:text-lg">K C Model School</span>
+            <span className="mt-1 block text-[8px] font-semibold uppercase tracking-[.23em] text-ink-muted">& College</span>
+          </span>
         </Link>
 
-        {/* =====================================================
-            DESKTOP NAVIGATION
-        ====================================================== */}
-
-        <nav
-          aria-label="Primary navigation"
-          className="
-            hidden
-            flex-1
-            items-center
-            justify-center
-            lg:flex
-          "
-        >
-          <div className="flex items-center gap-7">
-            {primaryItems.slice(0, 5).map((item) => (
-              <Link
-                key={item.href}
-                href={`/${locale}/${item.href}`}
-                className="
-                  text-[13px]
-                  font-medium
-                  text-white/85
-                  transition-colors
-                  duration-200
-                  hover:text-white
-                "
-              >
-                {item.label}
-              </Link>
-            ))}
-
-            {/* =================================================
-                MORE MENU
-            ================================================== */}
-
-            {moreItems.length > 0 && (
-              <details className="group relative">
-                <summary
-                  className="
-                    flex
-                    cursor-pointer
-                    list-none
-                    items-center
-                    gap-1
-                    text-[13px]
-                    font-medium
-                    text-white/85
-                    transition-colors
-                    hover:text-white
-                  "
-                >
-                  More
-                  <span
-                    className="
-                      text-[10px]
-                      transition-transform
-                      duration-200
-                      group-open:rotate-180
-                    "
-                  >
-                    ▾
-                  </span>
-                </summary>
-
-                <div
-                  className="
-                    absolute
-                    right-0
-                    top-8
-                    w-48
-                    rounded-xl
-                    border
-                    border-white/10
-                    bg-[#103f31]/95
-                    p-2
-                    shadow-2xl
-                    backdrop-blur-xl
-                  "
-                >
-                  {moreItems.map((item) => (
-                    <Link
-                      key={item.href}
-                      href={`/${locale}/${item.href}`}
-                      className="
-                        block
-                        rounded-lg
-                        px-3
-                        py-2.5
-                        text-[13px]
-                        text-white/80
-                        transition-colors
-                        hover:bg-white/10
-                        hover:text-white
-                      "
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
-                </div>
-              </details>
-            )}
-          </div>
+        <nav aria-label="Primary" className="ml-auto hidden items-center gap-5 xl:flex">
+          {items.slice(0, 7).map((item) => (
+            <Link
+              key={item.href}
+              href={`/${locale}/${item.href}`}
+              className="text-[12px] font-medium text-ink-muted transition-colors hover:text-primary"
+            >
+              {item.label}
+            </Link>
+          ))}
         </nav>
 
-        {/* =====================================================
-            RIGHT SIDE
-        ====================================================== */}
-
-        <div className="ml-auto flex items-center gap-3">
-          {/* Language */}
-          <div className="text-white">
-            <LanguageSwitcher current={locale} />
-          </div>
-
-          {/*
-
-            IMPORTANT:
-
-            NO "Explore Admissions" BUTTON HERE.
-
-            The admissions CTA belongs to the HERO,
-            not the navbar.
-
-          */}
+        <div className="ml-auto flex items-center gap-2 xl:ml-5">
+          <LanguageSwitcher current={locale} />
+          <Link
+            href={`/${locale}/admissions/apply`}
+            className="hidden rounded-full bg-primary px-4 py-2.5 text-[11px] font-bold text-white transition hover:bg-primary-dark sm:inline-flex"
+          >
+            {dict.hero.ctaPrimary}
+          </Link>
         </div>
       </div>
     </header>

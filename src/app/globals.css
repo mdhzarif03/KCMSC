@@ -37,69 +37,146 @@ body {
   outline-offset: 2px;
 }
 
-/* Immersive landing treatment: the homepage hero owns the first viewport. */
-body:has(.kcmsc-landing) .kcmsc-site-nav {
-  position: absolute;
-  inset: 0 0 auto;
-  width: 100%;
-  border-color: rgba(255, 255, 255, 0.16);
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.38), transparent);
+/* KCMSC signature homepage system */
+.kc-section {
+  padding-top: 6.5rem;
+  padding-bottom: 6.5rem;
+}
+
+.kc-eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .25em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: #B59A4A;
+}
+
+.kc-display {
+  max-width: 48rem;
+  font-family: var(--font-heading), Georgia, serif;
+  font-size: clamp(2.5rem, 5vw, 5.5rem);
+  line-height: .98;
+  letter-spacing: -.035em;
+  color: #242824;
+}
+
+.kc-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: .75rem 1.15rem;
+  border-radius: 999px;
+  font-size: .75rem;
+  font-weight: 700;
+  transition: transform .25s ease, background-color .25s ease, color .25s ease, border-color .25s ease;
+}
+
+.kc-button:hover {
+  transform: translateY(-2px);
+}
+
+.kc-button-light {
+  background: #F7F5EF;
+  color: #124C36;
+}
+
+.kc-button-light:hover { background: #fff; }
+
+.kc-button-glass {
+  border: 1px solid rgba(255,255,255,.32);
+  background: rgba(255,255,255,.08);
+  color: white;
+  backdrop-filter: blur(10px);
+}
+
+.kc-button-glass:hover { background: rgba(255,255,255,.15); }
+
+.kc-button-dark {
+  background: #124C36;
   color: white;
 }
 
-body:has(.kcmsc-landing) .kcmsc-site-nav .kcmsc-brand,
-body:has(.kcmsc-landing) .kcmsc-site-nav .kcmsc-nav-link,
-body:has(.kcmsc-landing) .kcmsc-site-nav .kcmsc-more,
-body:has(.kcmsc-landing) .kcmsc-site-nav .kcmsc-language {
-  color: rgba(255, 255, 255, 0.9);
+.kc-button-dark:hover { background: #176B45; }
+
+.kc-button-outline {
+  border: 1px solid #B9B7AD;
+  color: #242824;
 }
 
-@keyframes landing-reveal {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.kc-button-outline:hover {
+  border-color: #176B45;
+  color: #176B45;
 }
 
-.landing-reveal {
-  animation: landing-reveal 0.7s ease both;
+.kc-text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  border-bottom: 1px solid #B59A4A;
+  padding-bottom: .45rem;
+  color: #176B45;
+  font-size: .8rem;
+  font-weight: 700;
+  transition: gap .25s ease, color .25s ease;
+}
+
+.kc-text-link:hover {
+  gap: .85rem;
+  color: #124C36;
+}
+
+.kc-feature-card {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  background: #102f24;
+}
+
+.kc-feature-image {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  transition: transform .8s cubic-bezier(.2,.65,.2,1), opacity .5s ease;
+}
+
+.kc-feature-card:hover .kc-feature-image {
+  transform: scale(1.055);
+}
+
+.kc-feature-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(4,14,10,.9), rgba(4,14,10,.08) 68%, rgba(4,14,10,.04));
+}
+
+.kc-card-number {
+  width: fit-content;
+  border: 1px solid rgba(255,255,255,.22);
+  border-radius: 999px;
+  padding: .4rem .6rem;
+  font-size: 9px;
+  letter-spacing: .22em;
+  color: rgba(255,255,255,.65);
+}
+
+@media (max-width: 640px) {
+  .kc-section {
+    padding-top: 4.5rem;
+    padding-bottom: 4.5rem;
+  }
+
+  .kc-display {
+    font-size: clamp(2.5rem, 13vw, 4rem);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .landing-reveal {
-    animation: none;
-  }
-}
-
-/* =========================================================
-   KCMSC STUDENT LIFE MARQUEE
-   ========================================================= */
-
-@keyframes studentLifeMarquee {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-.student-life-marquee {
-  animation: studentLifeMarquee 42s linear infinite;
-  will-change: transform;
-}
-
-.student-life-marquee:hover {
-  animation-play-state: paused;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .student-life-marquee {
-    animation: none;
-  }
+  .kc-button,
+  .kc-feature-image,
+  .kc-text-link { transition: none; }
 }
