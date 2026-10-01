@@ -161,7 +161,7 @@ export default async function ClubsPage({
 
           <div className="mt-12 border-t border-[#d8d3c7]">
             {studentClubs.map((club, index) => {
-              const image = clubImages[index % clubImages.length];
+              const image = clubImages[index % clubImages.length]!;
               const reverse = index % 2 === 1;
 
               return (

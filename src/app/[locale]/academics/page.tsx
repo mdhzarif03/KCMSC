@@ -179,8 +179,6 @@ const content = {
   },
 } as const;
 
-type PageContent = (typeof content)["en"];
-
 const classes = [
   ["Play Group", "3.5–4.5 years"],
   ["Nursery / KG", "4.5–5.5 years"],
@@ -241,7 +239,7 @@ export default function AcademicsPage({
   if (!isLocale(params.locale)) notFound();
 
   const locale: Locale = params.locale;
-  const t: PageContent = content[locale];
+  const t = content[locale];
 
   return (
     <main className="bg-[#f8f5ed] text-[#25362e]">
