@@ -118,7 +118,7 @@ export function HeroSlideshow({ locale }: { locale: Locale }) {
 
   return (
     <section
-      className="relative isolate min-h-[calc(100svh-104px)] overflow-hidden bg-[#183d2e] text-white"
+      className="relative isolate h-[calc(100svh-104px)] min-h-[680px] overflow-hidden bg-[#183d2e] text-white"
       aria-label="KCMSC featured stories"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
@@ -143,14 +143,14 @@ export function HeroSlideshow({ locale }: { locale: Locale }) {
         </div>
       ))}
 
-      <div className="relative z-10 mx-auto flex min-h-[calc(100svh-104px)] max-w-[1440px] flex-col justify-between px-6 pb-8 pt-16 sm:px-10 sm:pb-10 sm:pt-20 lg:px-16 lg:pt-24">
+      <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-between px-6 pb-8 pt-16 sm:px-10 sm:pb-10 sm:pt-20 lg:px-16 lg:pt-24">
         <div className="max-w-3xl">
           <div className="mb-7 flex items-center gap-4 text-[10px] font-bold uppercase tracking-[.22em] text-[#dbc887]">
             <span>{locale === "bn" ? bengaliSlides[active].kicker : slides[active].kicker}</span>
             <span className="h-px w-12 bg-[#dbc887]/70" />
           </div>
 
-          <h1 className="max-w-4xl font-heading text-[clamp(3.4rem,7.4vw,8.2rem)] leading-[.88] tracking-[-.05em] text-[#fbf7ec]">
+          <h1 className="max-w-4xl min-h-[3.5em] font-heading text-[clamp(3.4rem,7.4vw,8.2rem)] leading-[.88] tracking-[-.05em] text-[#fbf7ec]">
             {locale === "bn" ? bengaliSlides[active].title : slides[active].title}
           </h1>
 
