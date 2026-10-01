@@ -37,146 +37,95 @@ body {
   outline-offset: 2px;
 }
 
-/* KCMSC signature homepage system */
-.kc-section {
-  padding-top: 6.5rem;
-  padding-bottom: 6.5rem;
+/* KCMSC timeless editorial system */
+.kc-classic-section {
+  padding: 6.5rem 0;
 }
 
-.kc-eyebrow {
+.kc-classic-kicker,
+.kc-light-kicker {
   font-size: 10px;
-  font-weight: 700;
-  letter-spacing: .25em;
-  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: .2em;
+  line-height: 1.3;
   text-transform: uppercase;
-  color: #B59A4A;
 }
 
-.kc-display {
-  max-width: 48rem;
+.kc-classic-kicker { color: #a28742; }
+.kc-light-kicker { color: #d0b76e; }
+
+.kc-classic-title {
+  max-width: 54rem;
   font-family: var(--font-heading), Georgia, serif;
-  font-size: clamp(2.5rem, 5vw, 5.5rem);
+  font-size: clamp(2.6rem, 4.6vw, 5.15rem);
   line-height: .98;
   letter-spacing: -.035em;
-  color: #242824;
+  color: #183d2e;
 }
 
-.kc-button {
+.kc-classic-button {
   display: inline-flex;
+  min-height: 46px;
   align-items: center;
   justify-content: center;
-  min-height: 46px;
-  padding: .75rem 1.15rem;
-  border-radius: 999px;
-  font-size: .75rem;
-  font-weight: 700;
-  transition: transform .25s ease, background-color .25s ease, color .25s ease, border-color .25s ease;
+  border: 1px solid transparent;
+  padding: .78rem 1.2rem;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  transition: background-color .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
 }
 
-.kc-button:hover {
-  transform: translateY(-2px);
+.kc-classic-button:hover { transform: translateY(-1px); }
+
+.kc-classic-button-primary {
+  border-color: #183d2e;
+  background: #183d2e;
+  color: #fff;
 }
 
-.kc-button-light {
-  background: #F7F5EF;
-  color: #124C36;
+.kc-classic-button-primary:hover {
+  border-color: #b69b54;
+  background: #b69b54;
 }
 
-.kc-button-light:hover { background: #fff; }
-
-.kc-button-glass {
-  border: 1px solid rgba(255,255,255,.32);
-  background: rgba(255,255,255,.08);
-  color: white;
-  backdrop-filter: blur(10px);
+.kc-classic-button-outline {
+  border-color: #bdb5a7;
+  color: #183d2e;
+  background: transparent;
 }
 
-.kc-button-glass:hover { background: rgba(255,255,255,.15); }
-
-.kc-button-dark {
-  background: #124C36;
-  color: white;
+.kc-classic-button-outline:hover {
+  border-color: #183d2e;
+  background: #183d2e;
+  color: #fff;
 }
 
-.kc-button-dark:hover { background: #176B45; }
-
-.kc-button-outline {
-  border: 1px solid #B9B7AD;
-  color: #242824;
-}
-
-.kc-button-outline:hover {
-  border-color: #176B45;
-  color: #176B45;
-}
-
-.kc-text-link {
+.kc-classic-link {
   display: inline-flex;
   align-items: center;
-  gap: .6rem;
-  border-bottom: 1px solid #B59A4A;
-  padding-bottom: .45rem;
-  color: #176B45;
-  font-size: .8rem;
-  font-weight: 700;
-  transition: gap .25s ease, color .25s ease;
+  gap: .65rem;
+  border-bottom: 1px solid #b69b54;
+  padding-bottom: .35rem;
+  color: #183d2e;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  transition: gap .2s ease, color .2s ease;
 }
 
-.kc-text-link:hover {
-  gap: .85rem;
-  color: #124C36;
-}
+.kc-classic-link:hover { gap: .9rem; color: #8b7335; }
 
-.kc-feature-card {
-  position: relative;
-  display: block;
-  overflow: hidden;
-  border-radius: 1.5rem;
-  background: #102f24;
-}
+.kc-classic-link-light { color: #f4eee1; border-color: #d0b76e; }
+.kc-classic-link-light:hover { color: #d8c17b; }
 
-.kc-feature-image {
-  position: absolute;
-  inset: 0;
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  transition: transform .8s cubic-bezier(.2,.65,.2,1), opacity .5s ease;
-}
-
-.kc-feature-card:hover .kc-feature-image {
-  transform: scale(1.055);
-}
-
-.kc-feature-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(4,14,10,.9), rgba(4,14,10,.08) 68%, rgba(4,14,10,.04));
-}
-
-.kc-card-number {
-  width: fit-content;
-  border: 1px solid rgba(255,255,255,.22);
-  border-radius: 999px;
-  padding: .4rem .6rem;
-  font-size: 9px;
-  letter-spacing: .22em;
-  color: rgba(255,255,255,.65);
-}
-
-@media (max-width: 640px) {
-  .kc-section {
-    padding-top: 4.5rem;
-    padding-bottom: 4.5rem;
-  }
-
-  .kc-display {
-    font-size: clamp(2.5rem, 13vw, 4rem);
-  }
+@media (max-width: 767px) {
+  .kc-classic-section { padding: 4.5rem 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .kc-button,
-  .kc-feature-image,
-  .kc-text-link { transition: none; }
+  .kc-classic-button,
+  .kc-classic-link { transition: none; }
 }
