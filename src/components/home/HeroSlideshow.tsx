@@ -105,16 +105,40 @@ export function HeroSlideshow({ locale }: { locale: Locale }) {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
 
+  /*
+   * Keep the slideshow on a valid index.
+   * This protects the component even if the slide
+   * arrays are changed in the future.
+   */
+  const currentSlide = slides[active] ?? slides[0];
+  const currentBengaliSlide = bengaliSlides[active] ?? bengaliSlides[0];
+
   useEffect(() => {
     if (paused) return;
+
     const timer = window.setInterval(() => {
       setActive((current) => (current + 1) % slides.length);
     }, 6500);
+
     return () => window.clearInterval(timer);
   }, [paused]);
 
-  const previous = () => setActive((current) => (current - 1 + slides.length) % slides.length);
-  const next = () => setActive((current) => (current + 1) % slides.length);
+  const previous = () => {
+    setActive((current) => (current - 1 + slides.length) % slides.length);
+  };
+
+  const next = () => {
+    setActive((current) => (current + 1) % slides.length);
+  };
+
+  /*
+   * The arrays are defined with six entries, but the
+   * fallback above makes the component safe even if
+   * that changes later.
+   */
+  if (!currentSlide || !currentBengaliSlide) {
+    return null;
+  }
 
   return (
     <section
@@ -123,10 +147,13 @@ export function HeroSlideshow({ locale }: { locale: Locale }) {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
+      {/* Background slides */}
       {slides.map((slide, index) => (
         <div
           key={slide.image}
-          className={`absolute inset-0 transition-opacity duration-[1200ms] ease-in-out ${index === active ? "opacity-100" : "pointer-events-none opacity-0"}`}
+          className={`absolute inset-0 transition-opacity duration-[1200ms] ease-in-out ${
+            index === active ? "opacity-100" : "pointer-events-none opacity-0"
+          }`}
           aria-hidden={index !== active}
         >
           <Image
@@ -138,45 +165,76 @@ export function HeroSlideshow({ locale }: { locale: Locale }) {
             sizes="100vw"
             className="object-cover object-center"
           />
+
+          {/* Main dark overlay */}
           <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(9,31,22,.82)_0%,rgba(9,31,22,.58)_35%,rgba(9,31,22,.18)_72%,rgba(9,31,22,.3)_100%)]" />
+
+          {/* Bottom readability overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#091f16]/70 via-transparent to-[#091f16]/10" />
         </div>
       ))}
 
+      {/* Stable hero content */}
       <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-between px-6 pb-8 pt-16 sm:px-10 sm:pb-10 sm:pt-20 lg:px-16 lg:pt-24">
         <div className="max-w-3xl">
+          {/* Kicker */}
           <div className="mb-7 flex items-center gap-4 text-[10px] font-bold uppercase tracking-[.22em] text-[#dbc887]">
-            <span>{locale === "bn" ? bengaliSlides[active].kicker : slides[active].kicker}</span>
+            <span>
+              {locale === "bn"
+                ? currentBengaliSlide.kicker
+                : currentSlide.kicker}
+            </span>
+
             <span className="h-px w-12 bg-[#dbc887]/70" />
           </div>
 
+          {/* Headline */}
           <h1 className="max-w-4xl min-h-[3.5em] font-heading text-[clamp(3.4rem,7.4vw,8.2rem)] leading-[.88] tracking-[-.05em] text-[#fbf7ec]">
-            {locale === "bn" ? bengaliSlides[active].title : slides[active].title}
+            {locale === "bn" ? currentBengaliSlide.title : currentSlide.title}
           </h1>
 
+          {/* Description */}
           <p className="mt-8 max-w-2xl text-sm leading-7 text-white/78 sm:text-base sm:leading-8">
-            {locale === "bn" ? bengaliSlides[active].body : slides[active].body}
+            {locale === "bn" ? currentBengaliSlide.body : currentSlide.body}
           </p>
 
+          {/* Actions */}
           <div className="mt-9 flex flex-wrap gap-3">
-            <Link href={`/${locale}/admissions`} className="kc-classic-button kc-classic-button-light">
+            <Link
+              href={`/${locale}/admissions`}
+              className="kc-classic-button kc-classic-button-light"
+            >
               {locale === "bn" ? "ভর্তি" : "Admissions"}
             </Link>
-            <Link href={`/${locale}/about`} className="kc-classic-button kc-classic-button-ghost-light">
+
+            <Link
+              href={`/${locale}/about`}
+              className="kc-classic-button kc-classic-button-ghost-light"
+            >
               {locale === "bn" ? "KCMSC সম্পর্কে" : "Discover KCMSC"}
             </Link>
           </div>
         </div>
 
+        {/* Bottom information */}
         <div className="mt-14 grid gap-7 border-t border-white/25 pt-5 sm:grid-cols-[1fr_auto] sm:items-end">
           <div className="flex items-end gap-5">
-            <span className="font-heading text-4xl text-[#fbf7ec]">{slides[active].number}</span>
+            <span className="font-heading text-4xl text-[#fbf7ec]">
+              {currentSlide.number}
+            </span>
+
             <span className="max-w-md text-[11px] uppercase tracking-[.17em] text-white/65">
-              {locale === "bn" ? bengaliSlides[active].caption : slides[active].caption}
+              {locale === "bn"
+                ? currentBengaliSlide.caption
+                : currentSlide.caption}
             </span>
           </div>
 
-          <div className="flex items-center gap-2" aria-label="Choose hero slide">
+          {/* Slide indicators */}
+          <div
+            className="flex items-center gap-2"
+            aria-label="Choose hero slide"
+          >
             {slides.map((slide, index) => (
               <button
                 key={slide.number}
@@ -184,18 +242,34 @@ export function HeroSlideshow({ locale }: { locale: Locale }) {
                 aria-label={`Show slide ${index + 1}`}
                 aria-current={index === active}
                 onClick={() => setActive(index)}
-                className={`h-1.5 transition-all duration-300 ${index === active ? "w-12 bg-[#dbc887]" : "w-5 bg-white/45 hover:bg-white/75"}`}
+                className={`h-1.5 transition-all duration-300 ${
+                  index === active
+                    ? "w-12 bg-[#dbc887]"
+                    : "w-5 bg-white/45 hover:bg-white/75"
+                }`}
               />
             ))}
           </div>
         </div>
       </div>
 
+      {/* Previous / next controls */}
       <div className="absolute bottom-24 right-6 z-20 hidden gap-2 sm:flex lg:right-10">
-        <button type="button" onClick={previous} aria-label="Previous slide" className="kc-hero-arrow">
+        <button
+          type="button"
+          onClick={previous}
+          aria-label="Previous slide"
+          className="kc-hero-arrow"
+        >
           ←
         </button>
-        <button type="button" onClick={next} aria-label="Next slide" className="kc-hero-arrow">
+
+        <button
+          type="button"
+          onClick={next}
+          aria-label="Next slide"
+          className="kc-hero-arrow"
+        >
           →
         </button>
       </div>

@@ -27,7 +27,8 @@ const content = {
     mediumValue: "Bangla + English",
     hoursValue: "7:45 AM – 2:30 PM",
     academicsKicker: "01 · ACADEMICS",
-    academicsTitle: "One school, with a clear path from the early years to higher secondary.",
+    academicsTitle:
+      "One school, with a clear path from the early years to higher secondary.",
     academicsBody:
       "The Junior Wing focuses on strong foundations in the early years and primary classes. The Senior Wing carries students through secondary and higher secondary education with the same school-wide emphasis on learning, discipline and development.",
     junior: "Junior Wing",
@@ -40,20 +41,25 @@ const content = {
     lifeBody:
       "Students take part in cultural programmes, sports, competitions, reading, educational trips and school events alongside their regular classes.",
     culture: "Culture & creativity",
-    cultureBody: "Students take part in art, cultural programmes and shared school events.",
+    cultureBody:
+      "Students take part in art, cultural programmes and shared school events.",
     sports: "Sport & teamwork",
-    sportsBody: "Teams represent the school in sporting activities and competitions.",
+    sportsBody:
+      "Teams represent the school in sporting activities and competitions.",
     olympiad: "Competitions",
-    olympiadBody: "Students participate in academic and technology-focused competitions.",
+    olympiadBody:
+      "Students participate in academic and technology-focused competitions.",
     lifeLink: "See student life",
     campusKicker: "03 · CAMPUS & FACILITIES",
     campusTitle: "Facilities on campus.",
     campusBody:
       "KCMSC provides the practical facilities used throughout the school day, including classrooms, libraries, science and computer laboratories, sports spaces, water purification, transport and other student services.",
     library: "Library",
-    libraryBody: "Students use the library for reading, class work and independent study.",
+    libraryBody:
+      "Students use the library for reading, class work and independent study.",
     garden: "Rooftop garden",
-    gardenBody: "Rooftop gardens are maintained across the school buildings, with students taking part in planting and caring for the greenery.",
+    gardenBody:
+      "Rooftop gardens are maintained across the school buildings, with students taking part in planting and caring for the greenery.",
     facilitiesLink: "Explore facilities",
     achievementKicker: "04 · ACADEMIC RESULTS",
     achievementTitle: "Academic results, clearly recorded.",
@@ -93,7 +99,8 @@ const content = {
     mediumValue: "বাংলা + ইংরেজি",
     hoursValue: "৭:৪৫ – ২:৩০",
     academicsKicker: "০১ · একাডেমিক",
-    academicsTitle: "শুরুর বছর থেকে উচ্চমাধ্যমিক পর্যন্ত একটি পরিষ্কার শিক্ষাপথ।",
+    academicsTitle:
+      "শুরুর বছর থেকে উচ্চমাধ্যমিক পর্যন্ত একটি পরিষ্কার শিক্ষাপথ।",
     academicsBody:
       "জুনিয়র উইং প্রাথমিক বছর ও প্রাইমারি পর্যায়ে শক্ত ভিত্তি তৈরি করে। সিনিয়র উইং মাধ্যমিক ও উচ্চমাধ্যমিক পর্যায়ে একই শিক্ষা, শৃঙ্খলা ও বিকাশের ধারাকে এগিয়ে নিয়ে যায়।",
     junior: "জুনিয়র উইং",
@@ -106,20 +113,25 @@ const content = {
     lifeBody:
       "নিয়মিত ক্লাসের পাশাপাশি শিক্ষার্থীরা সাংস্কৃতিক অনুষ্ঠান, খেলাধুলা, প্রতিযোগিতা, বই পড়া, শিক্ষা সফর ও বিভিন্ন স্কুল আয়োজনে অংশ নেয়।",
     culture: "সংস্কৃতি ও সৃজনশীলতা",
-    cultureBody: "শিক্ষার্থীরা শিল্প, সাংস্কৃতিক অনুষ্ঠান ও বিভিন্ন স্কুল আয়োজনে অংশ নেয়।",
+    cultureBody:
+      "শিক্ষার্থীরা শিল্প, সাংস্কৃতিক অনুষ্ঠান ও বিভিন্ন স্কুল আয়োজনে অংশ নেয়।",
     sports: "খেলাধুলা ও দলগত কাজ",
-    sportsBody: "দলগুলো বিভিন্ন খেলাধুলা ও প্রতিযোগিতায় স্কুলকে প্রতিনিধিত্ব করে।",
+    sportsBody:
+      "দলগুলো বিভিন্ন খেলাধুলা ও প্রতিযোগিতায় স্কুলকে প্রতিনিধিত্ব করে।",
     olympiad: "প্রতিযোগিতা",
-    olympiadBody: "শিক্ষার্থীরা একাডেমিক ও প্রযুক্তিভিত্তিক প্রতিযোগিতায় অংশগ্রহণ করে।",
+    olympiadBody:
+      "শিক্ষার্থীরা একাডেমিক ও প্রযুক্তিভিত্তিক প্রতিযোগিতায় অংশগ্রহণ করে।",
     lifeLink: "শিক্ষাজীবন দেখুন",
     campusKicker: "০৩ · ক্যাম্পাস ও সুবিধা",
     campusTitle: "ক্যাম্পাসের সুবিধাসমূহ।",
     campusBody:
       "KCMSC-তে শ্রেণিকক্ষ, লাইব্রেরি, বিজ্ঞান ও কম্পিউটার ল্যাব, খেলাধুলার স্থানসহ শিক্ষার্থীদের দৈনন্দিন ব্যবহারের বিভিন্ন সুবিধা রয়েছে।",
     library: "লাইব্রেরি",
-    libraryBody: "পড়াশোনা, বই পড়া ও ব্যক্তিগত অধ্যয়নের জন্য শিক্ষার্থীরা লাইব্রেরি ব্যবহার করে।",
+    libraryBody:
+      "পড়াশোনা, বই পড়া ও ব্যক্তিগত অধ্যয়নের জন্য শিক্ষার্থীরা লাইব্রেরি ব্যবহার করে।",
     garden: "ছাদবাগান",
-    gardenBody: "চারটি দশতলা ভবনের ছাদবাগানে শিক্ষার্থীরা গাছ লাগানো ও পরিচর্যার কাজে অংশ নেয়।",
+    gardenBody:
+      "চারটি দশতলা ভবনের ছাদবাগানে শিক্ষার্থীরা গাছ লাগানো ও পরিচর্যার কাজে অংশ নেয়।",
     facilitiesLink: "সুবিধাসমূহ দেখুন",
     achievementKicker: "০৪ · একাডেমিক ফলাফল",
     achievementTitle: "একাডেমিক ফলাফল, স্পষ্ট তথ্যের ভিত্তিতে।",
@@ -173,7 +185,9 @@ export function LandingExperience({ locale }: { locale: Locale }) {
               className={`px-6 py-8 sm:px-10 lg:px-12 lg:py-10 ${index > 0 ? "border-t border-white/15 sm:border-l sm:border-t-0" : ""}`}
             >
               <p className="kc-light-kicker">{label}</p>
-              <p className="mt-3 font-heading text-2xl leading-tight text-[#f4eee1] sm:text-3xl">{value}</p>
+              <p className="mt-3 font-heading text-2xl leading-tight text-[#f4eee1] sm:text-3xl">
+                {value}
+              </p>
             </div>
           ))}
         </div>
@@ -199,7 +213,9 @@ export function LandingExperience({ locale }: { locale: Locale }) {
                 className="object-cover"
               />
             </div>
-            <p className="mt-4 max-w-2xl text-sm leading-7 text-[#69716a] sm:text-base">{t.introBody}</p>
+            <p className="mt-4 max-w-2xl text-sm leading-7 text-[#69716a] sm:text-base">
+              {t.introBody}
+            </p>
           </div>
         </div>
       </section>
@@ -210,11 +226,18 @@ export function LandingExperience({ locale }: { locale: Locale }) {
           <div className="grid gap-10 lg:grid-cols-[.72fr_1.28fr] lg:items-end">
             <div>
               <p className="kc-classic-kicker">{t.academicsKicker}</p>
-              <h2 className="kc-classic-title mt-5 max-w-2xl">{t.academicsTitle}</h2>
+              <h2 className="kc-classic-title mt-5 max-w-2xl">
+                {t.academicsTitle}
+              </h2>
             </div>
             <div className="max-w-2xl lg:justify-self-end">
-              <p className="text-sm leading-7 text-[#667068] sm:text-base">{t.academicsBody}</p>
-              <Link href={`/${locale}/academics`} className="kc-classic-link mt-7">
+              <p className="text-sm leading-7 text-[#667068] sm:text-base">
+                {t.academicsBody}
+              </p>
+              <Link
+                href={`/${locale}/academics`}
+                className="kc-classic-link mt-7"
+              >
                 {t.academicsLink} <span aria-hidden="true">↗</span>
               </Link>
             </div>
@@ -232,14 +255,26 @@ export function LandingExperience({ locale }: { locale: Locale }) {
             </div>
             <div className="grid border-y border-[#cfc7b8] md:grid-cols-2">
               <article className="py-8 md:pr-8 lg:py-10">
-              <p className="text-[10px] font-bold uppercase tracking-[.22em] text-[#a28742]">01</p>
-              <h3 className="mt-4 font-heading text-3xl text-[#183d2e]">{t.junior}</h3>
-              <p className="mt-3 max-w-md text-sm leading-6 text-[#69716a]">{t.juniorBody}</p>
+                <p className="text-[10px] font-bold uppercase tracking-[.22em] text-[#a28742]">
+                  01
+                </p>
+                <h3 className="mt-4 font-heading text-3xl text-[#183d2e]">
+                  {t.junior}
+                </h3>
+                <p className="mt-3 max-w-md text-sm leading-6 text-[#69716a]">
+                  {t.juniorBody}
+                </p>
               </article>
               <article className="border-t border-[#cfc7b8] py-8 md:border-l md:border-t-0 md:pl-8 lg:py-10">
-                <p className="text-[10px] font-bold uppercase tracking-[.22em] text-[#a28742]">02</p>
-                <h3 className="mt-4 font-heading text-3xl text-[#183d2e]">{t.senior}</h3>
-                <p className="mt-3 max-w-md text-sm leading-6 text-[#69716a]">{t.seniorBody}</p>
+                <p className="text-[10px] font-bold uppercase tracking-[.22em] text-[#a28742]">
+                  02
+                </p>
+                <h3 className="mt-4 font-heading text-3xl text-[#183d2e]">
+                  {t.senior}
+                </h3>
+                <p className="mt-3 max-w-md text-sm leading-6 text-[#69716a]">
+                  {t.seniorBody}
+                </p>
               </article>
             </div>
           </div>
@@ -251,35 +286,75 @@ export function LandingExperience({ locale }: { locale: Locale }) {
         <div className="mx-auto max-w-[1240px] px-6 sm:px-10 lg:px-12">
           <div className="max-w-3xl">
             <p className="kc-classic-kicker">{t.lifeKicker}</p>
+
             <h2 className="kc-classic-title mt-5">{t.lifeTitle}</h2>
-            <p className="mt-6 max-w-2xl text-sm leading-7 text-[#69716a] sm:text-base">{t.lifeBody}</p>
+
+            <p className="mt-6 max-w-2xl text-sm leading-7 text-[#69716a] sm:text-base">
+              {t.lifeBody}
+            </p>
           </div>
 
+          {/*
+           * Use objects instead of positional tuples here.
+           * This gives TypeScript an explicit shape for every
+           * card and guarantees that src is always a string.
+           */}
           <div className="mt-14 grid gap-6 md:grid-cols-3">
             {[
-              [images.culture, t.culture, t.cultureBody, "object-center"],
-              [images.sports, t.sports, t.sportsBody, "object-center"],
-              [images.olympiad, t.olympiad, t.olympiadBody, "object-center"],
-            ].map(([src, title, body, objectPosition], index) => (
-              <article key={title} className="group border border-[#d3ccbf] bg-[#faf8f2]">
+              {
+                src: images.culture,
+                title: t.culture,
+                body: t.cultureBody,
+                objectPosition: "object-center",
+              },
+              {
+                src: images.sports,
+                title: t.sports,
+                body: t.sportsBody,
+                objectPosition: "object-center",
+              },
+              {
+                src: images.olympiad,
+                title: t.olympiad,
+                body: t.olympiadBody,
+                objectPosition: "object-center",
+              },
+            ].map((card, index) => (
+              <article
+                key={card.title}
+                className="group border border-[#d3ccbf] bg-[#faf8f2]"
+              >
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <Image
-                    src={src}
-                    alt={title}
+                    src={card.src}
+                    alt={card.title}
                     fill
                     sizes="(min-width: 768px) 33vw, 100vw"
-                    className={`object-cover ${objectPosition} transition-transform duration-700 ease-out group-hover:scale-[1.025]`}
+                    className={`object-cover ${card.objectPosition} transition-transform duration-700 ease-out group-hover:scale-[1.025]`}
                   />
                 </div>
+
                 <div className="p-6 sm:p-7">
-                  <p className="text-[10px] font-bold uppercase tracking-[.22em] text-[#a28742]">0{index + 1}</p>
-                  <h3 className="mt-3 font-heading text-2xl text-[#183d2e]">{title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-[#69716a]">{body}</p>
+                  <p className="text-[10px] font-bold uppercase tracking-[.22em] text-[#a28742]">
+                    {String(index + 1).padStart(2, "0")}
+                  </p>
+
+                  <h3 className="mt-3 font-heading text-2xl text-[#183d2e]">
+                    {card.title}
+                  </h3>
+
+                  <p className="mt-3 text-sm leading-6 text-[#69716a]">
+                    {card.body}
+                  </p>
                 </div>
               </article>
             ))}
           </div>
-          <Link href={`/${locale}/student-life`} className="kc-classic-link mt-8">
+
+          <Link
+            href={`/${locale}/student-life`}
+            className="kc-classic-link mt-8"
+          >
             {t.lifeLink} <span aria-hidden="true">↗</span>
           </Link>
         </div>
@@ -291,11 +366,18 @@ export function LandingExperience({ locale }: { locale: Locale }) {
           <div className="grid gap-12 lg:grid-cols-[.72fr_1.28fr] lg:items-start lg:gap-20">
             <div>
               <p className="kc-classic-kicker">{t.campusKicker}</p>
-              <h2 className="kc-classic-title mt-5 max-w-xl">{t.campusTitle}</h2>
+              <h2 className="kc-classic-title mt-5 max-w-xl">
+                {t.campusTitle}
+              </h2>
             </div>
             <div className="max-w-2xl">
-              <p className="text-sm leading-7 text-[#59645d] sm:text-base">{t.campusBody}</p>
-              <Link href={`/${locale}/facilities`} className="kc-classic-link mt-7">
+              <p className="text-sm leading-7 text-[#59645d] sm:text-base">
+                {t.campusBody}
+              </p>
+              <Link
+                href={`/${locale}/facilities`}
+                className="kc-classic-link mt-7"
+              >
                 {t.facilitiesLink} <span aria-hidden="true">↗</span>
               </Link>
             </div>
@@ -304,24 +386,51 @@ export function LandingExperience({ locale }: { locale: Locale }) {
           <div className="mt-14 grid border-y border-[#c8c0b1] lg:grid-cols-[1.1fr_.9fr]">
             <div className="grid sm:grid-cols-2">
               <div className="border-b border-[#c8c0b1] py-8 sm:border-r sm:pr-10 lg:py-10">
-                <p className="text-[10px] font-bold uppercase tracking-[.22em] text-[#9b7e39]">01</p>
-                <h3 className="mt-4 font-heading text-2xl text-[#183d2e]">{t.library}</h3>
-                <p className="mt-3 max-w-sm text-sm leading-6 text-[#69716a]">{t.libraryBody}</p>
+                <p className="text-[10px] font-bold uppercase tracking-[.22em] text-[#9b7e39]">
+                  01
+                </p>
+                <h3 className="mt-4 font-heading text-2xl text-[#183d2e]">
+                  {t.library}
+                </h3>
+                <p className="mt-3 max-w-sm text-sm leading-6 text-[#69716a]">
+                  {t.libraryBody}
+                </p>
               </div>
               <div className="border-b border-[#c8c0b1] py-8 sm:pl-10 lg:py-10">
-                <p className="text-[10px] font-bold uppercase tracking-[.22em] text-[#9b7e39]">02</p>
-                <h3 className="mt-4 font-heading text-2xl text-[#183d2e]">Science & computer facilities</h3>
-                <p className="mt-3 max-w-sm text-sm leading-6 text-[#69716a]">Air-conditioned computer laboratories and science laboratories support classroom learning and practical work.</p>
+                <p className="text-[10px] font-bold uppercase tracking-[.22em] text-[#9b7e39]">
+                  02
+                </p>
+                <h3 className="mt-4 font-heading text-2xl text-[#183d2e]">
+                  Science & computer facilities
+                </h3>
+                <p className="mt-3 max-w-sm text-sm leading-6 text-[#69716a]">
+                  Air-conditioned computer laboratories and science laboratories
+                  support classroom learning and practical work.
+                </p>
               </div>
               <div className="border-b border-[#c8c0b1] py-8 sm:border-r sm:pr-10 lg:border-b-0 lg:py-10">
-                <p className="text-[10px] font-bold uppercase tracking-[.22em] text-[#9b7e39]">03</p>
-                <h3 className="mt-4 font-heading text-2xl text-[#183d2e]">{t.garden}</h3>
-                <p className="mt-3 max-w-sm text-sm leading-6 text-[#69716a]">{t.gardenBody}</p>
+                <p className="text-[10px] font-bold uppercase tracking-[.22em] text-[#9b7e39]">
+                  03
+                </p>
+                <h3 className="mt-4 font-heading text-2xl text-[#183d2e]">
+                  {t.garden}
+                </h3>
+                <p className="mt-3 max-w-sm text-sm leading-6 text-[#69716a]">
+                  {t.gardenBody}
+                </p>
               </div>
               <div className="py-8 sm:pl-10 lg:py-10">
-                <p className="text-[10px] font-bold uppercase tracking-[.22em] text-[#9b7e39]">04</p>
-                <h3 className="mt-4 font-heading text-2xl text-[#183d2e]">Student services</h3>
-                <p className="mt-3 max-w-sm text-sm leading-6 text-[#69716a]">The profile lists transport, residential facilities, childcare, CCTV, generator backup and water purification among the school's facilities and services.</p>
+                <p className="text-[10px] font-bold uppercase tracking-[.22em] text-[#9b7e39]">
+                  04
+                </p>
+                <h3 className="mt-4 font-heading text-2xl text-[#183d2e]">
+                  Student services
+                </h3>
+                <p className="mt-3 max-w-sm text-sm leading-6 text-[#69716a]">
+                  The profile lists transport, residential facilities,
+                  childcare, CCTV, generator backup and water purification among
+                  the school's facilities and services.
+                </p>
               </div>
             </div>
             <div className="relative min-h-[340px] border-t border-[#c8c0b1] sm:min-h-[420px] lg:border-l lg:border-t-0">
@@ -333,7 +442,9 @@ export function LandingExperience({ locale }: { locale: Locale }) {
                 className="object-cover"
               />
               <div className="absolute inset-x-0 bottom-0 bg-[#183d2e]/90 px-6 py-5 text-[#f5f0e4] sm:px-7">
-                <p className="text-[10px] font-bold uppercase tracking-[.2em] text-[#d8bf72]">KCMSC</p>
+                <p className="text-[10px] font-bold uppercase tracking-[.2em] text-[#d8bf72]">
+                  KCMSC
+                </p>
                 <p className="mt-1 font-heading text-xl">School library</p>
               </div>
             </div>
@@ -350,8 +461,13 @@ export function LandingExperience({ locale }: { locale: Locale }) {
               <h2 className="mt-5 max-w-2xl font-heading text-[clamp(2.4rem,4vw,4.2rem)] leading-[1.02] tracking-[-.025em] text-[#f5f0e4]">
                 {t.achievementTitle}
               </h2>
-              <p className="mt-6 max-w-xl text-sm leading-7 text-white/65 sm:text-base">{t.achievementBody}</p>
-              <Link href={`/${locale}/achievements`} className="kc-classic-link kc-classic-link-light mt-8">
+              <p className="mt-6 max-w-xl text-sm leading-7 text-white/65 sm:text-base">
+                {t.achievementBody}
+              </p>
+              <Link
+                href={`/${locale}/achievements`}
+                className="kc-classic-link kc-classic-link-light mt-8"
+              >
                 {t.achievementLink} <span aria-hidden="true">↗</span>
               </Link>
             </div>
@@ -360,23 +476,39 @@ export function LandingExperience({ locale }: { locale: Locale }) {
               <div className="grid sm:grid-cols-2">
                 <div className="border-b border-white/20 py-8 sm:border-r sm:pr-10 sm:py-10">
                   <p className="kc-light-kicker">{t.ssc}</p>
-                  <p className="mt-4 font-heading text-5xl text-[#f5f0e4]">98.48%</p>
-                  <p className="mt-2 text-xs text-white/50">{t.passRate} · 130 candidates · 128 passed · 67 GPA 5</p>
+                  <p className="mt-4 font-heading text-5xl text-[#f5f0e4]">
+                    98.48%
+                  </p>
+                  <p className="mt-2 text-xs text-white/50">
+                    {t.passRate} · 130 candidates · 128 passed · 67 GPA 5
+                  </p>
                 </div>
                 <div className="border-b border-white/20 py-8 sm:pl-10 sm:py-10">
                   <p className="kc-light-kicker">{t.hsc}</p>
-                  <p className="mt-4 font-heading text-5xl text-[#f5f0e4]">100%</p>
-                  <p className="mt-2 text-xs text-white/50">{t.passRate} · 47 candidates · 47 passed · 13 GPA 5</p>
+                  <p className="mt-4 font-heading text-5xl text-[#f5f0e4]">
+                    100%
+                  </p>
+                  <p className="mt-2 text-xs text-white/50">
+                    {t.passRate} · 47 candidates · 47 passed · 13 GPA 5
+                  </p>
                 </div>
               </div>
               <div className="grid border-b border-white/20 sm:grid-cols-2">
                 <div className="py-7 sm:border-r sm:pr-10">
-                  <p className="text-xs uppercase tracking-[.18em] text-white/45">SSC · GPA 5</p>
-                  <p className="mt-2 font-heading text-3xl text-[#f5f0e4]">67 students</p>
+                  <p className="text-xs uppercase tracking-[.18em] text-white/45">
+                    SSC · GPA 5
+                  </p>
+                  <p className="mt-2 font-heading text-3xl text-[#f5f0e4]">
+                    67 students
+                  </p>
                 </div>
                 <div className="py-7 sm:pl-10">
-                  <p className="text-xs uppercase tracking-[.18em] text-white/45">HSC · GPA 5</p>
-                  <p className="mt-2 font-heading text-3xl text-[#f5f0e4]">13 students</p>
+                  <p className="text-xs uppercase tracking-[.18em] text-white/45">
+                    HSC · GPA 5
+                  </p>
+                  <p className="mt-2 font-heading text-3xl text-[#f5f0e4]">
+                    13 students
+                  </p>
                 </div>
               </div>
             </div>
@@ -391,15 +523,25 @@ export function LandingExperience({ locale }: { locale: Locale }) {
           <div className="grid gap-10 py-10 lg:grid-cols-[.8fr_1.2fr] lg:items-end lg:gap-20">
             <div>
               <p className="kc-classic-kicker">{t.admissionKicker}</p>
-              <h2 className="kc-classic-title mt-5 max-w-xl">{t.admissionTitle}</h2>
+              <h2 className="kc-classic-title mt-5 max-w-xl">
+                {t.admissionTitle}
+              </h2>
             </div>
             <div>
-              <p className="max-w-2xl text-sm leading-7 text-[#69716a] sm:text-base">{t.admissionBody}</p>
+              <p className="max-w-2xl text-sm leading-7 text-[#69716a] sm:text-base">
+                {t.admissionBody}
+              </p>
               <div className="mt-7 flex flex-wrap gap-3">
-                <Link href={`/${locale}/admissions`} className="kc-classic-button kc-classic-button-primary">
+                <Link
+                  href={`/${locale}/admissions`}
+                  className="kc-classic-button kc-classic-button-primary"
+                >
                   {t.admissionButton}
                 </Link>
-                <Link href={`/${locale}/contact`} className="kc-classic-button kc-classic-button-outline">
+                <Link
+                  href={`/${locale}/contact`}
+                  className="kc-classic-button kc-classic-button-outline"
+                >
                   {t.contactButton}
                 </Link>
               </div>
