@@ -44,10 +44,10 @@ const fallback = {
     facilitiesTitle: "What the school provides.",
     facilitiesBody:
       "The following facilities are listed in the KCMSC profile and school content. They are presented here as a reference for students and families, rather than as decorative marketing claims.",
-    gardenKicker: "ICT & TECHNOLOGY",
-    gardenTitle: "Technology has a place in everyday school life.",
+    gardenKicker: "CLASSROOM TECHNOLOGY",
+    gardenTitle: "Classrooms equipped for modern teaching.",
     gardenBody:
-      "KCMSC's profile lists air-conditioned computer laboratories with 50+ PCs and high-speed internet, alongside ICT, robotics and coding activities. The school also participates in ICT competitions.",
+      "KCMSC's profile describes projector- and laptop-supported teaching alongside dedicated computer laboratories with 50+ PCs and high-speed internet. Technology supports regular classroom work rather than replacing it.",
     supportKicker: "STUDENT SUPPORT",
     supportTitle: "The practical details matter too.",
     supportBody:
@@ -92,10 +92,10 @@ const fallback = {
     facilitiesTitle: "স্কুলের উল্লেখিত সুবিধাগুলো।",
     facilitiesBody:
       "কেসিএমএসসি-র প্রোফাইল ও স্কুলের প্রকাশিত তথ্যের ভিত্তিতে নিচের সুবিধাগুলো দেওয়া হলো। এগুলো সাজানো হয়েছে শিক্ষার্থী ও অভিভাবকদের তথ্যের জন্য, অলঙ্কার হিসেবে নয়।",
-    gardenKicker: "আইসিটি ও প্রযুক্তি",
-    gardenTitle: "প্রতিদিনের স্কুলজীবনেও প্রযুক্তির ব্যবহার।",
+    gardenKicker: "শ্রেণিকক্ষে প্রযুক্তি",
+    gardenTitle: "আধুনিক পাঠদানের উপযোগী শ্রেণিকক্ষ।",
     gardenBody:
-      "কেসিএমএসসি-র প্রোফাইলে ৫০+ পিসি ও হাই-স্পিড ইন্টারনেটসহ শীতাতপনিয়ন্ত্রিত কম্পিউটার ল্যাবের কথা বলা হয়েছে। ICT, রোবোটিক্স ও কোডিং কার্যক্রমও রয়েছে।",
+      "কেসিএমএসসি-র প্রোফাইলে প্রজেক্টর ও ল্যাপটপ-সহায়ক পাঠদানের পাশাপাশি ৫০+ পিসি ও হাই-স্পিড ইন্টারনেটসহ কম্পিউটার ল্যাবের কথা উল্লেখ রয়েছে। প্রযুক্তি এখানে নিয়মিত পাঠদানের সহায়ক।",
     supportKicker: "শিক্ষার্থী সহায়তা",
     supportTitle: "দৈনন্দিন প্রয়োজনের বিষয়গুলোও গুরুত্বপূর্ণ।",
     supportBody:
@@ -215,15 +215,22 @@ export default async function FacilitiesPage({ params }: { params: Promise<{ loc
       </section>
 
       <section className="bg-[#193d2f] text-[#f8f2e7]">
-        <div className="mx-auto grid max-w-[1440px] lg:grid-cols-[1fr_1fr]">
-          <div className="relative min-h-[520px] lg:min-h-[620px]">
-            <Image src="/kcmsc/facilities/ict_olympiad_at_kc.jpg" alt="KCMSC students taking part in ICT activities" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
+        <div className="mx-auto grid max-w-[1440px] lg:grid-cols-[1.08fr_.92fr] lg:items-center">
+          <div className="relative aspect-video w-full overflow-hidden lg:aspect-[16/10]">
+            <Image
+              src="/kcmsc/facilities/teacher_taking_class.jpg"
+              alt="KCMSC classroom with projector-supported teaching"
+              fill
+              sizes="(min-width: 1024px) 55vw, 100vw"
+              quality={92}
+              className="object-cover object-center"
+            />
           </div>
-          <div className="flex items-center px-6 py-16 sm:px-10 sm:py-20 lg:px-16 lg:py-24">
+          <div className="flex items-center px-7 py-14 sm:px-10 sm:py-16 lg:px-16 lg:py-20">
             <div className="max-w-xl">
               <p className="kc-light-kicker">{copy.gardenKicker}</p>
-              <h2 className="mt-5 font-heading text-[clamp(2.8rem,5vw,5rem)] leading-[.94] tracking-[-.045em]">{copy.gardenTitle}</h2>
-              <p className="mt-7 text-sm leading-7 text-white/72 sm:text-base">{copy.gardenBody}</p>
+              <h2 className="mt-5 font-heading text-[clamp(2.7rem,4.4vw,4.8rem)] leading-[.96] tracking-[-.045em]">{copy.gardenTitle}</h2>
+              <p className="mt-7 max-w-lg text-sm leading-7 text-white/72 sm:text-base">{copy.gardenBody}</p>
             </div>
           </div>
         </div>
