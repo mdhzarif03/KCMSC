@@ -36,9 +36,9 @@ const content = {
     seniorBody: "Secondary & Higher Secondary · Class 6 to XII",
     academicsLink: "Explore academics",
     lifeKicker: "02 · SCHOOL LIFE",
-    lifeTitle: "What students learn beyond the textbook matters too.",
+    lifeTitle: "Student life beyond the classroom.",
     lifeBody:
-      "School life at KCMSC extends into culture, sport, competitions, reading, trips and shared celebrations. These are not decorations around education. They are part of growing up in a school community.",
+      "Students take part in cultural programmes, sports, competitions, reading, educational trips and school events alongside their regular classes.",
     culture: "Culture & creativity",
     cultureBody: "Students take part in art, cultural programmes and shared school events.",
     sports: "Sport & teamwork",
@@ -46,27 +46,27 @@ const content = {
     olympiad: "Competitions",
     olympiadBody: "Students participate in academic and technology-focused competitions.",
     lifeLink: "See student life",
-    campusKicker: "03 · THE CAMPUS",
-    campusTitle: "A campus made for everyday learning.",
+    campusKicker: "03 · CAMPUS & FACILITIES",
+    campusTitle: "Facilities on campus.",
     campusBody:
-      "Classrooms, libraries, laboratories, computer facilities, sports spaces and rooftop gardens give students places to study, practise, collaborate and take part in school life.",
+      "KCMSC provides the practical facilities used throughout the school day, including classrooms, libraries, science and computer laboratories, sports spaces, water purification, transport and other student services.",
     library: "Library",
-    libraryBody: "A dedicated space for reading, study and exploration.",
+    libraryBody: "Students use the library for reading, class work and independent study.",
     garden: "Rooftop garden",
-    gardenBody: "Students take part in caring for greenery on the school's rooftop gardens.",
+    gardenBody: "Rooftop gardens are maintained across the school buildings, with students taking part in planting and caring for the greenery.",
     facilitiesLink: "Explore facilities",
-    achievementKicker: "04 · ACHIEVEMENT",
-    achievementTitle: "A strong record, built one student at a time.",
+    achievementKicker: "04 · ACADEMIC RESULTS",
+    achievementTitle: "Academic results, clearly recorded.",
     achievementBody:
-      "The school's 2024 academic profile records a 98.48% SSC pass rate and a 100% HSC pass rate. Students have also represented KCMSC in national academic and co-curricular competitions.",
-    ssc: "SSC 2024",
-    hsc: "HSC 2024",
+      "The 2024 academic profile records 130 SSC candidates, with 128 passing and 67 achieving GPA 5. At HSC level, all 47 candidates passed, including 13 GPA 5 holders.",
+    ssc: "SSC · 2024",
+    hsc: "HSC · 2024",
     passRate: "Pass rate",
-    achievementLink: "View achievements",
-    admissionKicker: "ADMISSIONS",
-    admissionTitle: "The next chapter starts here.",
+    achievementLink: "See academic results",
+    admissionKicker: "ADMISSIONS & INFORMATION",
+    admissionTitle: "Admission information for families.",
     admissionBody:
-      "Learn about admission, meet the school and find the information you need for your child's next stage of education.",
+      "For admission requirements, procedures and current notices, visit the Admissions section or contact the school directly. The school serves students from Play Group through Grade Twelve in Bangla and English Versions of the National Curriculum.",
     admissionButton: "Admissions",
     contactButton: "Contact the school",
   },
@@ -102,9 +102,9 @@ const content = {
     seniorBody: "মাধ্যমিক ও উচ্চমাধ্যমিক · ষষ্ঠ থেকে দ্বাদশ",
     academicsLink: "একাডেমিক দেখুন",
     lifeKicker: "০২ · শিক্ষাজীবন",
-    lifeTitle: "বইয়ের বাইরের শেখাটাও গুরুত্বপূর্ণ।",
+    lifeTitle: "শ্রেণিকক্ষের বাইরের শিক্ষাজীবন।",
     lifeBody:
-      "সংস্কৃতি, খেলাধুলা, প্রতিযোগিতা, বইপড়া, শিক্ষা সফর ও বিভিন্ন অনুষ্ঠান KCMSC-এর শিক্ষাজীবনের অংশ। এগুলো শিক্ষার বাইরের কিছু নয়, বরং একটি স্কুল সম্প্রদায়ে বেড়ে ওঠার অংশ।",
+      "নিয়মিত ক্লাসের পাশাপাশি শিক্ষার্থীরা সাংস্কৃতিক অনুষ্ঠান, খেলাধুলা, প্রতিযোগিতা, বই পড়া, শিক্ষা সফর ও বিভিন্ন স্কুল আয়োজনে অংশ নেয়।",
     culture: "সংস্কৃতি ও সৃজনশীলতা",
     cultureBody: "শিক্ষার্থীরা শিল্প, সাংস্কৃতিক অনুষ্ঠান ও বিভিন্ন স্কুল আয়োজনে অংশ নেয়।",
     sports: "খেলাধুলা ও দলগত কাজ",
@@ -112,27 +112,27 @@ const content = {
     olympiad: "প্রতিযোগিতা",
     olympiadBody: "শিক্ষার্থীরা একাডেমিক ও প্রযুক্তিভিত্তিক প্রতিযোগিতায় অংশগ্রহণ করে।",
     lifeLink: "শিক্ষাজীবন দেখুন",
-    campusKicker: "০৩ · ক্যাম্পাস",
-    campusTitle: "দৈনন্দিন শেখার জন্য তৈরি একটি ক্যাম্পাস।",
+    campusKicker: "০৩ · ক্যাম্পাস ও সুবিধা",
+    campusTitle: "ক্যাম্পাসের সুবিধাসমূহ।",
     campusBody:
-      "শ্রেণিকক্ষ, লাইব্রেরি, ল্যাবরেটরি, কম্পিউটার সুবিধা, খেলাধুলার স্থান ও ছাদবাগান শিক্ষার্থীদের পড়াশোনা, অনুশীলন, সহযোগিতা ও অংশগ্রহণের সুযোগ দেয়।",
+      "KCMSC-তে শ্রেণিকক্ষ, লাইব্রেরি, বিজ্ঞান ও কম্পিউটার ল্যাব, খেলাধুলার স্থানসহ শিক্ষার্থীদের দৈনন্দিন ব্যবহারের বিভিন্ন সুবিধা রয়েছে।",
     library: "লাইব্রেরি",
-    libraryBody: "পড়া, অধ্যয়ন ও অনুসন্ধানের জন্য নির্দিষ্ট স্থান।",
+    libraryBody: "পড়াশোনা, বই পড়া ও ব্যক্তিগত অধ্যয়নের জন্য শিক্ষার্থীরা লাইব্রেরি ব্যবহার করে।",
     garden: "ছাদবাগান",
-    gardenBody: "শিক্ষার্থীরা স্কুলের ছাদবাগানের সবুজায়ন ও পরিচর্যায় অংশ নেয়।",
+    gardenBody: "চারটি দশতলা ভবনের ছাদবাগানে শিক্ষার্থীরা গাছ লাগানো ও পরিচর্যার কাজে অংশ নেয়।",
     facilitiesLink: "সুবিধাসমূহ দেখুন",
-    achievementKicker: "০৪ · অর্জন",
-    achievementTitle: "প্রতিটি শিক্ষার্থীর ধারাবাহিক প্রচেষ্টায় গড়ে ওঠা সাফল্য।",
+    achievementKicker: "০৪ · একাডেমিক ফলাফল",
+    achievementTitle: "একাডেমিক ফলাফল, স্পষ্ট তথ্যের ভিত্তিতে।",
     achievementBody:
-      "স্কুলের ২০২৪ সালের একাডেমিক প্রোফাইলে SSC-তে ৯৮.৪৮% এবং HSC-তে ১০০% পাসের হার উল্লেখ রয়েছে। পাশাপাশি শিক্ষার্থীরা জাতীয় পর্যায়ের একাডেমিক ও সহশিক্ষা কার্যক্রমে অংশগ্রহণ করেছে।",
-    ssc: "SSC ২০২৪",
-    hsc: "HSC ২০২৪",
+      "২০২৪ সালের একাডেমিক প্রোফাইল অনুযায়ী SSC-তে ১৩০ জন পরীক্ষার্থীর মধ্যে ১২৮ জন উত্তীর্ণ এবং ৬৭ জন GPA 5 পেয়েছে। HSC-তে ৪৭ জনের সবাই উত্তীর্ণ হয়েছে এবং ১৩ জন GPA 5 পেয়েছে।",
+    ssc: "SSC · ২০২৪",
+    hsc: "HSC · ২০২৪",
     passRate: "পাসের হার",
-    achievementLink: "অর্জন দেখুন",
-    admissionKicker: "ভর্তি",
-    admissionTitle: "পরবর্তী অধ্যায়ের শুরু এখান থেকেই।",
+    achievementLink: "একাডেমিক ফলাফল দেখুন",
+    admissionKicker: "ভর্তি ও তথ্য",
+    admissionTitle: "পরিবারের জন্য ভর্তি-সংক্রান্ত তথ্য।",
     admissionBody:
-      "ভর্তি সম্পর্কে জানুন, স্কুলকে কাছ থেকে দেখুন এবং সন্তানের পরবর্তী শিক্ষাধাপের জন্য প্রয়োজনীয় তথ্য খুঁজে নিন।",
+      "ভর্তির যোগ্যতা, প্রক্রিয়া ও বর্তমান নোটিশের জন্য Admissions বিভাগ দেখুন অথবা সরাসরি স্কুলের সঙ্গে যোগাযোগ করুন। KCMSC-তে প্লে গ্রুপ থেকে দ্বাদশ শ্রেণি পর্যন্ত বাংলা ও ইংরেজি ভার্সনে জাতীয় শিক্ষাক্রম অনুসরণ করা হয়।",
     admissionButton: "ভর্তি",
     contactButton: "যোগাযোগ",
   },
@@ -285,74 +285,100 @@ export function LandingExperience({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      {/* Campus */}
-      <section className="border-y border-[#d7d1c4] bg-[#e8e2d6]">
-        <div className="mx-auto grid max-w-[1440px] lg:grid-cols-[1.05fr_.95fr]">
-          <div className="relative min-h-[480px] lg:min-h-[620px]">
-            <Image
-              src={images.garden}
-              alt="Students at the rooftop garden of K C Model School & College"
-              fill
-              sizes="(min-width: 1024px) 55vw, 100vw"
-              className="object-cover"
-            />
+      {/* Campus & facilities */}
+      <section className="border-y border-[#d7d1c4] bg-[#e9e4d9]">
+        <div className="mx-auto max-w-[1240px] px-6 py-16 sm:px-10 sm:py-20 lg:px-12 lg:py-24">
+          <div className="grid gap-12 lg:grid-cols-[.72fr_1.28fr] lg:items-start lg:gap-20">
+            <div>
+              <p className="kc-classic-kicker">{t.campusKicker}</p>
+              <h2 className="kc-classic-title mt-5 max-w-xl">{t.campusTitle}</h2>
+            </div>
+            <div className="max-w-2xl">
+              <p className="text-sm leading-7 text-[#59645d] sm:text-base">{t.campusBody}</p>
+              <Link href={`/${locale}/facilities`} className="kc-classic-link mt-7">
+                {t.facilitiesLink} <span aria-hidden="true">↗</span>
+              </Link>
+            </div>
           </div>
-          <div className="px-6 py-16 sm:px-10 sm:py-20 lg:px-14 lg:py-24">
-            <p className="kc-classic-kicker">{t.campusKicker}</p>
-            <h2 className="kc-classic-title mt-5">{t.campusTitle}</h2>
-            <p className="mt-6 max-w-xl text-sm leading-7 text-[#69716a] sm:text-base">{t.campusBody}</p>
 
-            <div className="mt-10 border-t border-[#c8c0b1]">
-              <div className="grid gap-8 border-b border-[#c8c0b1] py-7 sm:grid-cols-2">
-                <div>
-                  <h3 className="font-heading text-2xl text-[#183d2e]">{t.library}</h3>
-                  <p className="mt-2 text-sm leading-6 text-[#69716a]">{t.libraryBody}</p>
-                </div>
-                <div className="relative aspect-[4/3] overflow-hidden border border-[#cfc7b8] bg-white p-2">
-                  <Image
-                    src={images.library}
-                    alt="KCMSC students reading in the library"
-                    fill
-                    sizes="(min-width: 640px) 25vw, 100vw"
-                    className="object-cover"
-                  />
-                </div>
+          <div className="mt-14 grid border-y border-[#c8c0b1] lg:grid-cols-[1.1fr_.9fr]">
+            <div className="grid sm:grid-cols-2">
+              <div className="border-b border-[#c8c0b1] py-8 sm:border-r sm:pr-10 lg:py-10">
+                <p className="text-[10px] font-bold uppercase tracking-[.22em] text-[#9b7e39]">01</p>
+                <h3 className="mt-4 font-heading text-2xl text-[#183d2e]">{t.library}</h3>
+                <p className="mt-3 max-w-sm text-sm leading-6 text-[#69716a]">{t.libraryBody}</p>
               </div>
-              <div className="py-7">
-                <h3 className="font-heading text-2xl text-[#183d2e]">{t.garden}</h3>
-                <p className="mt-2 max-w-xl text-sm leading-6 text-[#69716a]">{t.gardenBody}</p>
+              <div className="border-b border-[#c8c0b1] py-8 sm:pl-10 lg:py-10">
+                <p className="text-[10px] font-bold uppercase tracking-[.22em] text-[#9b7e39]">02</p>
+                <h3 className="mt-4 font-heading text-2xl text-[#183d2e]">Science & computer facilities</h3>
+                <p className="mt-3 max-w-sm text-sm leading-6 text-[#69716a]">Air-conditioned computer laboratories and science laboratories support classroom learning and practical work.</p>
+              </div>
+              <div className="border-b border-[#c8c0b1] py-8 sm:border-r sm:pr-10 lg:border-b-0 lg:py-10">
+                <p className="text-[10px] font-bold uppercase tracking-[.22em] text-[#9b7e39]">03</p>
+                <h3 className="mt-4 font-heading text-2xl text-[#183d2e]">{t.garden}</h3>
+                <p className="mt-3 max-w-sm text-sm leading-6 text-[#69716a]">{t.gardenBody}</p>
+              </div>
+              <div className="py-8 sm:pl-10 lg:py-10">
+                <p className="text-[10px] font-bold uppercase tracking-[.22em] text-[#9b7e39]">04</p>
+                <h3 className="mt-4 font-heading text-2xl text-[#183d2e]">Student services</h3>
+                <p className="mt-3 max-w-sm text-sm leading-6 text-[#69716a]">The profile lists transport, residential facilities, childcare, CCTV, generator backup and water purification among the school's facilities and services.</p>
               </div>
             </div>
-            <Link href={`/${locale}/facilities`} className="kc-classic-link mt-2">
-              {t.facilitiesLink} <span aria-hidden="true">↗</span>
-            </Link>
+            <div className="relative min-h-[340px] border-t border-[#c8c0b1] sm:min-h-[420px] lg:border-l lg:border-t-0">
+              <Image
+                src={images.library}
+                alt="KCMSC students reading together in the library"
+                fill
+                sizes="(min-width: 1024px) 36vw, 100vw"
+                className="object-cover"
+              />
+              <div className="absolute inset-x-0 bottom-0 bg-[#183d2e]/90 px-6 py-5 text-[#f5f0e4] sm:px-7">
+                <p className="text-[10px] font-bold uppercase tracking-[.2em] text-[#d8bf72]">KCMSC</p>
+                <p className="mt-1 font-heading text-xl">School library</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Achievement */}
+      {/* Academic results */}
       <section className="kc-classic-section bg-[#183d2e] text-white">
-        <div className="mx-auto grid max-w-[1240px] gap-14 px-6 sm:px-10 lg:grid-cols-[1fr_.85fr] lg:items-end lg:px-12">
-          <div>
-            <p className="kc-light-kicker">{t.achievementKicker}</p>
-            <h2 className="mt-5 max-w-3xl font-heading text-[clamp(2.8rem,5vw,5rem)] leading-[.96] tracking-[-.035em] text-[#f5f0e4]">
-              {t.achievementTitle}
-            </h2>
-            <p className="mt-6 max-w-2xl text-sm leading-7 text-white/65 sm:text-base">{t.achievementBody}</p>
-            <Link href={`/${locale}/achievements`} className="kc-classic-link kc-classic-link-light mt-8">
-              {t.achievementLink} <span aria-hidden="true">↗</span>
-            </Link>
-          </div>
-          <div className="grid grid-cols-2 border-y border-white/20">
-            <div className="px-5 py-8 sm:px-8 sm:py-10">
-              <p className="kc-light-kicker">{t.ssc}</p>
-              <p className="mt-5 font-heading text-5xl text-[#f5f0e4] sm:text-6xl">98.48%</p>
-              <p className="mt-2 text-xs text-white/45">{t.passRate}</p>
+        <div className="mx-auto max-w-[1240px] px-6 sm:px-10 lg:px-12">
+          <div className="grid gap-12 lg:grid-cols-[.9fr_1.1fr] lg:items-start lg:gap-20">
+            <div>
+              <p className="kc-light-kicker">{t.achievementKicker}</p>
+              <h2 className="mt-5 max-w-2xl font-heading text-[clamp(2.4rem,4vw,4.2rem)] leading-[1.02] tracking-[-.025em] text-[#f5f0e4]">
+                {t.achievementTitle}
+              </h2>
+              <p className="mt-6 max-w-xl text-sm leading-7 text-white/65 sm:text-base">{t.achievementBody}</p>
+              <Link href={`/${locale}/achievements`} className="kc-classic-link kc-classic-link-light mt-8">
+                {t.achievementLink} <span aria-hidden="true">↗</span>
+              </Link>
             </div>
-            <div className="border-l border-white/20 px-5 py-8 sm:px-8 sm:py-10">
-              <p className="kc-light-kicker">{t.hsc}</p>
-              <p className="mt-5 font-heading text-5xl text-[#f5f0e4] sm:text-6xl">100%</p>
-              <p className="mt-2 text-xs text-white/45">{t.passRate}</p>
+
+            <div className="border-t border-white/20">
+              <div className="grid sm:grid-cols-2">
+                <div className="border-b border-white/20 py-8 sm:border-r sm:pr-10 sm:py-10">
+                  <p className="kc-light-kicker">{t.ssc}</p>
+                  <p className="mt-4 font-heading text-5xl text-[#f5f0e4]">98.48%</p>
+                  <p className="mt-2 text-xs text-white/50">{t.passRate} · 130 candidates · 128 passed · 67 GPA 5</p>
+                </div>
+                <div className="border-b border-white/20 py-8 sm:pl-10 sm:py-10">
+                  <p className="kc-light-kicker">{t.hsc}</p>
+                  <p className="mt-4 font-heading text-5xl text-[#f5f0e4]">100%</p>
+                  <p className="mt-2 text-xs text-white/50">{t.passRate} · 47 candidates · 47 passed · 13 GPA 5</p>
+                </div>
+              </div>
+              <div className="grid border-b border-white/20 sm:grid-cols-2">
+                <div className="py-7 sm:border-r sm:pr-10">
+                  <p className="text-xs uppercase tracking-[.18em] text-white/45">SSC · GPA 5</p>
+                  <p className="mt-2 font-heading text-3xl text-[#f5f0e4]">67 students</p>
+                </div>
+                <div className="py-7 sm:pl-10">
+                  <p className="text-xs uppercase tracking-[.18em] text-white/45">HSC · GPA 5</p>
+                  <p className="mt-2 font-heading text-3xl text-[#f5f0e4]">13 students</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -362,19 +388,21 @@ export function LandingExperience({ locale }: { locale: Locale }) {
       <section className="bg-[#f5f1e8]">
         <div className="mx-auto max-w-[1240px] px-6 py-16 sm:px-10 sm:py-20 lg:px-12 lg:py-24">
           <Rule />
-          <div className="grid gap-8 py-10 lg:grid-cols-[1fr_auto] lg:items-end">
+          <div className="grid gap-10 py-10 lg:grid-cols-[.8fr_1.2fr] lg:items-end lg:gap-20">
             <div>
               <p className="kc-classic-kicker">{t.admissionKicker}</p>
-              <h2 className="kc-classic-title mt-5 max-w-3xl">{t.admissionTitle}</h2>
-              <p className="mt-5 max-w-2xl text-sm leading-7 text-[#69716a] sm:text-base">{t.admissionBody}</p>
+              <h2 className="kc-classic-title mt-5 max-w-xl">{t.admissionTitle}</h2>
             </div>
-            <div className="flex flex-wrap gap-3 lg:justify-end">
-              <Link href={`/${locale}/admissions`} className="kc-classic-button kc-classic-button-primary">
-                {t.admissionButton}
-              </Link>
-              <Link href={`/${locale}/contact`} className="kc-classic-button kc-classic-button-outline">
-                {t.contactButton}
-              </Link>
+            <div>
+              <p className="max-w-2xl text-sm leading-7 text-[#69716a] sm:text-base">{t.admissionBody}</p>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <Link href={`/${locale}/admissions`} className="kc-classic-button kc-classic-button-primary">
+                  {t.admissionButton}
+                </Link>
+                <Link href={`/${locale}/contact`} className="kc-classic-button kc-classic-button-outline">
+                  {t.contactButton}
+                </Link>
+              </div>
             </div>
           </div>
           <Rule />
