@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { HeroSlideshow } from "./HeroSlideshow";
 import Link from "next/link";
 import type { Locale } from "@/i18n/config";
 
@@ -138,7 +139,6 @@ const content = {
 } as const;
 
 const images = {
-  building: "/kcmsc/kc/kcmsc1.jpg",
   atrium: "/kcmsc/kc/kcmsc3.jpg",
   classroom: "/kcmsc/facilities/teacher_taking_class.jpg",
   culture: "/kcmsc/student-life/vibrant_art_culture.jpg",
@@ -157,54 +157,7 @@ export function LandingExperience({ locale }: { locale: Locale }) {
 
   return (
     <div className="kc-home bg-[#f5f1e8] text-[#20362d]">
-      {/* Hero */}
-      <section className="border-b border-[#d7d1c4] bg-[#f5f1e8]">
-        <div className="mx-auto grid max-w-[1440px] lg:min-h-[700px] lg:grid-cols-[.92fr_1.08fr]">
-          <div className="flex flex-col justify-between px-6 pb-12 pt-14 sm:px-10 sm:pb-16 sm:pt-20 lg:px-16 lg:py-20">
-            <div>
-              <p className="kc-classic-kicker">{t.heroKicker}</p>
-              <div className="mt-7 h-px w-16 bg-[#b69b54]" />
-              <h1 className="mt-8 max-w-[700px] font-heading text-[clamp(3.25rem,6.4vw,6.6rem)] leading-[.92] tracking-[-.045em] text-[#183d2e]">
-                {t.heroTitle}
-              </h1>
-              <p className="mt-8 max-w-xl text-[15px] leading-7 text-[#5e675f] sm:text-base">
-                {t.heroBody}
-              </p>
-              <div className="mt-9 flex flex-wrap gap-3">
-                <Link href={`/${locale}/admissions`} className="kc-classic-button kc-classic-button-primary">
-                  {t.heroPrimary}
-                </Link>
-                <Link href={`/${locale}/about`} className="kc-classic-button kc-classic-button-outline">
-                  {t.heroSecondary}
-                </Link>
-              </div>
-            </div>
-
-            <div className="mt-16 flex items-end justify-between gap-6 border-t border-[#d7d1c4] pt-5 text-[10px] uppercase tracking-[.2em] text-[#7a8179]">
-              <span>Play Group – XII</span>
-              <span className="hidden sm:inline">Bangla & English Version</span>
-              <span>Dhaka</span>
-            </div>
-          </div>
-
-          <div className="relative min-h-[520px] border-t border-[#d7d1c4] lg:border-l lg:border-t-0">
-            <Image
-              src={images.building}
-              alt="K C Model School & College building"
-              fill
-              priority
-              sizes="(min-width: 1024px) 54vw, 100vw"
-              className="object-cover object-center"
-            />
-            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-6 sm:p-8 lg:p-10">
-              <div className="border-l-2 border-[#d7bd72] pl-4 text-white">
-                <p className="font-heading text-lg sm:text-xl">{t.heroCaption}</p>
-                <p className="mt-1 text-[10px] uppercase tracking-[.22em] text-white/70">Since 2014</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HeroSlideshow locale={locale} />
 
       {/* At a glance */}
       <section className="bg-[#183d2e] text-white">

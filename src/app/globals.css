@@ -129,3 +129,50 @@ body {
   .kc-classic-button,
   .kc-classic-link { transition: none; }
 }
+
+.kc-classic-button-light {
+  border-color: #f4eee1;
+  background: #f4eee1;
+  color: #183d2e;
+}
+
+.kc-classic-button-light:hover {
+  border-color: #dbc887;
+  background: #dbc887;
+  color: #183d2e;
+}
+
+.kc-classic-button-ghost-light {
+  border-color: rgba(255,255,255,.45);
+  background: rgba(10,35,25,.08);
+  color: #fff;
+}
+
+.kc-classic-button-ghost-light:hover {
+  border-color: #f4eee1;
+  background: rgba(255,255,255,.1);
+  color: #fff;
+}
+
+.kc-hero-arrow {
+  display: inline-flex;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255,255,255,.35);
+  background: rgba(12,39,28,.24);
+  color: #fff;
+  font-family: Georgia, serif;
+  font-size: 20px;
+  transition: background-color .2s ease, border-color .2s ease;
+}
+
+.kc-hero-arrow:hover {
+  border-color: #dbc887;
+  background: rgba(12,39,28,.6);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kc-hero-arrow { transition: none; }
+}
