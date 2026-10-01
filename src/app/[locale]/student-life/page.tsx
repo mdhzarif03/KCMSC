@@ -4,10 +4,8 @@ import Link from "next/link";
 const photos = {
   hero: "/kcmsc/student-life/vibrant_student_life.jpg",
   culture: "/kcmsc/student-life/vibrant_art_culture.jpg",
-  students: "/kcmsc/student-life/vibrant_student_culture.jpg",
-  bookfair: "/kcmsc/student-life/students_at_bookfair.jpg",
-  sports: "/kcmsc/student-life/students_having_fun_after_sports.jpg",
-  team: "/kcmsc/sports/kc_team_representing_at_AIUB.jpg",
+  reading: "/kcmsc/student-life/students_at_bookfair.jpg",
+  sport: "/kcmsc/sports/kc_team_representing_at_AIUB.jpg",
   trip: "/kcmsc/student-life/student_trip1.jpg",
   garden: "/kcmsc/facilities/rooftop_garden.jpg",
 };
@@ -19,127 +17,172 @@ export default async function StudentLifePage({ params }: { params: Promise<{ lo
   const copy = bn
     ? {
         kicker: "শিক্ষাজীবন",
-        title: "শ্রেণিকক্ষের বাইরেও স্কুল জীবন গড়ে ওঠে।",
-        body: "সংস্কৃতি, খেলাধুলা, প্রতিযোগিতা, বইপড়া, শিক্ষা সফর এবং বিভিন্ন ক্লাব ও সহশিক্ষা কার্যক্রম KCMSC-এর শিক্ষাজীবনের অংশ।",
-        discover: "KCMSC সম্পর্কে",
-        introKicker: "একটি স্কুল সম্প্রদায়",
-        introTitle: "শেখা শুধু একটি সময়সূচির মধ্যে সীমাবদ্ধ নয়।",
-        introBody: "শিক্ষার্থীরা নিজেদের আগ্রহ ও দক্ষতা প্রকাশের সুযোগ পায় সংস্কৃতি, খেলাধুলা, একাডেমিক প্রতিযোগিতা, পাঠাভ্যাস ও বিভিন্ন আয়োজনে। এই অভিজ্ঞতাগুলো বিদ্যালয়ের দৈনন্দিন জীবনকে সমৃদ্ধ করে।",
+        title: "শ্রেণিকক্ষের বাইরের দিনগুলোও স্কুলের অংশ।",
+        body: "সংস্কৃতি, খেলাধুলা, বই, শিক্ষা সফর, প্রতিযোগিতা ও বিভিন্ন সহশিক্ষা কার্যক্রমের মধ্য দিয়ে KCMSC-এর শিক্ষার্থীরা স্কুলজীবনের নানা অভিজ্ঞতা অর্জন করে।",
+        explore: "KCMSC সম্পর্কে",
+        introKicker: "শিক্ষার্থীদের দৈনন্দিন জীবন",
+        introTitle: "পড়াশোনার পাশাপাশি সময় কাটে নানা কাজে।",
+        introBody: "একটি স্কুলের জীবন শুধু ক্লাসের সময়সূচিতে সীমাবদ্ধ থাকে না। KCMSC-এ শিক্ষার্থীরা সাংস্কৃতিক অনুষ্ঠান, খেলাধুলা, বইমেলা, শিক্ষা সফর, ক্লাব ও বিভিন্ন প্রতিযোগিতায় অংশ নেওয়ার সুযোগ পায়।",
         culture: "সংস্কৃতি ও সৃজনশীলতা",
-        cultureBody: "শিক্ষার্থীরা সাংস্কৃতিক অনুষ্ঠান, শিল্প ও বিভিন্ন সৃজনশীল কার্যক্রমে অংশ নেয়।",
-        sport: "খেলাধুলা ও দলগত কাজ",
-        sportBody: "খেলাধুলা শিক্ষার্থীদের দলগত অংশগ্রহণ, নিয়মানুবর্তিতা ও স্কুলকে প্রতিনিধিত্ব করার সুযোগ দেয়।",
+        cultureBody: "সাংস্কৃতিক অনুষ্ঠান, শিল্প ও সৃজনশীল কার্যক্রম শিক্ষার্থীদের স্কুলের নিয়মিত জীবনের একটি অংশ।",
         reading: "বই ও পাঠাভ্যাস",
-        readingBody: "বইমেলা ও লাইব্রেরির মতো পরিবেশ শিক্ষার্থীদের পড়া ও বইয়ের সঙ্গে সময় কাটাতে উৎসাহিত করে।",
-        trips: "শিক্ষা সফর ও অভিজ্ঞতা",
-        tripsBody: "স্কুলের বাইরে একসঙ্গে সময় কাটানো শিক্ষার্থীদের অভিজ্ঞতা ও বন্ধুত্বের পরিসর বাড়ায়।",
-        clubsKicker: "ক্লাব ও কার্যক্রম",
-        clubsTitle: "আগ্রহের জায়গাগুলোও শিক্ষার অংশ।",
-        clubsBody: "KCMSC-এর প্রোফাইলে ICT, Robotics ও Coding, Music, Scout, Language, Sports এবং সাংস্কৃতিক কার্যক্রমসহ বিভিন্ন ক্লাব ও সহশিক্ষা কার্যক্রমের উল্লেখ রয়েছে।",
+        readingBody: "বইমেলা ও লাইব্রেরির মাধ্যমে শিক্ষার্থীরা পাঠাভ্যাস গড়ে তোলার সুযোগ পায়।",
+        sport: "খেলাধুলা",
+        sportBody: "বিভিন্ন খেলাধুলা ও প্রতিযোগিতায় অংশ নিয়ে শিক্ষার্থীরা দলগতভাবে স্কুলকে প্রতিনিধিত্ব করে।",
+        trip: "শিক্ষা সফর",
+        tripBody: "শিক্ষা সফর ও স্কুলের বাইরের আয়োজন শিক্ষার্থীদের পরিচিত পরিবেশের বাইরে নতুন অভিজ্ঞতা দেয়।",
+        activitiesKicker: "ক্লাব ও সহশিক্ষা কার্যক্রম",
+        activitiesTitle: "নিজের আগ্রহের জায়গা খুঁজে নেওয়ার সুযোগ",
+        activitiesBody: "KCMSC-এর প্রোফাইলে ICT, Robotics ও Coding, Music, Scout, Language, Sports এবং সাংস্কৃতিক কার্যক্রমসহ বিভিন্ন ক্লাব ও সহশিক্ষা কার্যক্রমের উল্লেখ রয়েছে।",
         clubs: ["ICT · Robotics · Coding", "Music", "Scout", "Language", "Sports", "Cultural Activities"],
-        gardenKicker: "ক্যাম্পাস জীবন",
-        gardenTitle: "সবুজের যত্নও শেখার অংশ।",
-        gardenBody: "স্কুলের প্রোফাইল অনুযায়ী দশতলা ভবনগুলোর চারটিতে ছাদবাগান রয়েছে এবং শিক্ষার্থীরা গাছ লাগানো ও পরিচর্যায় অংশ নেয়।",
-        gardenLink: "ক্যাম্পাস দেখুন",
+        campusKicker: "ক্যাম্পাস",
+        campusTitle: "ছাদবাগানও ক্যাম্পাস জীবনের অংশ।",
+        campusBody: "স্কুলের প্রোফাইল অনুযায়ী চারটি দশতলা ভবনে ছাদবাগান রয়েছে। শিক্ষার্থীরা গাছ লাগানো ও পরিচর্যার সঙ্গে যুক্ত থাকে।",
+        campusLink: "ক্যাম্পাস ও সুবিধা দেখুন",
         finalKicker: "KCMSC",
-        finalTitle: "একটি স্কুল শুধু ক্লাসের জায়গা নয়।",
-        finalBody: "এখানে পড়াশোনার পাশাপাশি সংস্কৃতি, বন্ধুত্ব, দলগত কাজ ও প্রতিদিনের অভিজ্ঞতা মিলেই শিক্ষাজীবন তৈরি হয়।",
+        finalTitle: "স্কুলজীবনের প্রতিটি দিনই একটি অভিজ্ঞতা।",
+        finalBody: "ক্লাস, বন্ধু, খেলাধুলা, সংস্কৃতি ও স্কুলের নানা আয়োজন মিলেই তৈরি হয় শিক্ষার্থীদের দৈনন্দিন জীবন।",
         admissions: "ভর্তি সম্পর্কে জানুন",
       }
     : {
         kicker: "STUDENT LIFE",
-        title: "School life is built beyond the classroom too.",
-        body: "Culture, sport, competitions, reading, educational trips and a range of clubs and co-curricular activities are part of everyday life at KCMSC.",
-        discover: "Discover KCMSC",
-        introKicker: "ONE SCHOOL COMMUNITY",
-        introTitle: "Learning does not end when the lesson does.",
-        introBody: "Students have opportunities to express interests and abilities through culture, sport, academic competitions, reading, school events and shared experiences. Together, these moments give school life its character.",
+        title: "School days are more than classroom hours.",
+        body: "Culture, sport, books, educational trips, competitions and co-curricular activities all form part of everyday life at KCMSC.",
+        explore: "Discover KCMSC",
+        introKicker: "LIFE AT SCHOOL",
+        introTitle: "There is more to the school day than lessons.",
+        introBody: "School life continues through cultural programmes, sport, reading, educational trips, clubs and competitions. These activities give students opportunities to take part, work with others and enjoy the ordinary moments of school.",
         culture: "Culture & creativity",
-        cultureBody: "Students take part in cultural programmes, art and creative school activities.",
-        sport: "Sport & teamwork",
-        sportBody: "Sport gives students opportunities to work as teams, practise discipline and represent their school.",
+        cultureBody: "Cultural programmes, art and creative activities are part of the school's regular student life.",
         reading: "Books & reading",
-        readingBody: "Book fairs and library spaces give students reasons to spend time with books beyond the timetable.",
-        trips: "Trips & shared experiences",
-        tripsBody: "Time outside the usual school setting expands students' experiences and the friendships they build.",
-        clubsKicker: "CLUBS & ACTIVITIES",
-        clubsTitle: "Interests have a place in education too.",
-        clubsBody: "The KCMSC profile lists clubs and co-curricular activities including ICT, Robotics & Coding, Music, Scout, Language, Sports and cultural activities.",
+        readingBody: "Book fairs and library spaces give students opportunities to spend time with books and develop a reading habit.",
+        sport: "Sport",
+        sportBody: "Students take part in sporting activities and competitions, including opportunities to represent the school as a team.",
+        trip: "Educational trips",
+        tripBody: "Trips and activities outside the usual school setting give students experiences beyond their everyday surroundings.",
+        activitiesKicker: "CLUBS & CO-CURRICULAR ACTIVITIES",
+        activitiesTitle: "Room for interests beyond the syllabus",
+        activitiesBody: "The KCMSC profile lists clubs and co-curricular activities including ICT, Robotics & Coding, Music, Scout, Language, Sports and cultural activities.",
         clubs: ["ICT · Robotics · Coding", "Music", "Scout", "Language", "Sports", "Cultural Activities"],
-        gardenKicker: "CAMPUS LIFE",
-        gardenTitle: "Caring for green spaces is learning too.",
-        gardenBody: "The school profile records rooftop gardens on four ten-storied buildings, with students taking part in planting and caring for trees.",
-        gardenLink: "Explore the campus",
+        campusKicker: "CAMPUS",
+        campusTitle: "The rooftop gardens are part of campus life.",
+        campusBody: "The school profile records rooftop gardens on four ten-storied buildings, with students taking part in planting and caring for trees.",
+        campusLink: "View campus & facilities",
         finalKicker: "KCMSC",
-        finalTitle: "A school is more than a timetable.",
-        finalBody: "Academic work, culture, friendship, teamwork and ordinary daily moments all become part of growing up at school.",
-        admissions: "Explore admissions",
+        finalTitle: "The school day does not end with the last class.",
+        finalBody: "Lessons, friends, sport, culture and school events all become part of the everyday experience of being a student.",
+        admissions: "Admission information",
       };
 
   return (
-    <main className="bg-[#f5f1e8] text-[#20362d]">
-      <section className="border-b border-[#d7d1c4]">
-        <div className="mx-auto grid max-w-[1440px] lg:grid-cols-[.9fr_1.1fr]">
-          <div className="flex flex-col justify-end px-6 py-14 sm:px-10 sm:py-20 lg:px-16 lg:py-24">
-            <p className="kc-classic-kicker">{copy.kicker}</p>
-            <h1 className="mt-6 max-w-3xl font-heading text-[clamp(3.2rem,6.5vw,6.7rem)] leading-[.92] tracking-[-.045em] text-[#183d2e]">{copy.title}</h1>
-            <p className="mt-7 max-w-xl text-sm leading-7 text-[#69716a] sm:text-base">{copy.body}</p>
-            <Link href={`/${locale}/about`} className="kc-classic-link mt-8">{copy.discover} <span aria-hidden="true">↗</span></Link>
-          </div>
-          <div className="relative min-h-[500px] border-t border-[#d7d1c4] lg:border-l lg:border-t-0">
-            <Image src={photos.hero} alt="Students taking part in school life at KCMSC" fill priority sizes="(min-width: 1024px) 55vw, 100vw" className="object-cover" />
+    <main className="bg-[#f6f2e9] text-[#1c3d30]">
+      {/* Hero: one photograph, one clear introduction. */}
+      <section className="relative overflow-hidden border-b border-[#d8d1c3]">
+        <div className="relative h-[62vh] min-h-[520px] w-full">
+          <Image
+            src={photos.hero}
+            alt="KCMSC students taking part in school life"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#102f25]/75 via-[#102f25]/15 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0">
+            <div className="mx-auto max-w-[1440px] px-6 pb-10 sm:px-10 sm:pb-14 lg:px-16 lg:pb-16">
+              <p className="kc-light-kicker">{copy.kicker}</p>
+              <h1 className="mt-4 max-w-4xl font-heading text-[clamp(3rem,6.5vw,6.5rem)] leading-[.91] tracking-[-.045em] text-[#f7f2e8]">
+                {copy.title}
+              </h1>
+              <div className="mt-7 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+                <p className="max-w-2xl text-sm leading-7 text-white/80 sm:text-base">{copy.body}</p>
+                <Link href={`/${locale}/about`} className="kc-classic-link kc-classic-link-light shrink-0">{copy.explore} <span aria-hidden="true">↗</span></Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-[#183d2e] text-white">
-        <div className="mx-auto grid max-w-[1440px] lg:grid-cols-[.75fr_1.25fr]">
-          <div className="px-6 py-12 sm:px-10 lg:px-16 lg:py-16">
-            <p className="kc-light-kicker">{copy.introKicker}</p>
-            <h2 className="mt-4 max-w-xl font-heading text-4xl leading-[1] tracking-[-.03em] text-[#f5f0e4] sm:text-5xl">{copy.introTitle}</h2>
+      {/* Short introduction, deliberately quiet. */}
+      <section className="border-b border-[#d8d1c3] bg-[#f6f2e9]">
+        <div className="mx-auto grid max-w-[1240px] gap-10 px-6 py-16 sm:px-10 sm:py-20 lg:grid-cols-[.7fr_1.3fr] lg:px-12 lg:py-24">
+          <div>
+            <p className="kc-classic-kicker">{copy.introKicker}</p>
           </div>
-          <div className="border-t border-white/15 px-6 py-12 sm:px-10 lg:border-l lg:border-t-0 lg:px-14 lg:py-16">
-            <p className="max-w-2xl text-sm leading-7 text-white/65 sm:text-base">{copy.introBody}</p>
+          <div>
+            <h2 className="max-w-4xl font-heading text-[clamp(2.4rem,4.5vw,4.7rem)] leading-[.96] tracking-[-.035em] text-[#183d2e]">{copy.introTitle}</h2>
+            <p className="mt-7 max-w-3xl text-sm leading-7 text-[#68716a] sm:text-base">{copy.introBody}</p>
           </div>
         </div>
       </section>
 
-      <section className="kc-classic-section">
+      {/* Four activities, presented as an editorial image spread rather than four cards. */}
+      <section className="bg-[#eee9df] py-12 sm:py-16 lg:py-20">
         <div className="mx-auto max-w-[1240px] px-6 sm:px-10 lg:px-12">
-          <div className="grid gap-6 md:grid-cols-2">
-            <article className="border border-[#d3ccbf] bg-[#faf8f2]">
-              <div className="relative aspect-[4/3]"><Image src={photos.culture} alt="Students participating in a cultural activity at KCMSC" fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" /></div>
-              <div className="p-7"><p className="kc-classic-kicker">01</p><h2 className="mt-3 font-heading text-2xl text-[#183d2e]">{copy.culture}</h2><p className="mt-3 text-sm leading-6 text-[#69716a]">{copy.cultureBody}</p></div>
+          <div className="grid gap-5 lg:grid-cols-12">
+            <article className="lg:col-span-7">
+              <div className="relative aspect-[4/3] overflow-hidden bg-[#ddd6c8]">
+                <Image src={photos.culture} alt="KCMSC students taking part in a cultural activity" fill sizes="(min-width: 1024px) 58vw, 100vw" className="object-cover" />
+              </div>
+              <div className="border-t border-[#cfc7b8] pt-5">
+                <p className="kc-classic-kicker">01</p>
+                <h2 className="mt-2 font-heading text-3xl text-[#183d2e]">{copy.culture}</h2>
+                <p className="mt-2 max-w-2xl text-sm leading-6 text-[#68716a]">{copy.cultureBody}</p>
+              </div>
             </article>
-            <article className="border border-[#d3ccbf] bg-[#faf8f2]">
-              <div className="relative aspect-[4/3]"><Image src={photos.sports} alt="Students enjoying a sports activity at KCMSC" fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" /></div>
-              <div className="p-7"><p className="kc-classic-kicker">02</p><h2 className="mt-3 font-heading text-2xl text-[#183d2e]">{copy.sport}</h2><p className="mt-3 text-sm leading-6 text-[#69716a]">{copy.sportBody}</p></div>
-            </article>
-            <article className="border border-[#d3ccbf] bg-[#faf8f2]">
-              <div className="relative aspect-[4/3]"><Image src={photos.bookfair} alt="Students at a book fair at KCMSC" fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" /></div>
-              <div className="p-7"><p className="kc-classic-kicker">03</p><h2 className="mt-3 font-heading text-2xl text-[#183d2e]">{copy.reading}</h2><p className="mt-3 text-sm leading-6 text-[#69716a]">{copy.readingBody}</p></div>
-            </article>
-            <article className="border border-[#d3ccbf] bg-[#faf8f2]">
-              <div className="relative aspect-[4/3]"><Image src={photos.trip} alt="KCMSC students on an educational trip" fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" /></div>
-              <div className="p-7"><p className="kc-classic-kicker">04</p><h2 className="mt-3 font-heading text-2xl text-[#183d2e]">{copy.trips}</h2><p className="mt-3 text-sm leading-6 text-[#69716a]">{copy.tripsBody}</p></div>
+
+            <div className="grid gap-5 lg:col-span-5">
+              <article>
+                <div className="relative aspect-[16/10] overflow-hidden bg-[#ddd6c8]">
+                  <Image src={photos.reading} alt="Students visiting a book fair at KCMSC" fill sizes="(min-width: 1024px) 42vw, 100vw" className="object-cover" />
+                </div>
+                <div className="border-t border-[#cfc7b8] pt-4">
+                  <p className="kc-classic-kicker">02</p>
+                  <h2 className="mt-2 font-heading text-2xl text-[#183d2e]">{copy.reading}</h2>
+                  <p className="mt-2 text-sm leading-6 text-[#68716a]">{copy.readingBody}</p>
+                </div>
+              </article>
+
+              <article className="grid gap-4 sm:grid-cols-[1.05fr_.95fr] sm:items-start">
+                <div className="relative aspect-[4/3] overflow-hidden bg-[#ddd6c8]">
+                  <Image src={photos.sport} alt="KCMSC students representing their school in sport" fill sizes="(min-width: 1024px) 24vw, 50vw" className="object-cover" />
+                </div>
+                <div>
+                  <p className="kc-classic-kicker">03</p>
+                  <h2 className="mt-2 font-heading text-2xl text-[#183d2e]">{copy.sport}</h2>
+                  <p className="mt-2 text-sm leading-6 text-[#68716a]">{copy.sportBody}</p>
+                </div>
+              </article>
+            </div>
+
+            <article className="mt-1 lg:col-span-12 lg:grid lg:grid-cols-[.8fr_1.2fr] lg:items-end lg:gap-8">
+              <div className="relative aspect-[16/9] overflow-hidden bg-[#ddd6c8] lg:aspect-[2/1]">
+                <Image src={photos.trip} alt="KCMSC students on an educational trip" fill sizes="(min-width: 1024px) 66vw, 100vw" className="object-cover" />
+              </div>
+              <div className="border-t border-[#cfc7b8] pt-5 lg:pb-1">
+                <p className="kc-classic-kicker">04</p>
+                <h2 className="mt-2 font-heading text-3xl text-[#183d2e]">{copy.trip}</h2>
+                <p className="mt-2 max-w-xl text-sm leading-6 text-[#68716a]">{copy.tripBody}</p>
+              </div>
             </article>
           </div>
         </div>
       </section>
 
-      <section className="border-y border-[#d7d1c4] bg-[#ece7dc]">
-        <div className="mx-auto grid max-w-[1440px] lg:grid-cols-[1.05fr_.95fr]">
-          <div className="relative min-h-[460px]">
-            <Image src={photos.team} alt="KCMSC student team representing the school at a sporting event" fill sizes="(min-width: 1024px) 55vw, 100vw" className="object-cover" />
+      {/* Clubs: typography and list, no unnecessary photograph. */}
+      <section className="border-y border-[#d8d1c3] bg-[#f6f2e9]">
+        <div className="mx-auto grid max-w-[1240px] gap-10 px-6 py-16 sm:px-10 sm:py-20 lg:grid-cols-[.8fr_1.2fr] lg:px-12 lg:py-24">
+          <div>
+            <p className="kc-classic-kicker">{copy.activitiesKicker}</p>
+            <h2 className="mt-5 max-w-xl font-heading text-[clamp(2.5rem,4.5vw,4.6rem)] leading-[.97] tracking-[-.035em] text-[#183d2e]">{copy.activitiesTitle}</h2>
           </div>
-          <div className="px-6 py-16 sm:px-10 lg:px-14 lg:py-20">
-            <p className="kc-classic-kicker">{copy.clubsKicker}</p>
-            <h2 className="kc-classic-title mt-5">{copy.clubsTitle}</h2>
-            <p className="mt-6 max-w-xl text-sm leading-7 text-[#69716a] sm:text-base">{copy.clubsBody}</p>
-            <div className="mt-9 grid grid-cols-2 border-y border-[#cfc7b8] sm:grid-cols-3">
+          <div>
+            <p className="max-w-2xl text-sm leading-7 text-[#68716a] sm:text-base">{copy.activitiesBody}</p>
+            <div className="mt-9 border-t border-[#cfc7b8]">
               {copy.clubs.map((club, index) => (
-                <div key={club} className="border-b border-[#cfc7b8] px-3 py-5 text-xs font-semibold text-[#4f5b53] sm:px-4">
-                  <span className="mr-2 text-[#a28742]">0{index + 1}</span>{club}
+                <div key={club} className="grid grid-cols-[52px_1fr] border-b border-[#cfc7b8] py-4 text-sm text-[#33483f] sm:grid-cols-[64px_1fr] sm:py-5">
+                  <span className="font-mono text-xs text-[#a28742]">0{index + 1}</span>
+                  <span>{club}</span>
                 </div>
               ))}
             </div>
@@ -147,27 +190,36 @@ export default async function StudentLifePage({ params }: { params: Promise<{ lo
         </div>
       </section>
 
+      {/* One campus photograph, used only for the garden story. */}
       <section className="bg-[#183d2e] text-white">
-        <div className="mx-auto grid max-w-[1440px] lg:grid-cols-2">
-          <div className="px-6 py-16 sm:px-10 lg:px-16 lg:py-24">
-            <p className="kc-light-kicker">{copy.gardenKicker}</p>
-            <h2 className="mt-5 max-w-2xl font-heading text-[clamp(2.8rem,5vw,5.2rem)] leading-[.96] tracking-[-.035em] text-[#f5f0e4]">{copy.gardenTitle}</h2>
-            <p className="mt-6 max-w-xl text-sm leading-7 text-white/65 sm:text-base">{copy.gardenBody}</p>
-            <Link href={`/${locale}/facilities`} className="kc-classic-link kc-classic-link-light mt-8">{copy.gardenLink} <span aria-hidden="true">↗</span></Link>
-          </div>
-          <div className="relative min-h-[420px] lg:min-h-[600px]">
-            <Image src={photos.garden} alt="Students caring for plants in the KCMSC rooftop garden" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
+        <div className="mx-auto max-w-[1440px]">
+          <div className="relative h-[52vh] min-h-[430px] overflow-hidden">
+            <Image src={photos.garden} alt="KCMSC rooftop garden and students on campus" fill sizes="100vw" className="object-cover" />
+            <div className="absolute inset-0 bg-[#102f25]/35" />
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#102f25]/90 to-transparent px-6 pb-10 pt-24 sm:px-10 lg:px-16 lg:pb-14">
+              <p className="kc-light-kicker">{copy.campusKicker}</p>
+              <div className="mt-4 grid gap-5 lg:grid-cols-[1fr_.75fr] lg:items-end">
+                <h2 className="max-w-3xl font-heading text-[clamp(2.8rem,5vw,5rem)] leading-[.95] tracking-[-.035em] text-[#f7f2e8]">{copy.campusTitle}</h2>
+                <div>
+                  <p className="max-w-xl text-sm leading-7 text-white/75">{copy.campusBody}</p>
+                  <Link href={`/${locale}/facilities`} className="kc-classic-link kc-classic-link-light mt-6">{copy.campusLink} <span aria-hidden="true">↗</span></Link>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-[#f5f1e8]">
+      <section className="bg-[#f6f2e9]">
         <div className="mx-auto max-w-[1240px] px-6 py-16 sm:px-10 sm:py-20 lg:px-12 lg:py-24">
-          <div className="border-y border-[#d7d1c4] py-10 sm:py-14">
-            <p className="kc-classic-kicker">{copy.finalKicker}</p>
-            <div className="mt-5 grid gap-8 lg:grid-cols-[1fr_.8fr] lg:items-end">
-              <h2 className="kc-classic-title">{copy.finalTitle}</h2>
-              <div><p className="text-sm leading-7 text-[#69716a] sm:text-base">{copy.finalBody}</p><Link href={`/${locale}/admissions`} className="kc-classic-button kc-classic-button-primary mt-7">{copy.admissions}</Link></div>
+          <div className="grid gap-8 border-y border-[#d8d1c3] py-10 sm:py-14 lg:grid-cols-[1fr_.8fr] lg:items-end">
+            <div>
+              <p className="kc-classic-kicker">{copy.finalKicker}</p>
+              <h2 className="mt-5 max-w-3xl font-heading text-[clamp(2.6rem,4.5vw,4.6rem)] leading-[.96] tracking-[-.035em] text-[#183d2e]">{copy.finalTitle}</h2>
+            </div>
+            <div>
+              <p className="max-w-xl text-sm leading-7 text-[#68716a] sm:text-base">{copy.finalBody}</p>
+              <Link href={`/${locale}/admissions`} className="kc-classic-button kc-classic-button-primary mt-7">{copy.admissions}</Link>
             </div>
           </div>
         </div>
