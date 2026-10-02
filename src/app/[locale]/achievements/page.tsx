@@ -156,7 +156,7 @@ export default async function AchievementsPage({
 
           <div className="relative min-h-[590px] overflow-hidden lg:border-l lg:border-[#d9d8cf]">
             <Image
-              src="/kcmsc/facilities/ict_olympiad_at_kc.jpg"
+              src="/kcmsc/media/ict_olympiad_at_kc.jpg"
               alt={
                 bn
                   ? "কেসিএমএসসি শিক্ষার্থীদের আইসিটি অলিম্পিয়াড কার্যক্রম"
@@ -367,7 +367,7 @@ export default async function AchievementsPage({
         <div className="mx-auto grid max-w-[80rem] lg:grid-cols-[1.1fr_.9fr]">
           <div className="relative min-h-[430px] overflow-hidden">
             <Image
-              src="/kcmsc/sports/winner.jpg"
+              src="/kcmsc/media/winner.jpg"
               alt={
                 bn
                   ? "কেসিএমএসসি শিক্ষার্থীর পুরস্কার অর্জন"

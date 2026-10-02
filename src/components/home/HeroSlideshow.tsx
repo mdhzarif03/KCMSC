@@ -7,98 +7,48 @@ import type { Locale } from "@/i18n/config";
 
 const slides = [
   {
-    image: "/kcmsc/hero/kcmsc-building.jpg",
-    alt: "K C Model School & College building",
+    image: "/kcmsc/media/kcmsc1.jpg",
+    alt: "K C Model School and College building",
     kicker: "K C MODEL SCHOOL & COLLEGE · EST. 2014",
-    title: "A place to learn. A place to belong.",
-    body: "Purposeful teaching, disciplined learning and a lively school community from Play Group to Grade Twelve.",
-    caption: "The KCMSC campus · Dakshinkhan, Dhaka",
+    title: "A school built around everyday learning.",
+    body: "From Play Group to Grade Twelve, KCMSC brings teaching, discipline, culture and student life together.",
+    caption: "The campus · Dakshinkhan, Dhaka",
     number: "01",
   },
   {
-    image: "/kcmsc/facilities/teacher_taking_class.jpg",
-    alt: "Students learning in a KCMSC classroom",
-    kicker: "LEARNING · EVERY DAY",
-    title: "Good teaching begins with attention.",
-    body: "Classroom learning remains at the heart of school life, supported by experienced teachers and purposeful facilities.",
+    image: "/kcmsc/media/teacher_taking_class.jpg",
+    alt: "A teacher leading a class at KCMSC",
+    kicker: "ACADEMICS · ATTENTION",
+    title: "Learning starts in the classroom.",
+    body: "Bangla and English Versions of the National Curriculum are supported by dedicated teaching and practical facilities.",
     caption: "Classroom learning",
     number: "02",
   },
   {
-    image: "/kcmsc/facilities/students_at_library.jpg",
-    alt: "KCMSC students reading in the library",
-    kicker: "READING · DISCOVERY",
-    title: "Room to read, think and grow.",
-    body: "A school library gives students a quieter place to read, study and explore beyond the day's lessons.",
-    caption: "Students in the library",
+    image: "/kcmsc/media/students_at_bookfair.jpg",
+    alt: "Students at a KCMSC book fair",
+    kicker: "STUDENT LIFE · CURIOSITY",
+    title: "School life extends beyond the timetable.",
+    body: "Reading, cultural programmes, trips and shared events give students space to participate and discover.",
+    caption: "Students at a book fair",
     number: "03",
   },
   {
-    image: "/kcmsc/facilities/rooftop_garden.jpg",
-    alt: "KCMSC students in the rooftop garden",
-    kicker: "CAMPUS · COMMUNITY",
-    title: "A school that feels lived in.",
-    body: "From classrooms to rooftop gardens, everyday spaces become part of the experience of growing up together.",
-    caption: "Rooftop garden",
-    number: "04",
-  },
-  {
-    image: "/kcmsc/student-life/vibrant_art_culture.jpg",
-    alt: "KCMSC students taking part in a cultural activity",
-    kicker: "CULTURE · EXPRESSION",
-    title: "There is more to school than a timetable.",
-    body: "Art, culture and shared school occasions give students space to participate, create and celebrate together.",
-    caption: "Student culture and creativity",
-    number: "05",
-  },
-  {
-    image: "/kcmsc/sports/kc_team_representing_at_AIUB.jpg",
-    alt: "KCMSC student sports team",
+    image: "/kcmsc/media/kc_team_representing_at_AIUB.jpg",
+    alt: "KCMSC students representing the school in sport",
     kicker: "SPORT · TEAMWORK",
     title: "Learning also happens together.",
-    body: "Sport builds habits of teamwork, discipline and participation, on the field and beyond it.",
-    caption: "KCMSC students representing the school in sport",
-    number: "06",
+    body: "Sport and co-curricular activities help make school life active, social and purposeful.",
+    caption: "KCMSC students in sport",
+    number: "04",
   },
 ];
 
 const bengaliSlides = [
-  {
-    kicker: "কে সি মডেল স্কুল অ্যান্ড কলেজ · প্রতিষ্ঠিত ২০১৪",
-    title: "শেখার জায়গা। আপন হয়ে ওঠার জায়গা।",
-    body: "প্লে গ্রুপ থেকে দ্বাদশ শ্রেণি পর্যন্ত উদ্দেশ্যপূর্ণ পাঠদান, শৃঙ্খলাবদ্ধ শিক্ষা ও প্রাণবন্ত স্কুলজীবন।",
-    caption: "KCMSC ক্যাম্পাস · দক্ষিণখান, ঢাকা",
-  },
-  {
-    kicker: "শেখা · প্রতিদিন",
-    title: "মনোযোগ দিয়েই ভালো পাঠদান শুরু হয়।",
-    body: "অভিজ্ঞ শিক্ষক ও প্রয়োজনীয় সুবিধার সহায়তায় শ্রেণিকক্ষের শিক্ষাই স্কুলজীবনের মূল ভিত্তি।",
-    caption: "শ্রেণিকক্ষে পাঠদান",
-  },
-  {
-    kicker: "পড়া · আবিষ্কার",
-    title: "পড়া, ভাবা ও বেড়ে ওঠার জায়গা।",
-    body: "লাইব্রেরি শিক্ষার্থীদের পড়া, অধ্যয়ন ও পাঠ্যবইয়ের বাইরের বিষয় আবিষ্কারের সুযোগ দেয়।",
-    caption: "লাইব্রেরিতে শিক্ষার্থীরা",
-  },
-  {
-    kicker: "ক্যাম্পাস · সম্প্রদায়",
-    title: "যে স্কুলে প্রতিদিনের জীবনও গুরুত্বপূর্ণ।",
-    body: "শ্রেণিকক্ষ থেকে ছাদবাগান পর্যন্ত স্কুলের প্রতিটি স্থান একসঙ্গে বেড়ে ওঠার অভিজ্ঞতার অংশ।",
-    caption: "ছাদবাগান",
-  },
-  {
-    kicker: "সংস্কৃতি · প্রকাশ",
-    title: "স্কুল শুধু একটি রুটিনের নাম নয়।",
-    body: "শিল্প, সংস্কৃতি ও বিভিন্ন আয়োজন শিক্ষার্থীদের অংশ নিতে, সৃষ্টি করতে ও একসঙ্গে উদযাপন করতে সুযোগ দেয়।",
-    caption: "শিক্ষার্থীদের সংস্কৃতি ও সৃজনশীলতা",
-  },
-  {
-    kicker: "খেলাধুলা · দলগত কাজ",
-    title: "একসঙ্গেও শেখা যায়।",
-    body: "খেলাধুলা মাঠের ভেতরে ও বাইরে দলগত কাজ, শৃঙ্খলা ও অংশগ্রহণের অভ্যাস গড়ে তোলে।",
-    caption: "খেলাধুলায় KCMSC শিক্ষার্থীরা",
-  },
+  { kicker: "কে সি মডেল স্কুল অ্যান্ড কলেজ · প্রতিষ্ঠিত ২০১৪", title: "প্রতিদিনের শেখাকে ঘিরে গড়ে ওঠা একটি স্কুল।", body: "প্লে গ্রুপ থেকে দ্বাদশ শ্রেণি পর্যন্ত পাঠদান, শৃঙ্খলা, সংস্কৃতি ও শিক্ষাজীবন একসঙ্গে এগিয়ে চলে।", caption: "ক্যাম্পাস · দক্ষিণখান, ঢাকা" },
+  { kicker: "একাডেমিক · মনোযোগ", title: "শেখার শুরু শ্রেণিকক্ষে।", body: "বাংলা ও ইংরেজি ভার্সনের জাতীয় শিক্ষাক্রমের সঙ্গে রয়েছে নিবেদিত শিক্ষক ও ব্যবহারিক শিক্ষার সুবিধা।", caption: "শ্রেণিকক্ষে পাঠদান" },
+  { kicker: "শিক্ষাজীবন · কৌতূহল", title: "স্কুলের জীবন রুটিনের চেয়েও বড়।", body: "বই পড়া, সাংস্কৃতিক অনুষ্ঠান, শিক্ষা সফর ও বিভিন্ন আয়োজনে শিক্ষার্থীরা অংশ নেয়।", caption: "বইমেলায় শিক্ষার্থীরা" },
+  { kicker: "খেলাধুলা · দলগত কাজ", title: "একসঙ্গেও শেখা যায়।", body: "খেলাধুলা ও সহশিক্ষা কার্যক্রম স্কুলজীবনকে সক্রিয়, সামাজিক ও উদ্দেশ্যপূর্ণ করে।", caption: "খেলাধুলায় KCMSC শিক্ষার্থীরা" },
 ];
 
 export function HeroSlideshow({ locale }: { locale: Locale }) {
@@ -118,7 +68,7 @@ export function HeroSlideshow({ locale }: { locale: Locale }) {
 
     const timer = window.setInterval(() => {
       setActive((current) => (current + 1) % slides.length);
-    }, 6500);
+    }, 7000);
 
     return () => window.clearInterval(timer);
   }, [paused]);
@@ -142,7 +92,7 @@ export function HeroSlideshow({ locale }: { locale: Locale }) {
 
   return (
     <section
-      className="relative isolate h-[calc(100svh-104px)] min-h-[680px] overflow-hidden bg-[#183d2e] text-white"
+      className="relative isolate h-[min(76svh,720px)] min-h-[500px] overflow-hidden bg-[#183d2e] text-white"
       aria-label="KCMSC featured stories"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
@@ -175,7 +125,7 @@ export function HeroSlideshow({ locale }: { locale: Locale }) {
       ))}
 
       {/* Stable hero content */}
-      <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-between px-6 pb-8 pt-16 sm:px-10 sm:pb-10 sm:pt-20 lg:px-16 lg:pt-24">
+      <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-between px-5 pb-6 pt-12 sm:px-10 sm:pb-10 sm:pt-20 lg:px-16 lg:pt-24">
         <div className="max-w-3xl">
           {/* Kicker */}
           <div className="mb-7 flex items-center gap-4 text-[10px] font-bold uppercase tracking-[.22em] text-[#dbc887]">
@@ -189,7 +139,7 @@ export function HeroSlideshow({ locale }: { locale: Locale }) {
           </div>
 
           {/* Headline */}
-          <h1 className="max-w-4xl min-h-[3.5em] font-heading text-[clamp(3.4rem,7.4vw,8.2rem)] leading-[.88] tracking-[-.05em] text-[#fbf7ec]">
+          <h1 className="max-w-4xl min-h-[3.5em] font-heading text-[clamp(2.65rem,12vw,8.2rem)] sm:text-[clamp(3.4rem,7.4vw,8.2rem)] leading-[.88] tracking-[-.05em] text-[#fbf7ec]">
             {locale === "bn" ? currentBengaliSlide.title : currentSlide.title}
           </h1>
 
@@ -217,7 +167,7 @@ export function HeroSlideshow({ locale }: { locale: Locale }) {
         </div>
 
         {/* Bottom information */}
-        <div className="mt-14 grid gap-7 border-t border-white/25 pt-5 sm:grid-cols-[1fr_auto] sm:items-end">
+        <div className="mt-10 grid gap-6 sm:mt-14 sm:gap-7 border-t border-white/25 pt-5 sm:grid-cols-[1fr_auto] sm:items-end">
           <div className="flex items-end gap-5">
             <span className="font-heading text-4xl text-[#fbf7ec]">
               {currentSlide.number}

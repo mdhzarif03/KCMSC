@@ -18,7 +18,7 @@ async function getFacilityEntries(locale: Locale): Promise<FacilityEntry[]> {
       }));
     }
   } catch {
-    // Use the institutional profile content when the CMS is unavailable.
+    // Use the built-in institutional content when the CMS is unavailable.
   }
   return [];
 }
@@ -41,7 +41,7 @@ const copy = {
     libraryKicker: "02 · READING",
     libraryTitle: "A place to read, study and stay curious.",
     libraryBody:
-      "KCMSC maintains library facilities for primary and secondary students, with more than 10,000 books and digital resources recorded in the institutional profile.",
+      "KCMSC maintains library facilities for primary and secondary students, with more than 10,000 books and digital resources listed for the institution.",
     gardenKicker: "03 · ROOFTOP GARDENS",
     gardenTitle: "Green space above the classroom.",
     gardenBody:
@@ -90,7 +90,7 @@ const copy = {
     libraryKicker: "০২ · পাঠাভ্যাস",
     libraryTitle: "পড়া ও পড়াশোনার জন্য আলাদা জায়গা।",
     libraryBody:
-      "প্রাইমারি ও সেকেন্ডারি শিক্ষার্থীদের জন্য লাইব্রেরি সুবিধা রয়েছে। প্রতিষ্ঠানের প্রোফাইলে ১০,০০০-এর বেশি বই ও ডিজিটাল রিসোর্সের উল্লেখ রয়েছে।",
+      "প্রাইমারি ও সেকেন্ডারি শিক্ষার্থীদের জন্য লাইব্রেরি সুবিধা রয়েছে। প্রতিষ্ঠানে ১০,০০০-এর বেশি বই ও ডিজিটাল রিসোর্স রয়েছে।",
     gardenKicker: "০৩ · ছাদবাগান",
     gardenTitle: "শ্রেণিকক্ষের ওপরে সবুজের জায়গা।",
     gardenBody:
@@ -143,7 +143,7 @@ export default async function FacilitiesPage({ params }: { params: Promise<{ loc
       {/* Opening image: let the campus photograph do the work. */}
       <section className="relative min-h-[78svh] overflow-hidden bg-[#12382b] text-[#f7f1e6]">
         <Image
-          src="/kcmsc/kc/kcmsc2.JPG"
+          src="/kcmsc/media/kcmsc3.jpg"
           alt="Interior of K C Model School & College"
           fill
           priority
@@ -182,7 +182,7 @@ export default async function FacilitiesPage({ params }: { params: Promise<{ loc
         <div className="relative mx-auto max-w-[1440px] overflow-hidden">
           <div className="relative aspect-[16/7] min-h-[320px]">
             <Image
-              src="/kcmsc/kc/kcmsc3.jpg"
+              src="/kcmsc/media/kcmsc1.jpg"
               alt="K C Model School & College campus building"
               fill
               sizes="(min-width: 1440px) 1440px, 100vw"
@@ -202,7 +202,7 @@ export default async function FacilitiesPage({ params }: { params: Promise<{ loc
           <div className="grid gap-20 lg:grid-cols-12 lg:gap-x-12">
             <article className="lg:col-span-7">
               <div className="relative aspect-[4/3] overflow-hidden">
-                <Image src="/kcmsc/facilities/teacher_taking_class.jpg" alt="Students in a KCMSC classroom" fill sizes="(min-width: 1024px) 58vw, 100vw" quality={92} className="object-cover" />
+                <Image src="/kcmsc/media/teacher_taking_class.jpg" alt="Students in a KCMSC classroom" fill sizes="(min-width: 1024px) 58vw, 100vw" quality={92} className="object-cover" />
               </div>
               <div className="mt-7 max-w-2xl">
                 <p className="kc-classic-kicker">{c.learningKicker}</p>
@@ -213,7 +213,7 @@ export default async function FacilitiesPage({ params }: { params: Promise<{ loc
 
             <article className="lg:col-span-4 lg:col-start-9 lg:mt-28">
               <div className="relative aspect-[4/3] overflow-hidden">
-                <Image src="/kcmsc/facilities/students_at_library.jpg" alt="Students at the KCMSC library" fill sizes="(min-width: 1024px) 33vw, 100vw" quality={92} className="object-cover" />
+                <Image src="/kcmsc/media/students_at_library.jpg" alt="Students at the KCMSC library" fill sizes="(min-width: 1024px) 33vw, 100vw" quality={92} className="object-cover" />
               </div>
               <div className="mt-7">
                 <p className="kc-classic-kicker">{c.libraryKicker}</p>
@@ -224,7 +224,7 @@ export default async function FacilitiesPage({ params }: { params: Promise<{ loc
 
             <article className="lg:col-span-8 lg:col-start-3 lg:mt-4">
               <div className="relative aspect-[16/8] overflow-hidden">
-                <Image src="/kcmsc/facilities/rooftop_garden.jpg" alt="KCMSC rooftop garden" fill sizes="(min-width: 1024px) 67vw, 100vw" quality={92} className="object-cover" />
+                <Image src="/kcmsc/media/rooftop_garden.jpg" alt="KCMSC rooftop garden" fill sizes="(min-width: 1024px) 67vw, 100vw" quality={92} className="object-cover" />
               </div>
               <div className="mt-7 grid gap-6 sm:grid-cols-[.45fr_1fr]">
                 <p className="kc-classic-kicker">{c.gardenKicker}</p>

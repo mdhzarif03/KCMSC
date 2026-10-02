@@ -176,3 +176,30 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .kc-hero-arrow { transition: none; }
 }
+
+/* Mobile layout guardrails */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+img,
+video {
+  max-width: 100%;
+}
+
+summary {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-width: 639px) {
+  .kc-classic-title {
+    letter-spacing: -.025em;
+  }
+
+  .kc-hero-arrow {
+    width: 40px;
+    height: 40px;
+  }
+}

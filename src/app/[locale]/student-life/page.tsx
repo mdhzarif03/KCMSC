@@ -2,12 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 
 const photos = {
-  hero: "/kcmsc/student-life/vibrant_student_life.jpg",
-  culture: "/kcmsc/student-life/vibrant_art_culture.jpg",
-  reading: "/kcmsc/student-life/students_at_bookfair.jpg",
-  sport: "/kcmsc/sports/kc_team_representing_at_AIUB.jpg",
-  trip: "/kcmsc/student-life/student_trip1.jpg",
-  garden: "/kcmsc/facilities/rooftop_garden.jpg",
+  hero: "/kcmsc/media/vibrant_student_life.jpg",
+  culture: "/kcmsc/media/vibrant_art_culture.jpg",
+  reading: "/kcmsc/media/students_at_bookfair.jpg",
+  sport: "/kcmsc/media/kc_team_representing_at_AIUB.jpg",
+  trip: "/kcmsc/media/student_trip1.jpg",
+  garden: "/kcmsc/media/rooftop_garden.jpg",
 };
 
 export default async function StudentLifePage({ params }: { params: Promise<{ locale: string }> }) {
@@ -33,11 +33,11 @@ export default async function StudentLifePage({ params }: { params: Promise<{ lo
         tripBody: "শিক্ষা সফর ও স্কুলের বাইরের আয়োজন শিক্ষার্থীদের পরিচিত পরিবেশের বাইরে নতুন অভিজ্ঞতা দেয়।",
         activitiesKicker: "ক্লাব ও সহশিক্ষা কার্যক্রম",
         activitiesTitle: "নিজের আগ্রহের জায়গা খুঁজে নেওয়ার সুযোগ",
-        activitiesBody: "KCMSC-এর প্রোফাইলে ICT, Robotics ও Coding, Music, Scout, Language, Sports এবং সাংস্কৃতিক কার্যক্রমসহ বিভিন্ন ক্লাব ও সহশিক্ষা কার্যক্রমের উল্লেখ রয়েছে।",
+        activitiesBody: "KCMSC-তে ICT, Robotics ও Coding, Music, Scout, Language, Sports এবং সাংস্কৃতিক কার্যক্রমসহ বিভিন্ন ক্লাব ও সহশিক্ষা কার্যক্রম রয়েছে।",
         clubs: ["ICT · Robotics · Coding", "Music", "Scout", "Language", "Sports", "Cultural Activities"],
         campusKicker: "ক্যাম্পাস",
         campusTitle: "ছাদবাগানও ক্যাম্পাস জীবনের অংশ।",
-        campusBody: "স্কুলের প্রোফাইল অনুযায়ী চারটি দশতলা ভবনে ছাদবাগান রয়েছে। শিক্ষার্থীরা গাছ লাগানো ও পরিচর্যার সঙ্গে যুক্ত থাকে।",
+        campusBody: "চারটি দশতলা ভবনের ছাদবাগানে শিক্ষার্থীরা গাছ লাগানো ও পরিচর্যার সঙ্গে যুক্ত থাকে।",
         campusLink: "ক্যাম্পাস ও সুবিধা দেখুন",
         finalKicker: "KCMSC",
         finalTitle: "স্কুলজীবনের প্রতিটি দিনই একটি অভিজ্ঞতা।",
@@ -62,11 +62,11 @@ export default async function StudentLifePage({ params }: { params: Promise<{ lo
         tripBody: "Trips and activities outside the usual school setting give students experiences beyond their everyday surroundings.",
         activitiesKicker: "CLUBS & CO-CURRICULAR ACTIVITIES",
         activitiesTitle: "Room for interests beyond the syllabus",
-        activitiesBody: "The KCMSC profile lists clubs and co-curricular activities including ICT, Robotics & Coding, Music, Scout, Language, Sports and cultural activities.",
+        activitiesBody: "The KCMSC has clubs and co-curricular activities including ICT, Robotics & Coding, Music, Scout, Language, Sports and cultural activities.",
         clubs: ["ICT · Robotics · Coding", "Music", "Scout", "Language", "Sports", "Cultural Activities"],
         campusKicker: "CAMPUS",
         campusTitle: "The rooftop gardens are part of campus life.",
-        campusBody: "The school profile records rooftop gardens on four ten-storied buildings, with students taking part in planting and caring for trees.",
+        campusBody: "The school has rooftop gardens on four ten-storied buildings, with students taking part in planting and caring for trees.",
         campusLink: "View campus & facilities",
         finalKicker: "KCMSC",
         finalTitle: "The school day does not end with the last class.",

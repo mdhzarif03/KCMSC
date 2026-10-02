@@ -13,7 +13,7 @@ const content = {
     heroImageAlt: "Students learning in a KC Model School & College classroom",
     overview: "At a glance",
     students: "Students",
-    studentsDetail: "2025 school profile",
+    studentsDetail: "2025 enrollment",
     bangla: "Bangla Version",
     banglaDetail: "1,240 students · 53%",
     english: "English Version",
@@ -56,7 +56,7 @@ const content = {
     passed: "Passed",
     gpa5: "GPA 5",
     passRate: "Pass rate",
-    resultNote: "Source: KCMSC profile · 2024 academic results",
+    resultNote: "2024 academic results",
     curriculumKicker: "Curriculum",
     curriculumTitle: "National curriculum, two language versions.",
     curriculumBody:
@@ -70,12 +70,12 @@ const content = {
       [
         "02",
         "Bangla Version",
-        "The Bangla Version serves 1,240 students according to the 2025 profile.",
+        "The Bangla Version serves 1,240 students in 2025.",
       ],
       [
         "03",
         "English Version",
-        "The English Version serves 1,096 students according to the 2025 profile.",
+        "The English Version serves 1,096 students in 2025.",
       ],
       [
         "04",
@@ -99,7 +99,7 @@ const content = {
     heroImageAlt: "KCMSC শ্রেণিকক্ষে শিক্ষার্থীরা",
     overview: "এক নজরে",
     students: "শিক্ষার্থী",
-    studentsDetail: "২০২৫ সালের প্রোফাইল",
+    studentsDetail: "২০২৫ সালের তথ্য",
     bangla: "বাংলা ভার্সন",
     banglaDetail: "১,২৪০ শিক্ষার্থী · ৫৩%",
     english: "ইংরেজি ভার্সন",
@@ -143,7 +143,7 @@ const content = {
     passed: "উত্তীর্ণ",
     gpa5: "GPA 5",
     passRate: "পাসের হার",
-    resultNote: "উৎস: KCMSC Profile · ২০২৪ সালের ফলাফল",
+    resultNote: "২০২৪ সালের ফলাফল",
     curriculumKicker: "শিক্ষাক্রম",
     curriculumTitle: "জাতীয় শিক্ষাক্রম, দুটি ভাষার ভার্সন।",
     curriculumBody:
@@ -157,12 +157,12 @@ const content = {
       [
         "০২",
         "বাংলা ভার্সন",
-        "২০২৫ সালের প্রোফাইল অনুযায়ী বাংলা ভার্সনে ১,২৪০ জন শিক্ষার্থী রয়েছে।",
+        "২০২৫ সালের তথ্য অনুযায়ী বাংলা ভার্সনে ১,২৪০ জন শিক্ষার্থী রয়েছে।",
       ],
       [
         "০৩",
         "ইংরেজি ভার্সন",
-        "২০২৫ সালের প্রোফাইল অনুযায়ী ইংরেজি ভার্সনে ১,০৯৬ জন শিক্ষার্থী রয়েছে।",
+        "২০২৫ সালের তথ্য অনুযায়ী ইংরেজি ভার্সনে ১,০৯৬ জন শিক্ষার্থী রয়েছে।",
       ],
       [
         "০৪",
@@ -247,7 +247,7 @@ export default function AcademicsPage({
       <section className="relative overflow-hidden bg-[#173e2f] text-[#f8f5ed]">
         <div className="relative min-h-[690px] lg:min-h-[760px]">
           <Image
-            src="/kcmsc/facilities/teacher_taking_class.jpg"
+            src="/kcmsc/media/teacher_taking_class.jpg"
             alt={t.heroImageAlt}
             fill
             priority
@@ -357,7 +357,7 @@ export default function AcademicsPage({
                 section: t.juniorSections,
                 medium: t.juniorMedium,
                 staff: t.juniorStaff,
-                image: "/kcmsc/student-life/vibrant_student_life2.jpg",
+                image: "/kcmsc/media/vibrant_student_life2.jpg",
                 alt: "KCMSC students during school life",
               },
               {
@@ -368,7 +368,7 @@ export default function AcademicsPage({
                 section: t.seniorSections,
                 medium: t.seniorMedium,
                 staff: t.seniorStaff,
-                image: "/kcmsc/facilities/teacher_taking_class.jpg",
+                image: "/kcmsc/media/teacher_taking_class.jpg",
                 alt: "KCMSC students in a classroom",
               },
             ].map((wing) => (
@@ -441,7 +441,7 @@ export default function AcademicsPage({
         <div className="mx-auto grid max-w-[1440px] lg:grid-cols-[1.1fr_.9fr]">
           <div className="relative min-h-[480px] lg:min-h-[620px]">
             <Image
-              src="/kcmsc/facilities/teacher_taking_class.jpg"
+              src="/kcmsc/media/teacher_taking_class.jpg"
               alt={t.classroomAlt}
               fill
               sizes="(min-width: 1024px) 60vw, 100vw"

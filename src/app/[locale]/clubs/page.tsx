@@ -8,27 +8,27 @@ type ClubEntry = { name: string; description: string };
 
 const clubImages = [
   {
-    src: "/kcmsc/sports/team2.jpg",
+    src: "/kcmsc/media/team2.jpg",
     alt: "KCMSC students gathered on a sports field",
   },
   {
-    src: "/kcmsc/student-life/vibrant_student_culture.jpg",
+    src: "/kcmsc/media/vibrant_student_culture.jpg",
     alt: "KCMSC students taking part in a school activity",
   },
   {
-    src: "/kcmsc/student-life/vibrant_art_culture.jpg",
+    src: "/kcmsc/media/vibrant_art_culture.jpg",
     alt: "KCMSC students presenting creative work",
   },
   {
-    src: "/kcmsc/student-life/student_trip2.jpg",
+    src: "/kcmsc/media/student_trip2.jpg",
     alt: "KCMSC students together outdoors",
   },
   {
-    src: "/kcmsc/student-life/students_at_bookfair.jpg",
+    src: "/kcmsc/media/students_at_bookfair.jpg",
     alt: "KCMSC students browsing books at a book fair",
   },
   {
-    src: "/kcmsc/student-life/students_having_fun_after_sports.jpg",
+    src: "/kcmsc/media/students_having_fun_after_sports.jpg",
     alt: "KCMSC students spending time together after sports",
   },
 ];
@@ -73,7 +73,7 @@ export default async function ClubsPage({
         clubsEyebrow: "ক্লাবসমূহ",
         clubsTitle: "যে আগ্রহগুলো স্কুলজীবনকে আরও সমৃদ্ধ করে।",
         clubsIntro:
-          "কেসিএমএসসি-র প্রোফাইলে তালিকাভুক্ত ক্লাব ও সংগঠনগুলো শিক্ষার্থীদের বিভিন্ন আগ্রহ ও অংশগ্রহণের সুযোগ তুলে ধরে।",
+          "কেসিএমএসসি-র ক্লাব ও সংগঠনগুলো শিক্ষার্থীদের বিভিন্ন আগ্রহ ও অংশগ্রহণের সুযোগ দেয়।",
         alumniEyebrow: "অ্যালামনাই",
         alumniTitle: "স্কুলের সঙ্গে সম্পর্ক এখানেই শেষ নয়।",
         alumniText:
@@ -89,7 +89,7 @@ export default async function ClubsPage({
         clubsEyebrow: "The clubs",
         clubsTitle: "Interests have a place here.",
         clubsIntro:
-          "The clubs and organisations listed in the KCMSC profile give students room to take part in the activities that matter to them.",
+          "KCMSC’s clubs and organisations give students room to take part in activities that interest them.",
         alumniEyebrow: "Alumni",
         alumniTitle: "The school community continues beyond the classroom.",
         alumniText:
@@ -129,7 +129,7 @@ export default async function ClubsPage({
 
           <div className="relative order-1 min-h-[23rem] lg:order-2 lg:min-h-0">
             <Image
-              src="/kcmsc/student-life/students_having_fun_after_sports.jpg"
+              src="/kcmsc/media/students_having_fun_after_sports.jpg"
               alt="KCMSC students spending time together after sports"
               fill
               priority
@@ -220,7 +220,7 @@ export default async function ClubsPage({
         <div className="mx-auto grid max-w-[88rem] lg:grid-cols-[1fr_1fr]">
           <div className="relative min-h-[25rem]">
             <Image
-              src="/kcmsc/student-life/student_trip2.jpg"
+              src="/kcmsc/media/student_trip2.jpg"
               alt="KCMSC students together outdoors"
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"

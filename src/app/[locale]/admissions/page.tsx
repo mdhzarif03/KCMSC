@@ -62,8 +62,7 @@ export default async function AdmissionsPage({ params }: { params: { locale: str
           </Link>
         </div>
 
-        {/* Still an honest placeholder: eligibility, fees, documents and
-            dates were never supplied in the source material (brief §35). */}
+        {/* Keep this section explicit until the missing admission details are available. */}
         <div className="mt-8 rounded-lg border-2 border-dashed border-border p-6">
           <h2 className="font-medium text-ink">{page.pendingHeading}</h2>
           <p className="mt-2 text-sm text-ink-muted">{page.pendingBody}</p>

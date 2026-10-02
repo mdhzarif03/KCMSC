@@ -38,7 +38,7 @@ export default function AboutPage({ params }: { params: { locale: string } }) {
 
           <div className="relative min-h-[480px] overflow-hidden border-l border-[#d9d1c2] lg:min-h-[560px]">
             <Image
-              src="/kcmsc/kc/kcmsc3.jpg"
+              src="/kcmsc/media/20250722_090917.jpg"
               alt={bn ? "KC Model School and College campus" : "KC Model School and College campus"}
               fill
               priority
@@ -103,13 +103,13 @@ export default function AboutPage({ params }: { params: { locale: string } }) {
         </div>
       </section>
 
-      {/* User-supplied leadership/community photograph. */}
+      {/* Leadership and community photograph. */}
       <section className="kc-classic-section bg-[#ebe7dc]">
         <div className="mx-auto max-w-[1240px] px-6 sm:px-10">
           <div className="grid overflow-hidden border border-[#d4ccbd] bg-[#f7f4ec] lg:grid-cols-[1.18fr_.82fr]">
             <div className="relative min-h-[390px] lg:min-h-[560px]">
               <Image
-                src="/kcmsc/about/leadership-gathering.jpg"
+                src="/kcmsc/media/20230123_124320.jpg"
                 alt={bn ? "KCMSC leadership and school community gathering" : "KCMSC leadership and school community gathering"}
                 fill
                 sizes="(min-width: 1024px) 58vw, 100vw"
@@ -126,7 +126,7 @@ export default function AboutPage({ params }: { params: { locale: string } }) {
                 {bn ? "প্রতিষ্ঠাতা, প্রশাসন ও শিক্ষক নেতৃত্ব KCMSC-এর শিক্ষা-পরিবেশকে পরিচালনা করে।" : "The founders, administration and academic leadership form the people responsible for guiding KCMSC’s educational environment."}
               </p>
               <div className="mt-8 border-t border-[#d4ccbd] pt-5 text-[10px] font-semibold uppercase tracking-[.13em] text-[#8a8d87]">
-                {bn ? "প্রদত্ত ফটোগ্রাফ · KCMSC" : "Supplied photograph · KCMSC"}
+                {bn ? "KCMSC · নেতৃত্ব ও সম্প্রদায়" : "KCMSC · leadership and community"}
               </div>
             </div>
           </div>
@@ -141,7 +141,7 @@ export default function AboutPage({ params }: { params: { locale: string } }) {
               <span className="kc-classic-kicker">{bn ? "নেতৃত্ব" : "Leadership"}</span>
               <h2 className="mt-4 font-heading text-4xl tracking-[-.03em] text-[#173e2f] sm:text-5xl">{bn ? "যারা প্রতিষ্ঠানটি পরিচালনা করেন।" : "The people who lead the institution."}</h2>
             </div>
-            <p className="max-w-sm text-sm leading-6 text-[#727970]">{bn ? "প্রোফাইলে উল্লেখিত নেতৃত্বের দায়িত্বগুলো।" : "The leadership roles recorded in the KCMSC profile."}</p>
+            <p className="max-w-sm text-sm leading-6 text-[#727970]">{bn ? "প্রতিষ্ঠানের নেতৃত্বের প্রধান দায়িত্বগুলো।" : "The institution’s principal leadership roles."}</p>
           </div>
 
           <div className="mt-2 divide-y divide-[#d8d1c3]">
