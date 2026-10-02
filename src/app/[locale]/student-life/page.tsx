@@ -78,7 +78,7 @@ export default async function StudentLifePage({ params }: { params: Promise<{ lo
     <main className="bg-[#F7F9FC] text-[#1c3d30]">
       {/* Hero: one photograph, one clear introduction. */}
       <section className="relative overflow-hidden border-b border-[#D9E2EC]">
-        <div className="relative h-[62vh] min-h-[520px] w-full">
+        <div className="relative h-[62vh] min-h-[420px] lg:min-h-[520px] w-full">
           <Image
             src={photos.hero}
             alt="KCMSC students taking part in school life"
@@ -91,7 +91,7 @@ export default async function StudentLifePage({ params }: { params: Promise<{ lo
           <div className="absolute inset-x-0 bottom-0">
             <div className="mx-auto max-w-[1440px] px-6 pb-10 sm:px-10 sm:pb-14 lg:px-16 lg:pb-16">
               <p className="kc-light-kicker">{copy.kicker}</p>
-              <h1 className="mt-4 max-w-4xl font-heading text-[clamp(3rem,6.5vw,6.5rem)] leading-[.91] tracking-[-.045em] text-[#f7f2e8]">
+              <h1 className="mt-4 max-w-4xl font-heading text-[clamp(2.55rem,6.5vw,6.5rem)] leading-[.91] tracking-[-.045em] text-[#f7f2e8]">
                 {copy.title}
               </h1>
               <div className="mt-7 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
@@ -110,7 +110,7 @@ export default async function StudentLifePage({ params }: { params: Promise<{ lo
             <p className="kc-classic-kicker">{copy.introKicker}</p>
           </div>
           <div>
-            <h2 className="max-w-4xl font-heading text-[clamp(2.4rem,4.5vw,4.7rem)] leading-[.96] tracking-[-.035em] text-[#12324A]">{copy.introTitle}</h2>
+            <h2 className="max-w-4xl font-heading text-[clamp(2.15rem,4.5vw,4.7rem)] leading-[.96] tracking-[-.035em] text-[#12324A]">{copy.introTitle}</h2>
             <p className="mt-7 max-w-3xl text-sm leading-7 text-[#64748B] sm:text-base">{copy.introBody}</p>
           </div>
         </div>
@@ -174,7 +174,7 @@ export default async function StudentLifePage({ params }: { params: Promise<{ lo
         <div className="mx-auto grid max-w-[1240px] gap-10 px-6 py-16 sm:px-10 sm:py-20 lg:grid-cols-[.8fr_1.2fr] lg:px-12 lg:py-24">
           <div>
             <p className="kc-classic-kicker">{copy.activitiesKicker}</p>
-            <h2 className="mt-5 max-w-xl font-heading text-[clamp(2.5rem,4.5vw,4.6rem)] leading-[.97] tracking-[-.035em] text-[#12324A]">{copy.activitiesTitle}</h2>
+            <h2 className="mt-5 max-w-xl font-heading text-[clamp(2.2rem,4.5vw,4.6rem)] leading-[.97] tracking-[-.035em] text-[#12324A]">{copy.activitiesTitle}</h2>
           </div>
           <div>
             <p className="max-w-2xl text-sm leading-7 text-[#64748B] sm:text-base">{copy.activitiesBody}</p>
@@ -193,13 +193,13 @@ export default async function StudentLifePage({ params }: { params: Promise<{ lo
       {/* One campus photograph, used only for the garden story. */}
       <section className="bg-[#12324A] text-white">
         <div className="mx-auto max-w-[1440px]">
-          <div className="relative h-[52vh] min-h-[430px] overflow-hidden">
+          <div className="relative h-[52vh] min-h-[360px] lg:min-h-[430px] overflow-hidden">
             <Image src={photos.garden} alt="KCMSC rooftop garden and students on campus" fill sizes="100vw" className="object-cover" />
             <div className="absolute inset-0 bg-[#0B2538]/35" />
             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#0B2538]/90 to-transparent px-6 pb-10 pt-24 sm:px-10 lg:px-16 lg:pb-14">
               <p className="kc-light-kicker">{copy.campusKicker}</p>
               <div className="mt-4 grid gap-5 lg:grid-cols-[1fr_.75fr] lg:items-end">
-                <h2 className="max-w-3xl font-heading text-[clamp(2.8rem,5vw,5rem)] leading-[.95] tracking-[-.035em] text-[#f7f2e8]">{copy.campusTitle}</h2>
+                <h2 className="max-w-3xl font-heading text-[clamp(2.35rem,5vw,5rem)] leading-[.95] tracking-[-.035em] text-[#f7f2e8]">{copy.campusTitle}</h2>
                 <div>
                   <p className="max-w-xl text-sm leading-7 text-white/75">{copy.campusBody}</p>
                   <Link href={`/${locale}/facilities`} className="kc-classic-link kc-classic-link-light mt-6">{copy.campusLink} <span aria-hidden="true">↗</span></Link>
@@ -215,7 +215,7 @@ export default async function StudentLifePage({ params }: { params: Promise<{ lo
           <div className="grid gap-8 border-y border-[#D9E2EC] py-10 sm:py-14 lg:grid-cols-[1fr_.8fr] lg:items-end">
             <div>
               <p className="kc-classic-kicker">{copy.finalKicker}</p>
-              <h2 className="mt-5 max-w-3xl font-heading text-[clamp(2.6rem,4.5vw,4.6rem)] leading-[.96] tracking-[-.035em] text-[#12324A]">{copy.finalTitle}</h2>
+              <h2 className="mt-5 max-w-3xl font-heading text-[clamp(2.25rem,4.5vw,4.6rem)] leading-[.96] tracking-[-.035em] text-[#12324A]">{copy.finalTitle}</h2>
             </div>
             <div>
               <p className="max-w-xl text-sm leading-7 text-[#64748B] sm:text-base">{copy.finalBody}</p>

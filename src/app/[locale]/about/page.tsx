@@ -26,9 +26,9 @@ export default function AboutPage({ params }: { params: { locale: string } }) {
       {/* Opening: the institution first, not a generic page header. */}
       <section className="border-b border-[#D9E2EC]">
         <div className="mx-auto grid max-w-[1440px] lg:grid-cols-[1.03fr_.97fr]">
-          <div className="flex min-h-[560px] flex-col justify-end px-6 pb-14 pt-20 sm:px-10 lg:px-16 lg:pb-20">
+          <div className="flex min-h-[420px] flex-col lg:min-h-[560px] justify-end px-6 pb-14 pt-20 sm:px-10 lg:px-16 lg:pb-20">
             <span className="kc-classic-kicker">{bn ? "পরিচয় ও ঐতিহ্য" : "Our beginning"}</span>
-            <h1 className="mt-5 max-w-[760px] font-heading text-[clamp(3.6rem,6.5vw,6.8rem)] leading-[.88] tracking-[-.055em] text-[#12324A]">
+            <h1 className="mt-5 max-w-[760px] font-heading text-[clamp(2.5rem,6.5vw,6.8rem)] leading-[.88] tracking-[-.055em] text-[#12324A]">
               {bn ? "একটি বিদ্যালয়ের গল্প, তার শিকড় থেকে।" : "The story of a school, from its roots."}
             </h1>
             <p className="mt-8 max-w-[650px] text-[15px] leading-7 text-[#64748B] sm:text-[16px]">
@@ -36,7 +36,7 @@ export default function AboutPage({ params }: { params: { locale: string } }) {
             </p>
           </div>
 
-          <div className="relative min-h-[480px] overflow-hidden border-l border-[#D9E2EC] lg:min-h-[560px]">
+          <div className="relative min-h-[360px] overflow-hidden border-l border-[#D9E2EC] lg:min-h-[560px]">
             <Image
               src="/kcmsc/media/20250722_090917.jpg"
               alt={bn ? "KC Model School and College campus" : "KC Model School and College campus"}
@@ -107,7 +107,7 @@ export default function AboutPage({ params }: { params: { locale: string } }) {
       <section className="kc-classic-section bg-[#ebe7dc]">
         <div className="mx-auto max-w-[1240px] px-6 sm:px-10">
           <div className="grid overflow-hidden border border-[#D9E2EC] bg-[#f7f4ec] lg:grid-cols-[1.18fr_.82fr]">
-            <div className="relative min-h-[390px] lg:min-h-[560px]">
+            <div className="relative min-h-[300px] lg:min-h-[560px]">
               <Image
                 src="/kcmsc/media/20230123_124320.jpg"
                 alt={bn ? "KCMSC leadership and school community gathering" : "KCMSC leadership and school community gathering"}

@@ -245,7 +245,7 @@ export default function AcademicsPage({
     <main className="bg-[#FFFFFF] text-[#25362e]">
       {/* HERO */}
       <section className="relative overflow-hidden bg-[#12324A] text-[#FFFFFF]">
-        <div className="relative min-h-[690px] lg:min-h-[760px]">
+        <div className="relative min-h-[500px] lg:min-h-[760px]">
           <Image
             src="/kcmsc/media/teacher_taking_class.jpg"
             alt={t.heroImageAlt}
@@ -259,13 +259,13 @@ export default function AcademicsPage({
           <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(7,32,22,.92)_0%,rgba(7,32,22,.74)_34%,rgba(7,32,22,.27)_72%,rgba(7,32,22,.38)_100%)]" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#071f15]/80 via-transparent to-[#071f15]/10" />
 
-          <div className="relative mx-auto flex min-h-[690px] max-w-[1440px] flex-col justify-end px-6 pb-10 pt-32 sm:px-10 sm:pb-14 lg:min-h-[760px] lg:px-16 lg:pb-16">
+          <div className="relative mx-auto flex min-h-[500px] max-w-[1440px] flex-col justify-end px-6 pb-10 pt-32 sm:px-10 sm:pb-14 lg:min-h-[760px] lg:px-16 lg:pb-16">
             <div className="max-w-4xl">
               <p className="text-[10px] font-bold uppercase tracking-[.28em] text-[#FBBF24]">
                 {t.kicker}
               </p>
 
-              <h1 className="mt-5 max-w-4xl font-heading text-[clamp(4rem,8.5vw,8.5rem)] leading-[.86] tracking-[-.055em] text-[#FFFFFF]">
+              <h1 className="mt-5 max-w-4xl font-heading text-[clamp(2.7rem,8.5vw,8.5rem)] leading-[.86] tracking-[-.055em] text-[#FFFFFF]">
                 {t.heroTitle}
               </h1>
 
@@ -439,7 +439,7 @@ export default function AcademicsPage({
       {/* CLASSROOM */}
       <section className="bg-[#12324A] text-[#FFFFFF]">
         <div className="mx-auto grid max-w-[1440px] lg:grid-cols-[1.1fr_.9fr]">
-          <div className="relative min-h-[480px] lg:min-h-[620px]">
+          <div className="relative min-h-[360px] lg:min-h-[620px]">
             <Image
               src="/kcmsc/media/teacher_taking_class.jpg"
               alt={t.classroomAlt}
@@ -565,7 +565,7 @@ export default function AcademicsPage({
                   <PassRate rate={result.rate} />
                 </div>
 
-                <div className="mt-8 grid grid-cols-3 border-t border-[#D9E2EC] pt-6">
+                <div className="mt-8 grid grid-cols-1 gap-5 border-t border-[#D9E2EC] sm:grid-cols-3 sm:gap-0 pt-6">
                   <div>
                     <p className="text-[9px] uppercase tracking-[.14em] text-[#64748B]">
                       {t.appeared}

@@ -21,7 +21,7 @@ export function Footer({ locale }: { locale: Locale }) {
             </Link>
             <p className="mt-4 max-w-md text-[13px] leading-6">{locale === "bn" ? "প্লে গ্রুপ থেকে দ্বাদশ শ্রেণি পর্যন্ত বাংলা ও ইংরেজি ভার্সনে শিক্ষা।" : "Education from Play Group to Grade Twelve in Bangla and English Versions."}</p>
           </div>
-          <div className="grid grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 gap-7 sm:grid-cols-3 sm:gap-6">
             {groups.map((group) => <div key={group.title}>
               <p className="text-[9px] uppercase tracking-[.16em] text-[#176b45]">{group.title}</p>
               <div className="mt-3 space-y-2">{group.links.map(([label, href]) => <Link key={href} href={`/${locale}/${href}`} className="block text-[12px] transition hover:text-[#176b45]">{label}</Link>)}</div>

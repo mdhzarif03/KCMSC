@@ -132,7 +132,15 @@ summary { -webkit-tap-highlight-color: transparent; }
 @media (max-width: 767px) {
   .kc-classic-section { padding: 4rem 0; }
   .kc-classic-title { letter-spacing: -.025em; }
+
+  /* Responsive guardrails for the public site. These only apply below the
+     desktop breakpoint so the established PC layout remains untouched. */
+  main, main > section, main > div, main article { min-width: 0; }
+  main img, main video, main iframe, main svg { max-width: 100%; }
+  main input, main select, main textarea { max-width: 100%; min-width: 0; }
+  main p, main li, main dd, main dt { overflow-wrap: break-word; }
 }
+
 
 /* Public pages: keep the editorial system quiet and light. */
 main h1, main h2, main h3, main h4 { font-weight: 400 !important; }

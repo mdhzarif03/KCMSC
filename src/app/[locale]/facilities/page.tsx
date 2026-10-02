@@ -156,7 +156,7 @@ export default async function FacilitiesPage({ params }: { params: Promise<{ loc
           <div className="mx-auto grid max-w-[1440px] gap-8 px-6 py-7 sm:px-10 lg:grid-cols-[1fr_auto] lg:px-14">
             <div>
               <p className="kc-light-kicker">{c.eyebrow}</p>
-              <h1 className="mt-4 max-w-5xl font-heading text-[clamp(3.3rem,7vw,7.6rem)] leading-[.86] tracking-[-.055em]">
+              <h1 className="mt-4 max-w-5xl font-heading text-[clamp(2.55rem,7vw,7.6rem)] leading-[.86] tracking-[-.055em]">
                 {c.title}
               </h1>
               <p className="mt-6 max-w-2xl text-sm leading-7 text-white/80 sm:text-base">{c.intro}</p>
@@ -175,12 +175,12 @@ export default async function FacilitiesPage({ params }: { params: Promise<{ loc
             <p className="kc-classic-kicker">{c.campusKicker}</p>
           </div>
           <div>
-            <h2 className="max-w-5xl font-heading text-[clamp(2.9rem,5.3vw,5.8rem)] leading-[.9] tracking-[-.05em]">{c.campusTitle}</h2>
+            <h2 className="max-w-5xl font-heading text-[clamp(2.2rem,5.3vw,5.8rem)] leading-[.9] tracking-[-.05em]">{c.campusTitle}</h2>
             <p className="mt-7 max-w-3xl text-[15px] leading-8 text-[#64748B] sm:text-base">{c.campusBody}</p>
           </div>
         </div>
         <div className="relative mx-auto max-w-[1440px] overflow-hidden">
-          <div className="relative aspect-[16/7] min-h-[320px]">
+          <div className="relative aspect-[16/7] min-h-[250px] lg:min-h-[320px]">
             <Image
               src="/kcmsc/media/kcmsc1.jpg"
               alt="K C Model School & College campus building"
@@ -206,7 +206,7 @@ export default async function FacilitiesPage({ params }: { params: Promise<{ loc
               </div>
               <div className="mt-7 max-w-2xl">
                 <p className="kc-classic-kicker">{c.learningKicker}</p>
-                <h3 className="mt-3 font-heading text-[clamp(2.3rem,4vw,4rem)] leading-[.94] tracking-[-.04em]">{c.learningTitle}</h3>
+                <h3 className="mt-3 font-heading text-[clamp(2rem,4vw,4rem)] leading-[.94] tracking-[-.04em]">{c.learningTitle}</h3>
                 <p className="mt-5 text-sm leading-7 text-[#64748B] sm:text-base">{c.learningBody}</p>
               </div>
             </article>
@@ -229,7 +229,7 @@ export default async function FacilitiesPage({ params }: { params: Promise<{ loc
               <div className="mt-7 grid gap-6 sm:grid-cols-[.45fr_1fr]">
                 <p className="kc-classic-kicker">{c.gardenKicker}</p>
                 <div>
-                  <h3 className="font-heading text-[clamp(2.3rem,4vw,4rem)] leading-[.94] tracking-[-.04em]">{c.gardenTitle}</h3>
+                  <h3 className="font-heading text-[clamp(2rem,4vw,4rem)] leading-[.94] tracking-[-.04em]">{c.gardenTitle}</h3>
                   <p className="mt-5 max-w-2xl text-sm leading-7 text-[#64748B] sm:text-base">{c.gardenBody}</p>
                 </div>
               </div>
@@ -244,12 +244,12 @@ export default async function FacilitiesPage({ params }: { params: Promise<{ loc
           <div className="grid gap-12 lg:grid-cols-[.45fr_1.55fr]">
             <div>
               <p className="kc-light-kicker">{c.factsKicker}</p>
-              <h2 className="mt-5 max-w-md font-heading text-[clamp(2.8rem,4.8vw,5rem)] leading-[.92] tracking-[-.045em]">{c.factsTitle}</h2>
+              <h2 className="mt-5 max-w-md font-heading text-[clamp(2.25rem,4.8vw,5rem)] leading-[.92] tracking-[-.045em]">{c.factsTitle}</h2>
             </div>
             <div className="grid border-t border-white/20 sm:grid-cols-2">
               {c.facts.map(([number, label]) => (
                 <div key={number} className="border-b border-white/20 px-0 py-8 sm:px-7 sm:py-10 sm:first:pl-0">
-                  <p className="font-heading text-[clamp(3rem,5vw,5.5rem)] leading-none text-[#e2d18a]">{number}</p>
+                  <p className="font-heading text-[clamp(2.5rem,5vw,5.5rem)] leading-none text-[#e2d18a]">{number}</p>
                   <p className="mt-3 max-w-xs text-sm leading-6 text-white/70">{label}</p>
                 </div>
               ))}
@@ -262,7 +262,7 @@ export default async function FacilitiesPage({ params }: { params: Promise<{ loc
         <div className="mx-auto grid max-w-[1240px] gap-12 px-6 py-20 sm:px-10 sm:py-24 lg:grid-cols-[.65fr_1.35fr] lg:px-12 lg:py-28">
           <div>
             <p className="kc-classic-kicker">{c.supportKicker}</p>
-            <h2 className="mt-5 max-w-xl font-heading text-[clamp(2.6rem,4.5vw,4.7rem)] leading-[.94] tracking-[-.04em]">{c.supportTitle}</h2>
+            <h2 className="mt-5 max-w-xl font-heading text-[clamp(2.2rem,4.5vw,4.7rem)] leading-[.94] tracking-[-.04em]">{c.supportTitle}</h2>
           </div>
           <div>
             <p className="max-w-2xl text-sm leading-7 text-[#64748B] sm:text-base">{c.supportBody}</p>
@@ -283,7 +283,7 @@ export default async function FacilitiesPage({ params }: { params: Promise<{ loc
           <div className="grid gap-10 border-y border-[#cec5b6] py-10 sm:py-14 lg:grid-cols-[1fr_.7fr] lg:items-end">
             <div>
               <p className="kc-classic-kicker">{c.closingKicker}</p>
-              <h2 className="mt-5 max-w-4xl font-heading text-[clamp(2.8rem,5vw,5.2rem)] leading-[.92] tracking-[-.045em]">{c.closingTitle}</h2>
+              <h2 className="mt-5 max-w-4xl font-heading text-[clamp(2.25rem,5vw,5.2rem)] leading-[.92] tracking-[-.045em]">{c.closingTitle}</h2>
             </div>
             <div>
               <p className="max-w-xl text-sm leading-7 text-[#64748B]">{c.closingBody}</p>

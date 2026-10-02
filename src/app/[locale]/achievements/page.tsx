@@ -124,13 +124,13 @@ export default async function AchievementsPage({
       {/* HERO */}
       <section className="border-b border-[#D9E2EC] bg-[#F1F5F9]">
         <div className="mx-auto grid max-w-[80rem] gap-0 px-6 lg:grid-cols-[.92fr_1.08fr] lg:px-10">
-          <div className="flex min-h-[590px] flex-col justify-center py-20 pr-0 lg:pr-16">
+          <div className="flex min-h-[420px] flex-col lg:min-h-[590px] justify-center py-20 pr-0 lg:pr-16">
             <span className="mb-7 inline-flex items-center gap-3 text-[10px] font-bold uppercase tracking-[.24em] text-[#C27A05]">
               <span className="h-px w-10 bg-[#b59a4a]" />
               {copy.eyebrow}
             </span>
 
-            <h1 className="max-w-3xl font-heading text-[clamp(4rem,7vw,7.4rem)] leading-[.88] tracking-[-.055em] text-[#0B2538]">
+            <h1 className="max-w-3xl font-heading text-[clamp(2.7rem,7vw,7.4rem)] leading-[.88] tracking-[-.055em] text-[#0B2538]">
               {copy.heroTitle}
             </h1>
 
@@ -154,7 +154,7 @@ export default async function AchievementsPage({
             </div>
           </div>
 
-          <div className="relative min-h-[590px] overflow-hidden lg:border-l lg:border-[#D9E2EC]">
+          <div className="relative min-h-[420px] overflow-hidden lg:min-h-[590px] lg:border-l lg:border-[#D9E2EC]">
             <Image
               src="/kcmsc/media/ict_olympiad_at_kc.jpg"
               alt={
@@ -365,7 +365,7 @@ export default async function AchievementsPage({
       {/* VISUAL BREAK */}
       <section className="bg-[#F1F5F9]">
         <div className="mx-auto grid max-w-[80rem] lg:grid-cols-[1.1fr_.9fr]">
-          <div className="relative min-h-[430px] overflow-hidden">
+          <div className="relative min-h-[340px] overflow-hidden">
             <Image
               src="/kcmsc/media/winner.jpg"
               alt={

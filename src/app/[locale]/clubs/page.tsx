@@ -114,7 +114,7 @@ export default async function ClubsPage({
         <div className="mx-auto grid max-w-[88rem] lg:min-h-[38rem] lg:grid-cols-[1.12fr_.88fr]">
           <div className="order-2 flex flex-col justify-center px-6 py-16 sm:px-10 lg:order-1 lg:px-16 lg:py-20">
             <p className="kc-classic-kicker">{copy.eyebrow}</p>
-            <h1 className="mt-5 max-w-[46rem] font-heading text-[clamp(3.2rem,6.4vw,6.5rem)] leading-[.9] tracking-[-.045em] text-[#12324A]">
+            <h1 className="mt-5 max-w-[46rem] font-heading text-[clamp(2.55rem,6.4vw,6.5rem)] leading-[.9] tracking-[-.045em] text-[#12324A]">
               {copy.title}
             </h1>
             <p className="mt-8 max-w-xl text-base leading-7 text-[#687068] sm:text-lg">
@@ -127,7 +127,7 @@ export default async function ClubsPage({
             </div>
           </div>
 
-          <div className="relative order-1 min-h-[23rem] lg:order-2 lg:min-h-0">
+          <div className="relative order-1 min-h-[18rem] lg:order-2 lg:min-h-0">
             <Image
               src="/kcmsc/media/students_having_fun_after_sports.jpg"
               alt="KCMSC students spending time together after sports"
@@ -150,7 +150,7 @@ export default async function ClubsPage({
           <div className="grid gap-8 border-b border-[#d8d3c7] pb-12 lg:grid-cols-[.7fr_1.3fr] lg:gap-20">
             <div>
               <p className="kc-classic-kicker">{copy.clubsEyebrow}</p>
-              <h2 className="mt-4 max-w-md font-heading text-[clamp(2.4rem,4vw,4.4rem)] leading-[.96] tracking-[-.035em] text-[#12324A]">
+              <h2 className="mt-4 max-w-md font-heading text-[clamp(2.1rem,4vw,4.4rem)] leading-[.96] tracking-[-.035em] text-[#12324A]">
                 {copy.clubsTitle}
               </h2>
             </div>
@@ -218,7 +218,7 @@ export default async function ClubsPage({
 
       <section className="bg-[#173f30] text-[#f5efe3]">
         <div className="mx-auto grid max-w-[88rem] lg:grid-cols-[1fr_1fr]">
-          <div className="relative min-h-[25rem]">
+          <div className="relative min-h-[20rem]">
             <Image
               src="/kcmsc/media/student_trip2.jpg"
               alt="KCMSC students together outdoors"
@@ -229,7 +229,7 @@ export default async function ClubsPage({
           </div>
           <div className="flex flex-col justify-center px-6 py-16 sm:px-12 lg:px-16 lg:py-20">
             <p className="kc-light-kicker">{copy.alumniEyebrow}</p>
-            <h2 className="mt-4 max-w-xl font-heading text-[clamp(2.5rem,4vw,4.7rem)] leading-[.96] tracking-[-.035em]">
+            <h2 className="mt-4 max-w-xl font-heading text-[clamp(2.2rem,4vw,4.7rem)] leading-[.96] tracking-[-.035em]">
               {copy.alumniTitle}
             </h2>
             <p className="mt-7 max-w-xl text-base leading-7 text-[#d0d7d0]">
@@ -260,7 +260,7 @@ export default async function ClubsPage({
             </div>
             <Link
               href={`/${locale}/admissions`}
-              className="kc-classic-button kc-classic-button-primary whitespace-nowrap"
+              className="kc-classic-button kc-classic-button-primary whitespace-normal sm:whitespace-nowrap"
             >
               {bn ? "ভর্তি তথ্য" : "Admissions"}
             </Link>
