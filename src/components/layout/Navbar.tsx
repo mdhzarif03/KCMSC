@@ -2,140 +2,77 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { getDictionary } from "@/i18n/config";
-import type { Locale } from "@/i18n/config";
+import { getDictionary, type Locale } from "@/i18n/config";
 import { LanguageSwitcher } from "./LanguageSwitcher";
-
-type LinkItem = { href: string; label: string; note?: string };
 
 export function Navbar({ locale }: { locale: Locale }) {
   const dict = getDictionary(locale);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const text = (en: string, bn: string) => (locale === "bn" ? bn : en);
-
-  const mainLinks: LinkItem[] = [
-    { href: "about", label: text("About", "পরিচিতি") },
-    { href: "academics", label: text("Academics", "একাডেমিক") },
-    { href: "student-life", label: text("Student life", "শিক্ষার্থী জীবন") },
-    { href: "facilities", label: text("Campus", "ক্যাম্পাস") },
-  ];
-
-  const menuGroups = [
-    {
-      title: text("School", "বিদ্যালয়"),
-      links: [
-        { href: "about", label: text("Our story", "আমাদের গল্প"), note: text("Who we are", "আমাদের পরিচয়") },
-        { href: "academics", label: text("Academics", "একাডেমিক"), note: text("Learning & teaching", "পাঠদান ও শিক্ষা") },
-        { href: "achievements", label: text("Results & achievements", "ফলাফল ও অর্জন"), note: text("Recent results", "সাম্প্রতিক ফলাফল") },
-      ],
-    },
-    {
-      title: text("Campus life", "ক্যাম্পাস জীবন"),
-      links: [
-        { href: "student-life", label: text("Student life", "শিক্ষার্থী জীবন"), note: text("Everyday school life", "দৈনন্দিন স্কুলজীবন") },
-        { href: "clubs", label: text("Clubs & activities", "ক্লাব ও কার্যক্রম"), note: text("Beyond the classroom", "শ্রেণিকক্ষের বাইরেও") },
-        { href: "facilities", label: text("Facilities", "সুবিধাসমূহ"), note: text("Spaces & resources", "ক্যাম্পাস ও সুবিধা") },
-      ],
-    },
-    {
-      title: text("Information", "তথ্য"),
-      links: [
-        { href: "notices", label: text("Notices", "নোটিশ"), note: text("Latest announcements", "সাম্প্রতিক ঘোষণা") },
-        { href: "careers", label: text("Careers", "ক্যারিয়ার"), note: text("Work with KCMSC", "KCMSC-এ কাজ") },
-        { href: "contact", label: text("Contact", "যোগাযোগ"), note: text("Find & reach us", "যোগাযোগের তথ্য") },
-      ],
-    },
-  ];
+  const [open, setOpen] = useState(false);
+  const bn = locale === "bn";
+  const links = [
+    ["about", bn ? "পরিচিতি" : "About"],
+    ["academics", bn ? "একাডেমিক" : "Academics"],
+    ["student-life", bn ? "শিক্ষার্থী জীবন" : "Student life"],
+    ["facilities", bn ? "ক্যাম্পাস" : "Campus"],
+  ] as const;
+  const extra = [
+    ["achievements", bn ? "ফলাফল ও অর্জন" : "Results & achievements"],
+    ["clubs", bn ? "ক্লাব ও কার্যক্রম" : "Clubs & activities"],
+    ["notices", bn ? "নোটিশ" : "Notices"],
+    ["contact", bn ? "যোগাযোগ" : "Contact"],
+    ["careers", bn ? "ক্যারিয়ার" : "Careers"],
+  ] as const;
 
   useEffect(() => {
-    if (!menuOpen) return;
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setMenuOpen(false);
-    };
-    const previous = document.body.style.overflow;
+    if (!open) return;
+    const close = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
     document.body.style.overflow = "hidden";
-    window.addEventListener("keydown", onKeyDown);
+    window.addEventListener("keydown", close);
     return () => {
-      document.body.style.overflow = previous;
-      window.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", close);
     };
-  }, [menuOpen]);
-
-  const close = () => setMenuOpen(false);
+  }, [open]);
 
   return (
-    <>
-      <header className="kc-site-header">
-        <div className="kc-header-inner">
-          <Link href={`/${locale}`} className="kc-brand" onClick={close} aria-label={dict.site.name}>
-            <span className="kc-brand-mark">KC</span>
-            <span className="kc-brand-copy">
-              <strong>K C Model School</strong>
-              <small>&amp; College</small>
-            </span>
-          </Link>
-
-          <nav className="kc-desktop-nav" aria-label="Primary">
-            {mainLinks.map((item) => (
-              <Link key={item.href} href={`/${locale}/${item.href}`} className="kc-header-link" onClick={close}>
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-
-          <div className="kc-header-actions">
-            <LanguageSwitcher current={locale} />
-            <button
-              type="button"
-              className={`kc-menu-trigger ${menuOpen ? "is-open" : ""}`}
-              aria-expanded={menuOpen}
-              aria-controls="kc-main-menu"
-              onClick={() => setMenuOpen((open) => !open)}
-            >
-              <span>{text("Menu", "মেনু")}</span>
-              <i aria-hidden="true"><b /><b /></i>
-            </button>
-            <Link href={`/${locale}/admissions/apply`} className="kc-admissions-link" onClick={close}>
-              {locale === "bn" ? "ভর্তি" : dict.nav.admissions}
-              <span aria-hidden="true">↗</span>
-            </Link>
-          </div>
+    <header className="kc-header">
+      <div className="kc-header-top">
+        <div className="kc-header-top-inner">
+          <span>{bn ? "২৭৫ প্রেমবাগান · দক্ষিণখান · ঢাকা" : "275 Prembagan · Dakshinkhan · Dhaka"}</span>
+          <span>{bn ? "রবি–বৃহস্পতি · ৭:৪৫–২:৩০" : "Sun–Thu · 7:45 AM–2:30 PM"}</span>
         </div>
-      </header>
+      </div>
+      <div className="kc-header-main">
+        <Link href={`/${locale}`} className="kc-logo" aria-label={dict.site.name} onClick={() => setOpen(false)}>
+          <span className="kc-logo-mark">KC</span>
+          <span className="kc-logo-text"><strong>K C Model School</strong><small>&amp; College</small></span>
+        </Link>
 
-      <div className={`kc-menu-backdrop ${menuOpen ? "is-open" : ""}`} aria-hidden="true" onClick={close} />
+        <nav className="kc-nav" aria-label="Primary navigation">
+          {links.map(([href, label]) => <Link key={href} href={`/${locale}/${href}`} onClick={() => setOpen(false)}>{label}</Link>)}
+        </nav>
 
-      <aside id="kc-main-menu" className={`kc-menu-panel ${menuOpen ? "is-open" : ""}`} aria-label={text("Site menu", "সাইট মেনু")} aria-hidden={!menuOpen}>
-        <div className="kc-menu-panel-top">
-          <div>
-            <span className="kc-menu-eyebrow">{text("KCMSC", "কেসিএমএসসি")}</span>
-            <h2>{text("Explore the school", "বিদ্যালয় সম্পর্কে জানুন")}</h2>
-          </div>
-          <button type="button" className="kc-menu-close" onClick={close} aria-label={text("Close menu", "মেনু বন্ধ করুন")}>×</button>
+        <div className="kc-header-actions">
+          <LanguageSwitcher current={locale} />
+          <button type="button" className={`kc-menu-button ${open ? "active" : ""}`} onClick={() => setOpen(v => !v)} aria-expanded={open} aria-controls="kc-drawer">
+            <span>{bn ? "মেনু" : "Menu"}</span><i aria-hidden="true"><b /><b /></i>
+          </button>
+          <Link href={`/${locale}/admissions/apply`} className="kc-apply-button" onClick={() => setOpen(false)}>{bn ? "ভর্তি" : "Admissions"}<span>↗</span></Link>
         </div>
+      </div>
 
-        <div className="kc-menu-groups">
-          {menuGroups.map((group) => (
-            <section key={group.title} className="kc-menu-group">
-              <p>{group.title}</p>
-              {group.links.map((item) => (
-                <Link key={item.href} href={`/${locale}/${item.href}`} onClick={close} className="kc-menu-item">
-                  <span>
-                    <strong>{item.label}</strong>
-                    <small>{item.note}</small>
-                  </span>
-                  <em aria-hidden="true">↗</em>
-                </Link>
-              ))}
-            </section>
-          ))}
+      <div className={`kc-drawer-backdrop ${open ? "show" : ""}`} onClick={() => setOpen(false)} />
+      <aside id="kc-drawer" className={`kc-drawer ${open ? "show" : ""}`} aria-hidden={!open}>
+        <div className="kc-drawer-head">
+          <div><span className="kc-overline">KCMSC</span><h2>{bn ? "বিদ্যালয় ঘুরে দেখুন" : "Explore KCMSC"}</h2></div>
+          <button type="button" onClick={() => setOpen(false)} aria-label={bn ? "বন্ধ" : "Close"}>×</button>
         </div>
-
-        <div className="kc-menu-footer">
-          <Link href={`/${locale}/admissions`} onClick={close}>{text("Admissions", "ভর্তি")}</Link>
-          <Link href={`/${locale}/contact`} onClick={close}>{text("Contact", "যোগাযোগ")}</Link>
+        <div className="kc-drawer-grid">
+          <div><span className="kc-overline">{bn ? "প্রধান পাতা" : "School"}</span>{links.map(([href, label], i) => <Link key={href} href={`/${locale}/${href}`} onClick={() => setOpen(false)}><em>0{i + 1}</em><span>{label}</span><b>↗</b></Link>)}</div>
+          <div><span className="kc-overline">{bn ? "আরও" : "More"}</span>{extra.map(([href, label], i) => <Link key={href} href={`/${locale}/${href}`} onClick={() => setOpen(false)}><em>0{i + 1}</em><span>{label}</span><b>↗</b></Link>)}</div>
         </div>
+        <div className="kc-drawer-bottom"><span>{bn ? "প্রশ্ন আছে?" : "Need to reach us?"}</span><Link href={`/${locale}/contact`} onClick={() => setOpen(false)}>{bn ? "যোগাযোগ →" : "Contact →"}</Link></div>
       </aside>
-    </>
+    </header>
   );
 }

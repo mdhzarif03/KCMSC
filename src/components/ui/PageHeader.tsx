@@ -1,17 +1,3 @@
 export function PageHeader({ heading, intro }: { heading: string; intro?: string }) {
-  return (
-    <section className="kc-page-intro">
-      <div className="kc-page-intro-inner">
-        <div className="kc-page-intro-grid">
-          <div>
-            <p className="kc-page-kicker">K C MODEL SCHOOL &amp; COLLEGE</p>
-          </div>
-          <div>
-            <h1 className="kc-page-title">{heading}</h1>
-            {intro ? <p className="kc-page-lede mt-6">{intro}</p> : null}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+  return <section className="kc-standard-header"><div className="kc-section-wide"><span className="kc-overline">K C MODEL SCHOOL &amp; COLLEGE</span><div className="kc-standard-header-grid"><h1>{heading}</h1>{intro ? <p>{intro}</p> : <span />}</div></div></section>;
 }

@@ -1,71 +1,7 @@
 import Link from "next/link";
-import { getDictionary } from "@/i18n/config";
-import type { Locale } from "@/i18n/config";
+import { getDictionary, type Locale } from "@/i18n/config";
 
 export function Footer({ locale }: { locale: Locale }) {
-  const dict = getDictionary(locale);
-  const groups = [
-    {
-      title: locale === "bn" ? "পরিচিতি" : "About",
-      links: [[locale === "bn" ? "আমাদের গল্প" : "Our Story", "about"], [locale === "bn" ? "নেতৃত্ব" : "Leadership", "about#leadership"]] as const,
-    },
-    {
-      title: locale === "bn" ? "শিক্ষাজীবন" : "School life",
-      links: [[locale === "bn" ? "একাডেমিক" : "Academics", "academics"], [locale === "bn" ? "শিক্ষাজীবন" : "Student Life", "student-life"], [locale === "bn" ? "সুবিধাসমূহ" : "Facilities", "facilities"]] as const,
-    },
-    {
-      title: locale === "bn" ? "তথ্য" : "Information",
-      links: [[locale === "bn" ? "ভর্তি" : "Admissions", "admissions"], [locale === "bn" ? "নোটিশ" : "Notices", "notices"], [locale === "bn" ? "যোগাযোগ" : "Contact", "contact"]] as const,
-    },
-  ];
-
-  return (
-    <footer className="bg-[#102f24] text-[#eee8da]">
-      <div className="mx-auto max-w-[1320px] px-5 py-12 sm:px-8 lg:px-10 lg:py-14">
-        <div className="grid gap-10 border-b border-white/10 pb-10 lg:grid-cols-[1.35fr_1fr] lg:gap-16">
-          <div>
-            <Link href={`/${locale}`} className="inline-flex items-center gap-3">
-              <span className="grid h-10 w-10 place-items-center rounded-sm border border-white/25 text-white">
-                <span className="font-heading text-base">KC</span>
-              </span>
-              <span>
-                <span className="block font-heading text-lg text-white">{dict.site.name}</span>
-                <span className="mt-0.5 block text-[8px] font-semibold uppercase tracking-[.2em] text-white/40">{dict.site.tagline}</span>
-              </span>
-            </Link>
-            <p className="mt-5 max-w-md text-sm leading-6 text-white/55">
-              {locale === "bn"
-                ? "প্লে গ্রুপ থেকে দ্বাদশ শ্রেণি পর্যন্ত বাংলা ও ইংরেজি ভার্সনে শিক্ষার পরিবেশ।"
-                : "Education from Play Group to Grade Twelve in Bangla and English Versions."}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-3 gap-6">
-            {groups.map((group) => (
-              <div key={group.title}>
-                <p className="text-[9px] font-bold uppercase tracking-[.16em] text-[#d6bd72]">{group.title}</p>
-                <div className="mt-3 space-y-2">
-                  {group.links.map(([label, href]) => (
-                    <Link key={href} href={`/${locale}/${href}`} className="block text-xs text-white/55 transition hover:text-white">
-                      {label}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="grid gap-4 pt-6 text-[11px] leading-5 text-white/40 sm:grid-cols-2 lg:grid-cols-3">
-          <address className="not-italic">
-            {dict.footer.address}<br />
-            {dict.footer.phone} · {dict.footer.mobile}<br />
-            <a href={`mailto:${dict.footer.email}`} className="transition hover:text-white">{dict.footer.email}</a>
-          </address>
-          <p className="sm:text-center">{dict.footer.website}</p>
-          <p className="lg:text-right">© {new Date().getFullYear()} {dict.site.shortName}. {dict.footer.rights}</p>
-        </div>
-      </div>
-    </footer>
-  );
+  const dict = getDictionary(locale); const bn = locale === "bn";
+  return <footer className="kc-footer"><div className="kc-section-wide"><div className="kc-footer-top"><div><Link href={`/${locale}`} className="kc-footer-logo"><span>KC</span><strong>K C Model School<small>&amp; College</small></strong></Link><p>{bn ? "Play Group থেকে Grade XII পর্যন্ত বাংলা ও ইংরেজি ভার্সনে শিক্ষা।" : "Education from Play Group to Grade XII in Bangla and English Versions."}</p></div><div className="kc-footer-links"><div><span>{bn ? "School" : "School"}</span><Link href={`/${locale}/about`}>{bn ? "পরিচিতি" : "About"}</Link><Link href={`/${locale}/academics`}>{bn ? "একাডেমিক" : "Academics"}</Link><Link href={`/${locale}/achievements`}>{bn ? "ফলাফল" : "Results"}</Link></div><div><span>{bn ? "Life" : "Life"}</span><Link href={`/${locale}/student-life`}>{bn ? "শিক্ষার্থী জীবন" : "Student life"}</Link><Link href={`/${locale}/clubs`}>{bn ? "ক্লাব" : "Clubs"}</Link><Link href={`/${locale}/facilities`}>{bn ? "ক্যাম্পাস" : "Campus"}</Link></div><div><span>{bn ? "Help" : "Information"}</span><Link href={`/${locale}/admissions`}>{bn ? "ভর্তি" : "Admissions"}</Link><Link href={`/${locale}/notices`}>{bn ? "নোটিশ" : "Notices"}</Link><Link href={`/${locale}/contact`}>{bn ? "যোগাযোগ" : "Contact"}</Link></div></div></div><div className="kc-footer-bottom"><address>{dict.footer.address} · {dict.footer.phone} · {dict.footer.mobile}</address><span>© {new Date().getFullYear()} {dict.site.shortName}</span><a href={`mailto:${dict.footer.email}`}>{dict.footer.email}</a></div></div></footer>;
 }
