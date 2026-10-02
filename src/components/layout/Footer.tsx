@@ -1,7 +1,39 @@
 import Link from "next/link";
-import { getDictionary, type Locale } from "@/i18n/config";
+import { getDictionary } from "@/i18n/config";
+import type { Locale } from "@/i18n/config";
 
 export function Footer({ locale }: { locale: Locale }) {
-  const dict = getDictionary(locale); const bn = locale === "bn";
-  return <footer className="kc-footer"><div className="kc-section-wide"><div className="kc-footer-top"><div><Link href={`/${locale}`} className="kc-footer-logo"><span>KC</span><strong>K C Model School<small>&amp; College</small></strong></Link><p>{bn ? "Play Group থেকে Grade XII পর্যন্ত বাংলা ও ইংরেজি ভার্সনে শিক্ষা।" : "Education from Play Group to Grade XII in Bangla and English Versions."}</p></div><div className="kc-footer-links"><div><span>{bn ? "School" : "School"}</span><Link href={`/${locale}/about`}>{bn ? "পরিচিতি" : "About"}</Link><Link href={`/${locale}/academics`}>{bn ? "একাডেমিক" : "Academics"}</Link><Link href={`/${locale}/achievements`}>{bn ? "ফলাফল" : "Results"}</Link></div><div><span>{bn ? "Life" : "Life"}</span><Link href={`/${locale}/student-life`}>{bn ? "শিক্ষার্থী জীবন" : "Student life"}</Link><Link href={`/${locale}/clubs`}>{bn ? "ক্লাব" : "Clubs"}</Link><Link href={`/${locale}/facilities`}>{bn ? "ক্যাম্পাস" : "Campus"}</Link></div><div><span>{bn ? "Help" : "Information"}</span><Link href={`/${locale}/admissions`}>{bn ? "ভর্তি" : "Admissions"}</Link><Link href={`/${locale}/notices`}>{bn ? "নোটিশ" : "Notices"}</Link><Link href={`/${locale}/contact`}>{bn ? "যোগাযোগ" : "Contact"}</Link></div></div></div><div className="kc-footer-bottom"><address>{dict.footer.address} · {dict.footer.phone} · {dict.footer.mobile}</address><span>© {new Date().getFullYear()} {dict.site.shortName}</span><a href={`mailto:${dict.footer.email}`}>{dict.footer.email}</a></div></div></footer>;
+  const dict = getDictionary(locale);
+  const groups = [
+    { title: locale === "bn" ? "পরিচিতি" : "About", links: [[locale === "bn" ? "আমাদের গল্প" : "Our story", "about"], [locale === "bn" ? "একাডেমিক" : "Academics", "academics"]] as const },
+    { title: locale === "bn" ? "ক্যাম্পাস" : "Campus", links: [[locale === "bn" ? "শিক্ষার্থী জীবন" : "Student life", "student-life"], [locale === "bn" ? "সুবিধাসমূহ" : "Facilities", "facilities"]] as const },
+    { title: locale === "bn" ? "তথ্য" : "Information", links: [[locale === "bn" ? "ফলাফল" : "Results", "achievements"], [locale === "bn" ? "যোগাযোগ" : "Contact", "contact"]] as const },
+  ];
+
+  return (
+    <footer className="border-t border-[#d9d8cf] bg-[#efeee7] text-[#69716b]">
+      <div className="mx-auto max-w-[1180px] px-5 py-12 sm:px-8 lg:px-10 lg:py-14">
+        <div className="grid gap-10 border-b border-[#d9d8cf] pb-10 lg:grid-cols-[1.3fr_1fr] lg:gap-20">
+          <div>
+            <Link href={`/${locale}`} className="inline-flex items-center gap-3 text-[#124c36]">
+              <span className="grid h-9 w-9 place-items-center rounded-[2px] bg-[#176b45] font-heading text-sm text-white">KC</span>
+              <span className="font-heading text-[18px] font-normal">{dict.site.name}</span>
+            </Link>
+            <p className="mt-4 max-w-md text-[13px] leading-6">{locale === "bn" ? "প্লে গ্রুপ থেকে দ্বাদশ শ্রেণি পর্যন্ত বাংলা ও ইংরেজি ভার্সনে শিক্ষা।" : "Education from Play Group to Grade Twelve in Bangla and English Versions."}</p>
+          </div>
+          <div className="grid grid-cols-3 gap-6">
+            {groups.map((group) => <div key={group.title}>
+              <p className="text-[9px] uppercase tracking-[.16em] text-[#176b45]">{group.title}</p>
+              <div className="mt-3 space-y-2">{group.links.map(([label, href]) => <Link key={href} href={`/${locale}/${href}`} className="block text-[12px] transition hover:text-[#176b45]">{label}</Link>)}</div>
+            </div>)}
+          </div>
+        </div>
+        <div className="grid gap-4 pt-6 text-[11px] leading-5 text-[#858b84] sm:grid-cols-2 lg:grid-cols-3">
+          <address className="not-italic">{dict.footer.address}<br />{dict.footer.phone} · {dict.footer.mobile}<br /><a href={`mailto:${dict.footer.email}`} className="hover:text-[#176b45]">{dict.footer.email}</a></address>
+          <p className="sm:text-center">{dict.footer.website}</p>
+          <p className="lg:text-right">© {new Date().getFullYear()} {dict.site.shortName}. {dict.footer.rights}</p>
+        </div>
+      </div>
+    </footer>
+  );
 }

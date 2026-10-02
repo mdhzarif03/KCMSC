@@ -1,87 +1,229 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import type { Locale } from "@/i18n/config";
+import { HeroSlideshow } from "./HeroSlideshow";
 
-const data = {
+const copy = {
   en: {
-    heroKicker: "K C MODEL SCHOOL & COLLEGE · DHAKA",
-    heroTitle: "A school with room to learn, grow and take part.",
-    heroBody: "From Play Group to Grade XII, KCMSC brings classroom learning together with books, sport, culture, technology and everyday school life.",
-    heroButton: "Discover the school",
-    heroNote: "Established 2014 · Journey began 1 January 2015",
-    glance: "The school at a glance",
-    students: "Students", range: "Range", versions: "Versions", hours: "School day",
-    studentValue: "2,336", rangeValue: "Play Group–XII", versionsValue: "Bangla + English", hoursValue: "7:45–2:30",
-    storyKicker: "01 · The story",
-    storyTitle: "Built around a simple idea: education should continue beyond the lesson.",
-    storyBody: "Founded in 2014 by Al-Hajj Md. Khashru Chowdhury (CIP), KCMSC began its educational journey on 1 January 2015 with around 2,200 students. Today, the school serves students from Play Group through Grade Twelve.",
-    storyLink: "Read our story",
-    frameKicker: "02 · Four parts of school life",
-    frames: [
-      ["Learning", "Classrooms, teachers and a structured academic journey.", "/kcmsc/media/teacher_taking_class.jpg", "academics"],
-      ["Reading", "A library and book-focused activities create space to explore.", "/kcmsc/media/students_at_library.jpg", "facilities"],
-      ["Participation", "Culture, sport, trips and competitions make the week bigger than the timetable.", "/kcmsc/media/vibrant_student_culture.jpg", "student-life"],
-      ["Making", "ICT, Robotics & Coding and other activities connect students with practical interests.", "/kcmsc/media/ict_olympiad_at_kc.jpg", "clubs"],
-    ],
-    resultsKicker: "03 · The record",
-    resultsTitle: "2024 results, clearly presented.",
-    resultsBody: "A quick view of the reported SSC and HSC results.",
-    ssc: "SSC 2024", hsc: "HSC 2024", candidates: "candidates", passed: "passed", gpa: "GPA 5",
-    missionKicker: "04 · Purpose",
-    missionTitle: "Developing physical, mental and spiritual potential while preparing responsible global citizens.",
-    visionTitle: "A capable and responsible generation for the 21st century.",
-    mission: "Mission", vision: "Vision",
-    endKicker: "05 · Start here",
-    endTitle: "Looking for admission, a notice or simply the right person to contact?",
-    endBody: "Keep the practical information close: admissions, notices and contact details are all one step away.",
-    admission: "Admissions", contact: "Contact",
+    glance: "At a glance",
+    students: "Students",
+    range: "Range",
+    versions: "Versions",
+    hours: "School day",
+    studentsValue: "2,336",
+    rangeValue: "Play Group – XII",
+    versionsValue: "Bangla + English",
+    hoursValue: "Sun–Thu · 7:45–2:30",
+    storyKicker: "THE SCHOOL",
+    storyTitle: "A clear purpose, from the first classroom to higher secondary.",
+    storyBody: "Founded in 2014 and opened on 1 January 2015, KC Model School & College was established to help students develop their academic ability alongside discipline, values and responsibility.",
+    storyLink: "Our story",
+    focusKicker: "EXPLORE",
+    focusTitle: "Three parts of school life, one shared direction.",
+    academics: "Academics",
+    academicsBody: "Junior and Senior Wings follow the Bangla and English Versions of the National Curriculum from the early years through Grade XII.",
+    life: "Student life",
+    lifeBody: "Culture, reading, sport, trips and school events give students ways to learn and participate beyond regular lessons.",
+    campus: "Campus",
+    campusBody: "Libraries, science and computer labs, sports spaces and rooftop gardens support learning throughout the school day.",
+    academicsLink: "Explore academics",
+    lifeLink: "See student life",
+    campusLink: "View facilities",
+    missionKicker: "MISSION & VISION",
+    mission: "To help students discover and develop their physical, mental and spiritual potential while growing into responsible global citizens.",
+    vision: "To nurture capable, responsible global citizens equipped to excel in the 21st century.",
+    resultsKicker: "ACADEMIC RESULTS",
+    resultsTitle: "Recent results, without the clutter.",
+    resultsBody: "The 2024 board-examination results are summarised below.",
+    ssc: "SSC 2024",
+    hsc: "HSC 2024",
+    candidates: "candidates",
+    passed: "passed",
+    gpa5: "GPA 5",
+    resultsLink: "Results & achievements",
+    admissionKicker: "ADMISSIONS",
+    admissionTitle: "Information for families starts here.",
+    admissionBody: "Find admission information, notices and contact details in one place.",
+    admissionLink: "Admissions",
+    contactLink: "Contact",
   },
   bn: {
-    heroKicker: "কে সি মডেল স্কুল অ্যান্ড কলেজ · ঢাকা",
-    heroTitle: "শেখা, বেড়ে ওঠা ও অংশ নেওয়ার জন্য জায়গা আছে এমন একটি স্কুল।",
-    heroBody: "Play Group থেকে Grade XII পর্যন্ত KCMSC শ্রেণিকক্ষের পাঠের সঙ্গে বই, খেলাধুলা, সংস্কৃতি, প্রযুক্তি ও প্রতিদিনের স্কুলজীবনকে একসঙ্গে রাখে।",
-    heroButton: "স্কুলটি দেখুন", heroNote: "প্রতিষ্ঠা ২০১৪ · যাত্রা শুরু ১ জানুয়ারি ২০১৫",
-    glance: "এক নজরে স্কুল", students: "শিক্ষার্থী", range: "পরিসর", versions: "ভার্সন", hours: "স্কুলের সময়",
-    studentValue: "২,৩৩৬", rangeValue: "Play Group–XII", versionsValue: "বাংলা + ইংরেজি", hoursValue: "৭:৪৫–২:৩০",
-    storyKicker: "০১ · গল্প", storyTitle: "একটি সহজ ভাবনা: শেখা যেন পাঠ শেষ হওয়ার সঙ্গে শেষ না হয়।",
-    storyBody: "আল-হাজ্জ মো. খসরু চৌধুরী (সিআইপি), নিপা গ্রুপের প্রতিষ্ঠাতা, ২০১৪ সালে KCMSC প্রতিষ্ঠা করেন। ১ জানুয়ারি ২০১৫-তে প্রায় ২,২০০ শিক্ষার্থী নিয়ে যাত্রা শুরু হয়। বর্তমানে Play Group থেকে Grade Twelve পর্যন্ত শিক্ষা কার্যক্রম পরিচালিত হয়।",
-    storyLink: "আমাদের গল্প", frameKicker: "০২ · স্কুলজীবনের চার দিক",
-    frames: [["শেখা", "শ্রেণিকক্ষ, শিক্ষক ও একটি ধারাবাহিক একাডেমিক যাত্রা।", "/kcmsc/media/teacher_taking_class.jpg", "academics"], ["পড়া", "লাইব্রেরি ও বইকেন্দ্রিক কার্যক্রমে পড়ার জায়গা তৈরি হয়।", "/kcmsc/media/students_at_library.jpg", "facilities"], ["অংশগ্রহণ", "সংস্কৃতি, খেলাধুলা, সফর ও প্রতিযোগিতা স্কুলজীবনকে বড় করে।", "/kcmsc/media/vibrant_student_culture.jpg", "student-life"], ["তৈরি করা", "ICT, Robotics & Coding এবং অন্যান্য কার্যক্রম আগ্রহকে বাস্তব কাজে আনে।", "/kcmsc/media/ict_olympiad_at_kc.jpg", "clubs"]],
-    resultsKicker: "০৩ · ফলাফল", resultsTitle: "২০২৪ সালের ফলাফল, এক নজরে।", resultsBody: "প্রকাশিত SSC ও HSC ফলাফলের সংক্ষিপ্ত চিত্র।", ssc: "SSC ২০২৪", hsc: "HSC ২০২৪", candidates: "পরীক্ষার্থী", passed: "উত্তীর্ণ", gpa: "GPA 5",
-    missionKicker: "০৪ · উদ্দেশ্য", missionTitle: "শারীরিক, মানসিক ও আধ্যাত্মিক সম্ভাবনা বিকশিত করে দায়িত্বশীল বিশ্বনাগরিক হিসেবে গড়ে তোলা।", visionTitle: "২১শ শতকের জন্য সক্ষম ও দায়িত্বশীল প্রজন্ম তৈরি করা।", mission: "লক্ষ্য", vision: "দৃষ্টিভঙ্গি",
-    endKicker: "০৫ · এখান থেকে শুরু করুন", endTitle: "ভর্তি, নোটিশ বা যোগাযোগের প্রয়োজন?", endBody: "প্রয়োজনীয় তথ্য সহজে খুঁজে নিন: ভর্তি, নোটিশ ও যোগাযোগের পাতা এক ধাপ দূরে।", admission: "ভর্তি", contact: "যোগাযোগ",
+    glance: "এক নজরে",
+    students: "শিক্ষার্থী",
+    range: "শিক্ষার পরিসর",
+    versions: "ভার্সন",
+    hours: "স্কুলের সময়",
+    studentsValue: "২,৩৩৬",
+    rangeValue: "প্লে গ্রুপ – দ্বাদশ",
+    versionsValue: "বাংলা + ইংরেজি",
+    hoursValue: "রবি–বৃহস্পতি · ৭:৪৫–২:৩০",
+    storyKicker: "স্কুল",
+    storyTitle: "প্রথম শ্রেণিকক্ষ থেকে উচ্চমাধ্যমিক পর্যন্ত একটি স্পষ্ট শিক্ষাপথ।",
+    storyBody: "২০১৪ সালে প্রতিষ্ঠিত এবং ১ জানুয়ারি ২০১৫-তে যাত্রা শুরু করা KC Model School & College একাডেমিক শিক্ষার পাশাপাশি শৃঙ্খলা, মূল্যবোধ ও দায়িত্ববোধ গড়ে তোলার লক্ষ্য নিয়ে এগিয়ে চলে।",
+    storyLink: "আমাদের গল্প",
+    focusKicker: "দেখুন",
+    focusTitle: "স্কুলজীবনের তিনটি দিক, একটি অভিন্ন লক্ষ্য।",
+    academics: "একাডেমিক",
+    academicsBody: "জুনিয়র ও সিনিয়র উইং বাংলা ও ইংরেজি ভার্সনে প্রাথমিক পর্যায় থেকে দ্বাদশ শ্রেণি পর্যন্ত জাতীয় শিক্ষাক্রম অনুসরণ করে।",
+    life: "শিক্ষাজীবন",
+    lifeBody: "সংস্কৃতি, বই পড়া, খেলাধুলা, শিক্ষা সফর ও বিভিন্ন আয়োজনে নিয়মিত ক্লাসের বাইরেও শেখার সুযোগ থাকে।",
+    campus: "ক্যাম্পাস",
+    campusBody: "লাইব্রেরি, বিজ্ঞান ও কম্পিউটার ল্যাব, খেলাধুলার স্থান এবং ছাদবাগান দৈনন্দিন শিক্ষাকে সহায়তা করে।",
+    academicsLink: "একাডেমিক দেখুন",
+    lifeLink: "শিক্ষাজীবন দেখুন",
+    campusLink: "সুবিধা দেখুন",
+    missionKicker: "লক্ষ্য ও দৃষ্টিভঙ্গি",
+    mission: "শিক্ষার্থীদের শারীরিক, মানসিক ও আধ্যাত্মিক সম্ভাবনা বিকশিত করে দায়িত্বশীল বিশ্বনাগরিক হিসেবে গড়ে তোলা।",
+    vision: "২১শ শতকে উৎকর্ষের জন্য সক্ষম ও দায়িত্বশীল বিশ্বনাগরিক গড়ে তোলা।",
+    resultsKicker: "একাডেমিক ফলাফল",
+    resultsTitle: "ফলাফল, অপ্রয়োজনীয় জটিলতা ছাড়া।",
+    resultsBody: "২০২৪ সালের বোর্ড পরীক্ষার ফলাফল সংক্ষেপে নিচে দেখানো হয়েছে।",
+    ssc: "SSC ২০২৪",
+    hsc: "HSC ২০২৪",
+    candidates: "পরীক্ষার্থী",
+    passed: "উত্তীর্ণ",
+    gpa5: "GPA 5",
+    resultsLink: "ফলাফল ও অর্জন",
+    admissionKicker: "ভর্তি",
+    admissionTitle: "পরিবারের জন্য প্রয়োজনীয় তথ্য এক জায়গায়।",
+    admissionBody: "ভর্তি, নোটিশ ও যোগাযোগের তথ্য সহজে খুঁজে নিন।",
+    admissionLink: "ভর্তি",
+    contactLink: "যোগাযোগ",
   },
 } as const;
 
+const images = {
+  story: "/kcmsc/media/IMG-20260113-WA0005.jpg",
+  academics: "/kcmsc/media/teacher_taking_class.jpg",
+  life: "/kcmsc/media/vibrant_student_culture.jpg",
+  campus: "/kcmsc/media/IMG-20230807-WA0034.jpg",
+} as const;
+
 export function LandingExperience({ locale }: { locale: Locale }) {
-  const t = data[locale];
-  return <main className="kc-home">
-    <section className="kc-home-hero">
-      <div className="kc-home-hero-copy">
-        <span className="kc-overline">{t.heroKicker}</span>
-        <h1>{t.heroTitle}</h1>
-        <p>{t.heroBody}</p>
-        <div className="kc-home-actions"><Link href={`/${locale}/about`} className="kc-solid-button">{t.heroButton}<span>↗</span></Link><span className="kc-home-note">{t.heroNote}</span></div>
-      </div>
-      <div className="kc-home-visual">
-        <div className="kc-image-main"><Image src="/kcmsc/media/kcmsc1.jpg" alt="KCMSC campus" fill priority sizes="(min-width: 900px) 50vw, 100vw" className="object-cover" /></div>
-        <div className="kc-image-float"><Image src="/kcmsc/media/teacher_taking_class.jpg" alt="KCMSC classroom" fill sizes="260px" className="object-cover" /><span>01 / 04</span></div>
-        <div className="kc-hero-stamp">KC<br /><small>2014</small></div>
-      </div>
-    </section>
+  const t = copy[locale];
 
-    <section className="kc-glance"><div className="kc-section-wide"><div className="kc-section-label"><span>{t.glance}</span><i /></div><div className="kc-glance-grid">{[[t.students,t.studentValue],[t.range,t.rangeValue],[t.versions,t.versionsValue],[t.hours,t.hoursValue]].map(([a,b]) => <div key={a}><span>{a}</span><strong>{b}</strong></div>)}</div></div></section>
+  const stats = [
+    [t.students, t.studentsValue],
+    [t.range, t.rangeValue],
+    [t.versions, t.versionsValue],
+    [t.hours, t.hoursValue],
+  ];
 
-    <section className="kc-story kc-section-wide"><div className="kc-story-copy"><span className="kc-overline">{t.storyKicker}</span><h2>{t.storyTitle}</h2><p>{t.storyBody}</p><Link href={`/${locale}/about`} className="kc-text-link">{t.storyLink}<span>↗</span></Link></div><div className="kc-story-image"><Image src="/kcmsc/media/IMG-20260113-WA0005.jpg" alt="KCMSC school community" fill sizes="(min-width: 900px) 52vw, 100vw" className="object-cover" /></div></section>
+  const focus = [
+    { title: t.academics, body: t.academicsBody, image: images.academics, href: "academics", link: t.academicsLink },
+    { title: t.life, body: t.lifeBody, image: images.life, href: "student-life", link: t.lifeLink },
+    { title: t.campus, body: t.campusBody, image: images.campus, href: "facilities", link: t.campusLink },
+  ];
 
-    <section className="kc-frames"><div className="kc-section-wide"><div className="kc-section-heading"><div><span className="kc-overline">{t.frameKicker}</span><h2>What makes an ordinary school day feel full.</h2></div><span className="kc-heading-mark">04</span></div><div className="kc-frame-grid">{t.frames.map(([title,body,image,href],i)=><Link href={`/${locale}/${href}`} key={title} className={`kc-frame-card card-${i+1}`}><div className="kc-frame-image"><Image src={image} alt={title} fill sizes="(min-width: 900px) 30vw, 100vw" className="object-cover" /></div><div className="kc-frame-copy"><span>0{i+1}</span><h3>{title}</h3><p>{body}</p><b>Explore ↗</b></div></Link>)}</div></div></section>
+  return (
+    <div className="bg-[#f7f5ef] text-[#242824]">
+      <HeroSlideshow locale={locale} />
 
-    <section className="kc-results kc-section-wide"><div><span className="kc-overline">{t.resultsKicker}</span><h2>{t.resultsTitle}</h2><p>{t.resultsBody}</p><Link href={`/${locale}/achievements`} className="kc-text-link">Results &amp; achievements <span>↗</span></Link></div><div className="kc-result-table"><div><span>{t.ssc}</span><strong>98.48%</strong><p>130 {t.candidates} · 128 {t.passed} · 67 {t.gpa}</p></div><div><span>{t.hsc}</span><strong>100%</strong><p>47 {t.candidates} · 47 {t.passed} · 13 {t.gpa}</p></div></div></section>
+      <section className="border-b border-[#d9d8cf] bg-[#fffdf8]">
+        <div className="mx-auto grid max-w-[1180px] sm:grid-cols-2 lg:grid-cols-4">
+          {stats.map(([label, value], index) => (
+            <div key={label} className={`px-5 py-6 sm:px-7 lg:px-8 lg:py-7 ${index ? "border-t border-[#d9d8cf] sm:border-l sm:border-t-0" : ""}`}>
+              <p className="text-[9px] uppercase tracking-[.16em] text-[#7b817b]">{label}</p>
+              <p className="mt-2 font-heading text-[21px] font-normal leading-tight text-[#176b45]">{value}</p>
+            </div>
+          ))}
+        </div>
+      </section>
 
-    <section className="kc-purpose"><div className="kc-purpose-grid"><article><span className="kc-overline">{t.mission}</span><h2>{t.missionTitle}</h2></article><article><span className="kc-overline">{t.vision}</span><h2>{t.visionTitle}</h2></article></div></section>
+      <section className="kc-classic-section bg-[#f7f5ef]">
+        <div className="mx-auto grid max-w-[1180px] items-center gap-10 px-5 sm:px-8 lg:grid-cols-[.85fr_1.15fr] lg:gap-20 lg:px-10">
+          <div>
+            <p className="kc-classic-kicker">{t.storyKicker}</p>
+            <h2 className="kc-classic-title mt-4">{t.storyTitle}</h2>
+            <p className="mt-6 max-w-lg text-[14px] leading-7 text-[#69716b] sm:text-[15px]">{t.storyBody}</p>
+            <Link href={`/${locale}/about`} className="kc-classic-link mt-7">{t.storyLink}<span>↗</span></Link>
+          </div>
+          <div className="relative aspect-[5/3] overflow-hidden rounded-[14px] bg-[#e5e2d8]">
+            <Image src={images.story} alt="KCMSC students and staff on campus" fill sizes="(min-width: 1024px) 60vw, 100vw" className="object-cover" />
+          </div>
+        </div>
+      </section>
 
-    <section className="kc-home-end kc-section-wide"><div><span className="kc-overline">{t.endKicker}</span><h2>{t.endTitle}</h2></div><div><p>{t.endBody}</p><div className="kc-end-actions"><Link href={`/${locale}/admissions`} className="kc-solid-button">{t.admission}<span>↗</span></Link><Link href={`/${locale}/contact`} className="kc-outline-button">{t.contact}</Link></div></div></section>
-  </main>;
+      <section className="border-y border-[#d9d8cf] bg-[#fffdf8]">
+        <div className="mx-auto max-w-[1180px] px-5 py-16 sm:px-8 lg:px-10 lg:py-20">
+          <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+            <div className="max-w-2xl">
+              <p className="kc-classic-kicker">{t.focusKicker}</p>
+              <h2 className="mt-3 font-heading text-[clamp(2.25rem,4.5vw,4rem)] font-normal leading-[1] tracking-[-.035em] text-[#124c36]">{t.focusTitle}</h2>
+            </div>
+            <span className="text-[10px] uppercase tracking-[.12em] text-[#969c96]">01 — 03</span>
+          </div>
+
+          <div className="mt-10 divide-y divide-[#d9d8cf] border-y border-[#d9d8cf]">
+            {focus.map((item, index) => (
+              <Link key={item.title} href={`/${locale}/${item.href}`} className="group grid gap-5 py-5 sm:grid-cols-[52px_220px_1fr_auto] sm:items-center sm:gap-6">
+                <span className="text-[10px] text-[#b59a4a]">0{index + 1}</span>
+                <div className="relative aspect-[4/2.7] overflow-hidden rounded-lg bg-[#e7e4da]">
+                  <Image src={item.image} alt={item.title} fill sizes="220px" className="object-cover transition duration-500 group-hover:scale-[1.02]" />
+                </div>
+                <div>
+                  <h3 className="font-heading text-[28px] font-normal text-[#176b45]">{item.title}</h3>
+                  <p className="mt-2 max-w-xl text-[13px] leading-6 text-[#69716b]">{item.body}</p>
+                </div>
+                <span className="text-[14px] text-[#7b817b] transition group-hover:translate-x-1 group-hover:text-[#176b45]">↗</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#efeee7]">
+        <div className="mx-auto grid max-w-[1180px] gap-0 px-5 sm:px-8 lg:grid-cols-2 lg:px-10">
+          <div className="border-b border-[#d9d8cf] py-14 lg:border-b-0 lg:border-r lg:py-20 lg:pr-16">
+            <p className="kc-classic-kicker">{t.missionKicker}</p>
+            <p className="mt-5 max-w-xl font-heading text-[clamp(2rem,3.6vw,3.5rem)] font-normal leading-[1.03] tracking-[-.03em] text-[#124c36]">{t.mission}</p>
+          </div>
+          <div className="py-14 lg:py-20 lg:pl-16">
+            <p className="kc-classic-kicker">{locale === "bn" ? "দৃষ্টিভঙ্গি" : "Vision"}</p>
+            <p className="mt-5 max-w-xl font-heading text-[clamp(2rem,3.6vw,3.5rem)] font-normal leading-[1.03] tracking-[-.03em] text-[#124c36]">{t.vision}</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="kc-classic-section bg-[#f7f5ef]">
+        <div className="mx-auto max-w-[1180px] px-5 sm:px-8 lg:px-10">
+          <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
+            <div className="max-w-xl">
+              <p className="kc-classic-kicker">{t.resultsKicker}</p>
+              <h2 className="kc-classic-title mt-3">{t.resultsTitle}</h2>
+              <p className="mt-5 text-[14px] leading-7 text-[#69716b]">{t.resultsBody}</p>
+            </div>
+            <Link href={`/${locale}/achievements`} className="kc-classic-link">{t.resultsLink}<span>↗</span></Link>
+          </div>
+
+          <div className="mt-10 grid border-y border-[#d9d8cf] sm:grid-cols-2">
+            <div className="py-7 sm:pr-10">
+              <p className="text-[9px] uppercase tracking-[.16em] text-[#7b817b]">{t.ssc}</p>
+              <div className="mt-3 flex items-baseline gap-3"><span className="font-heading text-5xl font-normal text-[#176b45]">98.48%</span></div>
+              <p className="mt-3 text-xs text-[#69716b]">130 {t.candidates} · 128 {t.passed} · 67 {t.gpa5}</p>
+            </div>
+            <div className="border-t border-[#d9d8cf] py-7 sm:border-l sm:border-t-0 sm:pl-10">
+              <p className="text-[9px] uppercase tracking-[.16em] text-[#7b817b]">{t.hsc}</p>
+              <div className="mt-3 flex items-baseline gap-3"><span className="font-heading text-5xl font-normal text-[#176b45]">100%</span></div>
+              <p className="mt-3 text-xs text-[#69716b]">47 {t.candidates} · 47 {t.passed} · 13 {t.gpa5}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-[#d9d8cf] bg-[#fffdf8]">
+        <div className="mx-auto grid max-w-[1180px] gap-8 px-5 py-14 sm:px-8 sm:py-16 lg:grid-cols-[1fr_auto] lg:items-end lg:px-10">
+          <div>
+            <p className="kc-classic-kicker">{t.admissionKicker}</p>
+            <h2 className="mt-3 max-w-3xl font-heading text-[clamp(2.2rem,4vw,4rem)] font-normal leading-[1] tracking-[-.03em] text-[#124c36]">{t.admissionTitle}</h2>
+            <p className="mt-4 max-w-xl text-[14px] leading-7 text-[#69716b]">{t.admissionBody}</p>
+          </div>
+          <div className="flex flex-wrap gap-2.5 lg:justify-end">
+            <Link href={`/${locale}/admissions`} className="kc-classic-button kc-classic-button-primary">{t.admissionLink}</Link>
+            <Link href={`/${locale}/contact`} className="kc-classic-button kc-classic-button-outline">{t.contactLink}</Link>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
 }
