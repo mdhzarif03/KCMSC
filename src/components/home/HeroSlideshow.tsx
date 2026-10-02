@@ -68,11 +68,15 @@ type HeroSlideshowProps = {
   locale?: string;
 };
 
-export default function HeroSlideshow({ locale = "en" }: HeroSlideshowProps) {
+export function HeroSlideshow({ locale = "en" }: HeroSlideshowProps) {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
 
-  const slide = slides[active] ?? slides[0];
+  /*
+   * The arrays are non-empty, but TypeScript cannot infer that
+   * from normal array indexing. The fallback keeps the type safe.
+   */
+  const slide: Slide = slides[active] ?? slides[0]!;
 
   const copy: Slide = locale === "bn" ? (bn[active] ?? bn[0] ?? slide) : slide;
 
@@ -184,3 +188,5 @@ export default function HeroSlideshow({ locale = "en" }: HeroSlideshowProps) {
     </section>
   );
 }
+
+export default HeroSlideshow;
