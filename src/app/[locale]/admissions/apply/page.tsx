@@ -53,7 +53,13 @@ export default async function ApplyPage({
         ) : null}
         <ApplicationForm
           action={boundAction}
-          sections={page.sections}
+          sections={{
+            student: locale === "bn" ? "শিক্ষার্থীর তথ্য" : "Student Information",
+            father: locale === "bn" ? "পিতার তথ্য" : "Father's Information",
+            mother: locale === "bn" ? "মাতার তথ্য" : "Mother's Information",
+            guardians: locale === "bn" ? "অতিরিক্ত অভিভাবক" : "Additional Guardians",
+            address: locale === "bn" ? "ঠিকানা" : "Address"
+          }}
           fields={page.fields}
           submitLabel={page.submit}
           submittingLabel={page.submitting}

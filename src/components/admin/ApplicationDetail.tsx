@@ -1,141 +1,43 @@
-type ReviewRow = {
-  id: string;
-  internalNote: string;
-  applicantMessage: string | null;
-  statusAtReview: string;
-  createdAt: Date;
-  officer: { name: string; email: string } | null;
+type Guardian = {
+  id: string; name: string; relationship: string; nidNumber: string; contactNumber: string; occupation: string; nationality: string; isAlive: boolean;
 };
 
-export type ApplicationDetailData = {
-  referenceCode: string;
-  status: string;
-  createdAt: Date;
-  applicantName: string;
-  dateOfBirth: Date;
-  gender: string;
-  applyingClass: string;
-  previousInstitution: string | null;
-  guardianName: string;
-  guardianRelationship: string;
-  guardianPhone: string;
-  guardianEmail: string | null;
-  presentAddress: string;
-  permanentAddress: string;
-  declarationAccepted: boolean;
-  cycle: { nameEn: string };
-  assignedOfficer: { name: string; email: string } | null;
-  reviews: ReviewRow[];
+type Application = {
+  id: string; fullName: string; dateOfBirth: Date; gender: string; nationality: string; medium: string; applyingClass: string; previousInstitution: string; birthRegistrationNo: string;
+  certificateName: string | null; fatherName: string; fatherNidNumber: string; fatherContactNumber: string; fatherOccupation: string; fatherNationality: string; fatherIsAlive: boolean;
+  motherName: string; motherNidNumber: string; motherContactNumber: string; motherOccupation: string; motherNationality: string; motherIsAlive: boolean; presentAddress: string; permanentAddress: string;
+  cycle: { nameEn: string }; createdAt: Date; status: string; guardians: Guardian[]; assignedOfficer?: { name: string } | null;
 };
+
+export const statusText = (status: string) => status.replaceAll("_", " ").toLowerCase().replace(/(^|\s)\S/g, (c) => c.toUpperCase());
 
 function Field({ label, value }: { label: string; value: string | null | undefined }) {
-  return (
-    <div>
-      <dt className="text-xs text-ink-muted">{label}</dt>
-      <dd className="text-sm text-ink">{value || "—"}</dd>
-    </div>
-  );
+  return <div><dt className="text-xs text-ink-muted">{label}</dt><dd className="mt-1 text-sm text-ink whitespace-pre-wrap">{value || "—"}</dd></div>;
 }
 
-export function statusText(status: string) {
-  return status.replace(/_/g, " ").toLowerCase().replace(/^\w/, (c) => c.toUpperCase());
+function ageAt(date: Date) {
+  const today = new Date(); const dob = new Date(date); let age = today.getFullYear() - dob.getFullYear();
+  if (today.getMonth() < dob.getMonth() || (today.getMonth() === dob.getMonth() && today.getDate() < dob.getDate())) age--;
+  return String(age);
 }
 
-// Shared by the officer and admin detail pages. INTERNAL notes are shown
-// here on purpose — this component is only ever rendered inside the
-// authenticated officer/admin areas, never on a public route.
-export function ApplicationDetail({ app }: { app: ApplicationDetailData }) {
+export function ApplicationDetail({ app }: { app: Application }) {
   return (
-    <div className="space-y-6">
-      <div className="rounded-lg border border-border bg-white p-6">
-        <div className="flex flex-wrap items-center justify-between gap-2">
-          <div>
-            <p className="font-heading text-xl text-ink">{app.applicantName}</p>
-            <p className="text-sm text-ink-muted">
-              {app.referenceCode} · {app.cycle.nameEn} · submitted{" "}
-              {app.createdAt.toLocaleDateString()}
-            </p>
-          </div>
-          <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary-dark">
-            {statusText(app.status)}
-          </span>
-        </div>
-        <p className="mt-3 text-sm text-ink-muted">
-          Handled by:{" "}
-          <span className="font-medium text-ink">
-            {app.assignedOfficer
-              ? `${app.assignedOfficer.name} (${app.assignedOfficer.email})`
-              : "Unassigned"}
-          </span>
-        </p>
+    <article className="rounded-lg border border-border bg-white p-6">
+      <div className="flex flex-wrap items-start justify-between gap-4 border-b border-border pb-5">
+        <div><p className="text-xs uppercase tracking-wide text-ink-muted">Admission application</p><h1 className="mt-1 font-heading text-2xl text-ink">{app.fullName}</h1><p className="mt-1 text-xs text-ink-muted">{app.cycle.nameEn} · submitted {app.createdAt.toLocaleString()}</p></div>
+        <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary-dark">{statusText(app.status)}</span>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-2">
-        <section className="rounded-lg border border-border bg-white p-6">
-          <h2 className="text-sm font-semibold uppercase tracking-wide text-ink-muted">Applicant</h2>
-          <dl className="mt-4 grid grid-cols-2 gap-4">
-            <Field label="Date of birth" value={app.dateOfBirth.toLocaleDateString()} />
-            <Field label="Gender" value={app.gender} />
-            <Field label="Applying for" value={app.applyingClass} />
-            <Field label="Previous institution" value={app.previousInstitution} />
-          </dl>
-        </section>
-        <section className="rounded-lg border border-border bg-white p-6">
-          <h2 className="text-sm font-semibold uppercase tracking-wide text-ink-muted">Guardian</h2>
-          <dl className="mt-4 grid grid-cols-2 gap-4">
-            <Field label="Name" value={app.guardianName} />
-            <Field label="Relationship" value={app.guardianRelationship} />
-            <Field label="Phone" value={app.guardianPhone} />
-            <Field label="Email" value={app.guardianEmail} />
-          </dl>
-        </section>
-        <section className="rounded-lg border border-border bg-white p-6">
-          <h2 className="text-sm font-semibold uppercase tracking-wide text-ink-muted">Address</h2>
-          <dl className="mt-4 space-y-4">
-            <Field label="Present" value={app.presentAddress} />
-            <Field label="Permanent" value={app.permanentAddress} />
-          </dl>
-        </section>
-        <section className="rounded-lg border border-border bg-white p-6">
-          <h2 className="text-sm font-semibold uppercase tracking-wide text-ink-muted">Documents</h2>
-          <p className="mt-4 text-sm text-ink-muted">
-            Declaration accepted: {app.declarationAccepted ? "Yes" : "No"}. Document upload is not
-            enabled yet — it needs file storage that hasn&apos;t been configured.
-          </p>
-        </section>
-      </div>
+      <section className="mt-6"><h2 className="font-medium text-ink">Student information</h2><dl className="mt-4 grid gap-5 sm:grid-cols-2"><Field label="Full name" value={app.fullName}/><Field label="Age" value={ageAt(app.dateOfBirth)}/><Field label="Date of birth" value={app.dateOfBirth.toLocaleDateString()}/><Field label="Gender" value={app.gender}/><Field label="Nationality" value={app.nationality}/><Field label="Medium" value={app.medium}/><Field label="Class" value={app.applyingClass}/><Field label="Previous institution" value={app.previousInstitution}/><Field label="Birth registration no." value={app.birthRegistrationNo}/><Field label="Certificate" value={app.certificateName}/></dl></section>
 
-      <section className="rounded-lg border border-border bg-white p-6">
-        <h2 className="text-sm font-semibold uppercase tracking-wide text-ink-muted">
-          Review history
-        </h2>
-        {app.reviews.length === 0 ? (
-          <p className="mt-4 text-sm text-ink-muted">No reviews recorded yet.</p>
-        ) : (
-          <ul className="mt-4 space-y-4">
-            {app.reviews.map((r) => (
-              <li key={r.id} className="border-l-2 border-brass pl-4">
-                <p className="text-xs text-ink-muted">
-                  {r.createdAt.toLocaleString()} · {statusText(r.statusAtReview)} ·{" "}
-                  {r.officer ? r.officer.name : "Former officer"}
-                </p>
-                <p className="mt-1 text-sm text-ink">
-                  <span className="text-xs font-medium uppercase text-ink-muted">Internal: </span>
-                  {r.internalNote}
-                </p>
-                {r.applicantMessage ? (
-                  <p className="mt-1 text-sm text-primary-dark">
-                    <span className="text-xs font-medium uppercase text-ink-muted">
-                      Shown to applicant:{" "}
-                    </span>
-                    {r.applicantMessage}
-                  </p>
-                ) : null}
-              </li>
-            ))}
-          </ul>
-        )}
-      </section>
-    </div>
+      <section className="mt-8 border-t border-border pt-6"><h2 className="font-medium text-ink">Father</h2><dl className="mt-4 grid gap-5 sm:grid-cols-2"><Field label="Name" value={app.fatherName}/><Field label="Status" value={app.fatherIsAlive ? "Alive" : "Deceased"}/><Field label="NID number" value={app.fatherNidNumber}/><Field label="Contact number" value={app.fatherContactNumber}/><Field label="Occupation" value={app.fatherOccupation}/><Field label="Nationality" value={app.fatherNationality}/></dl></section>
+
+      <section className="mt-8 border-t border-border pt-6"><h2 className="font-medium text-ink">Mother</h2><dl className="mt-4 grid gap-5 sm:grid-cols-2"><Field label="Name" value={app.motherName}/><Field label="Status" value={app.motherIsAlive ? "Alive" : "Deceased"}/><Field label="NID number" value={app.motherNidNumber}/><Field label="Contact number" value={app.motherContactNumber}/><Field label="Occupation" value={app.motherOccupation}/><Field label="Nationality" value={app.motherNationality}/></dl></section>
+
+      <section className="mt-8 border-t border-border pt-6"><h2 className="font-medium text-ink">Additional guardians</h2>{app.guardians.length ? <div className="mt-4 space-y-4">{app.guardians.map((g) => <div key={g.id} className="rounded-md border border-border p-4"><dl className="grid gap-4 sm:grid-cols-2"><Field label="Name" value={g.name}/><Field label="Relationship" value={g.relationship}/><Field label="NID number" value={g.nidNumber}/><Field label="Contact number" value={g.contactNumber}/><Field label="Occupation" value={g.occupation}/><Field label="Nationality" value={g.nationality}/><Field label="Status" value={g.isAlive ? "Alive" : "Deceased"}/></dl></div>)}</div> : <p className="mt-2 text-sm text-ink-muted">No additional guardians.</p>}</section>
+
+      <section className="mt-8 border-t border-border pt-6"><h2 className="font-medium text-ink">Addresses</h2><dl className="mt-4 grid gap-5"><Field label="Present address" value={app.presentAddress}/><Field label="Permanent address" value={app.permanentAddress}/></dl></section>
+    </article>
   );
 }

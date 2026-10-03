@@ -28,10 +28,16 @@ export async function middleware(request: NextRequest) {
       loginUrl.pathname = "/admin/login";
       return NextResponse.redirect(loginUrl);
     }
-    // This is the coarse, edge-level gate: "is there a session at all".
-    // Role-specific enforcement (ADMIN vs ADMISSION_OFFICER) happens in
-    // requireAdmin()/requireOfficer() (src/lib/session.ts) — see that
-    // file's comment for why both layers exist.
+    // The admin workspace is intentionally admissions-only for this phase.
+    // Other CMS sections remain in the repository for later phases but are
+    // not reachable from the rebuilt admin workspace yet.
+    if (pathname.startsWith("/admin/") && !pathname.startsWith("/admin/login") && !pathname.startsWith("/admin/accept-invite") && !pathname.startsWith("/admin/admissions")) {
+      const adminUrl = request.nextUrl.clone();
+      adminUrl.pathname = "/admin/admissions";
+      adminUrl.search = "";
+      return NextResponse.redirect(adminUrl);
+    }
+
     return NextResponse.next();
   }
 

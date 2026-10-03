@@ -28,6 +28,7 @@ export default async function OfficerApplicationPage({
     include: {
       cycle: { select: { nameEn: true } },
       assignedOfficer: { select: { id: true, name: true, email: true } },
+      guardians: true,
       reviews: {
         orderBy: { createdAt: "desc" },
         include: { officer: { select: { name: true, email: true } } }

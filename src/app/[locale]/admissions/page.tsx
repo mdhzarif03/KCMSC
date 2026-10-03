@@ -40,12 +40,6 @@ export default async function AdmissionsPage({ params }: { params: { locale: str
                 {page.applyCta}
               </Link>
             ) : null}
-            <Link
-              href={`/${locale}/admissions/track`}
-              className="rounded-full border border-border px-5 py-2.5 text-sm font-medium text-ink hover:bg-white"
-            >
-              {page.trackCta}
-            </Link>
           </div>
         </div>
 

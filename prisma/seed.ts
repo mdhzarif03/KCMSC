@@ -204,7 +204,6 @@ async function seedContent() {
       data: {
         nameEn: `Admission ${now.getFullYear()}`,
         nameBn: `ভর্তি ${now.getFullYear()}`,
-        isActive: false,
         opensAt: now,
         closesAt
       }

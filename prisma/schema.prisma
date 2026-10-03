@@ -172,51 +172,72 @@ model AdmissionCycle {
   id           String   @id @default(cuid())
   nameEn       String
   nameBn       String
-  isActive     Boolean  @default(false)
   opensAt      DateTime
   closesAt     DateTime
   applications AdmissionApplication[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
 
-// Reference number is what the public tracker (brief §19) looks up —
-// deliberately separate from the internal cuid so it can be a
-// human-shareable, non-guessable code without exposing DB internals.
 model AdmissionApplication {
-  id            String            @id @default(cuid())
-  referenceCode String            @unique
-  cycleId       String
-  cycle         AdmissionCycle    @relation(fields: [cycleId], references: [id])
-  status        ApplicationStatus @default(UNASSIGNED)
+  id                    String            @id @default(cuid())
+  cycleId               String
+  cycle                 AdmissionCycle    @relation(fields: [cycleId], references: [id])
+  status                ApplicationStatus @default(UNASSIGNED)
 
-  // Applicant information
-  applicantName        String
-  dateOfBirth          DateTime
-  gender               String
-  applyingClass        String
-  previousInstitution  String?
+  // Student information
+  fullName              String
+  dateOfBirth           DateTime
+  gender                String
+  nationality           String
+  medium                String
+  applyingClass         String
+  previousInstitution   String
+  birthRegistrationNo   String
+  certificateData       Bytes?
+  certificateName       String?
+  certificateMimeType   String?
 
-  // Guardian information
-  guardianName         String
-  guardianRelationship String
-  guardianPhone        String
-  guardianEmail        String?
+  // Father
+  fatherName            String
+  fatherNidNumber       String
+  fatherContactNumber   String
+  fatherOccupation      String
+  fatherNationality     String
+  fatherIsAlive         Boolean
 
-  // Address
-  presentAddress   String
-  permanentAddress String
+  // Mother
+  motherName            String
+  motherNidNumber       String
+  motherContactNumber   String
+  motherOccupation      String
+  motherNationality     String
+  motherIsAlive         Boolean
 
-  // Supporting information — a simple acknowledgement checkbox for now;
-  // actual document upload needs blob storage, not yet wired up (see README).
-  declarationAccepted Boolean @default(false)
+  presentAddress        String
+  permanentAddress      String
 
-  // Detached, never deleted, if the assigned officer's account is
-  // removed — see brief §21 and §43 on data retention.
-  assignedOfficerId String?
-  assignedOfficer   User?   @relation("AssignedOfficer", fields: [assignedOfficerId], references: [id], onDelete: SetNull)
+  assignedOfficerId     String?
+  assignedOfficer       User?             @relation("AssignedOfficer", fields: [assignedOfficerId], references: [id], onDelete: SetNull)
 
-  reviews   AdmissionReview[]
-  createdAt DateTime          @default(now())
-  updatedAt DateTime          @updatedAt
+  guardians             AdmissionGuardian[]
+  reviews               AdmissionReview[]
+  createdAt             DateTime          @default(now())
+  updatedAt             DateTime          @updatedAt
+}
+
+model AdmissionGuardian {
+  id              String              @id @default(cuid())
+  applicationId   String
+  application     AdmissionApplication @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  name            String
+  relationship    String
+  nidNumber       String
+  contactNumber   String
+  occupation      String
+  nationality     String
+  isAlive         Boolean
+  createdAt       DateTime            @default(now())
 }
 
 // Internal notes are kept separate from anything applicant-facing —
