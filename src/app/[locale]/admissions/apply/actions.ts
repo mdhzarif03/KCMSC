@@ -113,7 +113,8 @@ export async function createApplicationAction(locale: Locale, cycleId: string, f
   if (parsed.data.fatherIsAlive && !phonePattern.test(parsed.data.fatherContactNumber)) invalid(locale, cycleId);
   if (parsed.data.motherIsAlive && !phonePattern.test(parsed.data.motherContactNumber)) invalid(locale, cycleId);
 
-  if (!['application/pdf', 'image/jpeg', 'image/png'].includes(certificate.type)) invalid(locale, cycleId);
+  const allowedCertificateTypes = new Set(['application/pdf', 'image/jpeg', 'image/png']);
+  if (!allowedCertificateTypes.has(certificate.type)) invalid(locale, cycleId);
 
   const data = parsed.data;
   const buffer = Buffer.from(await certificate.arrayBuffer());

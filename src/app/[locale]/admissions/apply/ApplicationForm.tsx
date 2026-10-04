@@ -981,7 +981,7 @@ function PhoneField({
         placeholder={PHONE_PLACEHOLDER}
         onChange={(e) => onChange(formatBangladeshPhone(e.target.value))}
         onBlur={(e) => onChange(formatBangladeshPhone(e.target.value))}
-        className="mt-2 h-12 w-full rounded-xl border border-[#d8ded8] bg-white px-4 text-[14px] text-[var(--kc-ink)] shadow-[0_1px_2px_rgba(15,23,42,0.03)] outline-none transition duration-200 placeholder:text-[#a2aaa4] hover:border-[#c4ccc5] focus:border-[var(--kc-green)] focus:ring-4 focus:ring-[var(--kc-green)]/10"
+        className="mt-2 h-12 w-full rounded-xl border border-[var(--kc-line)] bg-[var(--kc-paper)] px-4 text-[14px] text-[var(--kc-ink)] shadow-[0_1px_2px_rgba(15,23,42,0.03)] outline-none transition duration-200 placeholder:text-[#a2aaa4] hover:border-[#c4ccc5] focus:border-[var(--kc-green)] focus:ring-4 focus:ring-[var(--kc-green)]/10"
       />
     </div>
   );
@@ -1043,7 +1043,7 @@ function Field({
         maxLength={maxLength}
         pattern={pattern}
         onChange={(e) => onChange(e.target.value)}
-        className="mt-2 h-12 w-full rounded-xl border border-[#d8ded8] bg-white px-4 text-[14px] text-[var(--kc-ink)] shadow-[0_1px_2px_rgba(15,23,42,0.03)] outline-none transition duration-200 placeholder:text-[#a2aaa4] hover:border-[#c4ccc5] focus:border-[var(--kc-green)] focus:ring-4 focus:ring-[var(--kc-green)]/10"
+        className="mt-2 h-12 w-full rounded-xl border border-[var(--kc-line)] bg-[var(--kc-paper)] px-4 text-[14px] text-[var(--kc-ink)] shadow-[0_1px_2px_rgba(15,23,42,0.03)] outline-none transition duration-200 placeholder:text-[#a2aaa4] hover:border-[#c4ccc5] focus:border-[var(--kc-green)] focus:ring-4 focus:ring-[var(--kc-green)]/10"
       />
     </div>
   );
@@ -1182,7 +1182,7 @@ function SelectField({
       </button>
 
       {open ? (
-        <div className="absolute left-0 right-0 z-50 mt-1 overflow-hidden rounded-xl border border-[#e2e6e2] bg-white shadow-[0_14px_40px_rgba(25,45,34,0.12)]">
+        <div className="absolute left-0 right-0 z-50 mt-1 overflow-hidden rounded-xl border border-[var(--kc-line)] bg-[var(--kc-paper)] shadow-[0_14px_40px_rgba(25,45,34,0.12)]">
           <div className="border-b border-[var(--kc-line)] bg-[var(--kc-soft)] p-2">
             <div className="relative">
               <svg
@@ -1216,7 +1216,7 @@ function SelectField({
                 onChange={(e) => setSearch(e.target.value)}
                 onClick={(e) => e.stopPropagation()}
                 placeholder={`Search ${label.toLowerCase()}...`}
-                className="h-10 w-full rounded-none rounded-xl border border-[#e2e6e2] bg-white pl-9 pr-3 text-sm text-[var(--kc-ink)] outline-none placeholder:text-[#9b9f99] focus:border-[var(--kc-green)] focus:ring-1 focus:ring-[var(--kc-green)]/20"
+                className="h-10 w-full rounded-none rounded-xl border border-[var(--kc-line)] bg-[var(--kc-paper)] pl-9 pr-3 text-sm text-[var(--kc-ink)] outline-none placeholder:text-[#9b9f99] focus:border-[var(--kc-green)] focus:ring-1 focus:ring-[var(--kc-green)]/20"
               />
             </div>
           </div>
@@ -1748,7 +1748,7 @@ export function ApplicationForm({
       <nav
         id="application-progress"
         aria-label="Application progress"
-        className="mb-8 rounded-2xl border border-[#dfe5df] bg-white p-5 shadow-[0_10px_30px_rgba(15,23,42,0.055)] sm:p-6"
+        className="mb-8 rounded-2xl border border-[var(--kc-line)] bg-white p-5 shadow-none sm:p-6"
       >
         <div className="mb-4 flex items-end justify-between gap-4">
           <div>
@@ -1788,7 +1788,7 @@ export function ApplicationForm({
                 disabled={index > step}
                 className={`flex w-full items-center gap-3 rounded-xl border px-3.5 py-3.5 text-left transition duration-200 ${
                   index === step
-                    ? "border-[var(--kc-green)] bg-[var(--kc-green)] text-white shadow-[0_6px_16px_rgba(23,107,69,0.16)]"
+                    ? "border-[var(--kc-green)] bg-[var(--kc-green)] text-white shadow-none"
                     : index < step
                       ? "border-[#dce3dd] bg-[#f8faf8] text-[var(--kc-green-dark)] hover:border-[var(--kc-green)] hover:bg-[#f1f7f2]"
                       : "border-[#e3e7e3] bg-[#fafbfa] text-[var(--kc-muted)]"
@@ -1813,16 +1813,16 @@ export function ApplicationForm({
       {error ? (
         <p
           role="alert"
-          className="mb-6 flex items-start gap-3 rounded-xl border border-[#edc7c1] bg-[#fff8f6] px-4 py-3.5 text-sm leading-6 text-[#8c3c32] shadow-[0_4px_14px_rgba(167,71,59,0.05)]"
+          className="mb-6 flex items-start gap-3 rounded-xl border border-[#edc7c1] bg-[#fff8f6] px-4 py-3.5 text-sm leading-6 text-[#8c3c32] shadow-none"
         >
           {error}
         </p>
       ) : null}
 
-      <fieldset className="overflow-hidden rounded-2xl border border-[#dfe5df] bg-white shadow-[0_16px_42px_rgba(15,23,42,0.065)]">
+      <fieldset className="overflow-hidden rounded-2xl border border-[var(--kc-line)] bg-[var(--kc-paper)] shadow-none">
         <div className="border-b border-[#e8ece8] bg-gradient-to-r from-[#f7faf7] to-white px-6 py-7 sm:px-8">
           <div className="flex items-start gap-4">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[var(--kc-green)] text-[11px] font-bold text-white shadow-sm">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[var(--kc-green)] text-[11px] font-bold text-white shadow-none">
               {steps[step]?.number}
             </div>
             <div className="min-w-0">
@@ -1852,7 +1852,7 @@ export function ApplicationForm({
             <div className="mt-8 space-y-8">
               {/* STUDENT INFORMATION */}
 
-              <section className="rounded-2xl border border-[#e0e5e0] bg-[#fbfcfa] p-5 shadow-[0_5px_18px_rgba(15,23,42,0.035)] sm:p-6">
+              <section className="rounded-2xl border border-[var(--kc-line)] bg-[var(--kc-paper)] p-5 shadow-none sm:p-6">
                 <h2 className="font-heading text-[25px] font-medium tracking-[-0.02em] text-[var(--kc-green-dark)]">
                   Student Information
                 </h2>
@@ -1880,7 +1880,7 @@ export function ApplicationForm({
                         readOnly
                         aria-label="Calculated age"
                         placeholder="Auto Calculated"
-                        className="mt-2 h-12 w-full rounded-xl border border-[#e0e5e0] bg-[#f4f6f3] px-4 text-[14px] text-[var(--kc-muted)] outline-none"
+                        className="mt-2 h-12 w-full rounded-xl border border-[var(--kc-line)] bg-[var(--kc-soft)] px-4 text-[14px] text-[var(--kc-muted)] outline-none"
                       />
                     </div>
                   </div>
@@ -2001,7 +2001,7 @@ export function ApplicationForm({
 
                       <input
                         type="file"
-                        accept="application/pdf,image/jpeg,image/png"
+                        accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png"
                         required={!certificate}
                         onChange={(e) =>
                           setCertificate(e.target.files?.[0] ?? null)
@@ -2031,7 +2031,7 @@ export function ApplicationForm({
                 </p>
               </div>
 
-              <section className="rounded-2xl border border-[#e0e5e0] bg-[#fbfcfa] p-5 shadow-[0_5px_18px_rgba(15,23,42,0.035)] sm:p-6">
+              <section className="rounded-2xl border border-[var(--kc-line)] bg-[var(--kc-paper)] p-5 shadow-none sm:p-6">
                 <div className="flex items-start justify-between gap-4 border-b border-[var(--kc-line)] pb-4">
                   <div>
                     <p className="font-heading text-[20px] font-medium tracking-[-0.015em] text-[var(--kc-green-dark)]">
@@ -2091,7 +2091,7 @@ export function ApplicationForm({
                 </div>
               </section>
 
-              <section className="rounded-2xl border border-[#e0e5e0] bg-[#fbfcfa] p-5 shadow-[0_5px_18px_rgba(15,23,42,0.035)] sm:p-6">
+              <section className="rounded-2xl border border-[var(--kc-line)] bg-[var(--kc-paper)] p-5 shadow-none sm:p-6">
                 <div className="flex items-start justify-between gap-4 border-b border-[var(--kc-line)] pb-4">
                   <div>
                     <p className="font-heading text-[20px] font-medium tracking-[-0.015em] text-[var(--kc-green-dark)]">
@@ -2172,7 +2172,7 @@ export function ApplicationForm({
                     {guardians.map((guardian, index) => (
                       <section
                         key={index}
-                        className="rounded-2xl border border-[#e0e5e0] bg-[#fbfcfa] p-5 shadow-[0_5px_18px_rgba(15,23,42,0.035)] sm:p-6"
+                        className="rounded-2xl border border-[var(--kc-line)] bg-[var(--kc-paper)] p-5 shadow-none sm:p-6"
                       >
                         <div className="flex items-center justify-between gap-4 border-b border-[var(--kc-line)] pb-4">
                           <div>
@@ -2276,7 +2276,7 @@ export function ApplicationForm({
                   onClick={() =>
                     setGuardians((items) => [...items, emptyGuardian()])
                   }
-                  className="mt-6 inline-flex h-11 items-center justify-center rounded-xl border border-[var(--kc-green)] bg-white px-5 text-[13px] font-semibold text-[var(--kc-green-dark)] shadow-sm transition hover:bg-[#f0f7f2] hover:shadow-md"
+                  className="mt-6 inline-flex h-11 items-center justify-center rounded-xl border border-[var(--kc-green)] bg-white px-5 text-[13px] font-semibold text-[var(--kc-green-dark)] shadow-none transition hover:bg-[#f0f7f2] hover:shadow-none"
                 >
                   + Add another guardian
                 </button>
@@ -2301,7 +2301,7 @@ export function ApplicationForm({
                 </p>
               </div>
 
-              <section className="rounded-2xl border border-[#e0e5e0] bg-[#fbfcfa] p-5 shadow-[0_5px_18px_rgba(15,23,42,0.035)] sm:p-6">
+              <section className="rounded-2xl border border-[var(--kc-line)] bg-[var(--kc-paper)] p-5 shadow-none sm:p-6">
                 <div className="flex items-start gap-4">
                   <div className="flex h-9 w-9 shrink-0 items-center justify-center border border-[var(--kc-line)] text-sm font-semibold text-[var(--kc-green-dark)]">
                     01
@@ -2325,7 +2325,7 @@ export function ApplicationForm({
                   }}
                   rows={6}
                   placeholder="House / Holding No., Road, Area, Thana, District, Division, Postal Code"
-                  className="mt-6 w-full resize-y rounded-xl border border-[#d8ded8] bg-white px-4 py-3.5 text-[14px] leading-6 shadow-[0_1px_2px_rgba(15,23,42,0.03)] outline-none transition duration-200 placeholder:text-[#a2aaa4] hover:border-[#c4ccc5] focus:border-[var(--kc-green)] focus:ring-4 focus:ring-[var(--kc-green)]/10"
+                  className="mt-6 w-full resize-y rounded-xl border border-[var(--kc-line)] bg-[var(--kc-paper)] px-4 py-3.5 text-[14px] leading-6 shadow-[0_1px_2px_rgba(15,23,42,0.03)] outline-none transition duration-200 placeholder:text-[#a2aaa4] hover:border-[#c4ccc5] focus:border-[var(--kc-green)] focus:ring-4 focus:ring-[var(--kc-green)]/10"
                 />
                 <p className="mt-2 text-xs text-[var(--kc-muted)]">
                   Please provide enough detail for official correspondence and
@@ -2333,7 +2333,7 @@ export function ApplicationForm({
                 </p>
               </section>
 
-              <section className="rounded-2xl border border-[#e0e5e0] bg-[#fbfcfa] p-5 shadow-[0_5px_18px_rgba(15,23,42,0.035)] sm:p-6">
+              <section className="rounded-2xl border border-[var(--kc-line)] bg-[var(--kc-paper)] p-5 shadow-none sm:p-6">
                 <div className="flex items-start gap-4">
                   <div className="flex h-9 w-9 shrink-0 items-center justify-center border border-[var(--kc-line)] text-sm font-semibold text-[var(--kc-green-dark)]">
                     02
@@ -2369,7 +2369,7 @@ export function ApplicationForm({
                   disabled={sameAddress}
                   rows={6}
                   placeholder="House / Holding No., Road, Area, Thana, District, Division, Postal Code"
-                  className="mt-5 w-full resize-y rounded-xl border border-[#e2e6e2] bg-white px-4 py-3 text-sm leading-6 outline-none transition placeholder:text-[#9b9f99] focus:border-[var(--kc-green)] focus:ring-1 focus:ring-[var(--kc-green)]/20 disabled:cursor-not-allowed disabled:bg-[var(--kc-soft)] disabled:text-[var(--kc-muted)]"
+                  className="mt-5 w-full resize-y rounded-xl border border-[var(--kc-line)] bg-[var(--kc-paper)] px-4 py-3 text-sm leading-6 outline-none transition placeholder:text-[#9b9f99] focus:border-[var(--kc-green)] focus:ring-1 focus:ring-[var(--kc-green)]/20 disabled:cursor-not-allowed disabled:bg-[var(--kc-soft)] disabled:text-[var(--kc-muted)]"
                 />
                 <p className="mt-2 text-xs text-[var(--kc-muted)]">
                   Use the full address as it should appear on school records.
@@ -2384,7 +2384,7 @@ export function ApplicationForm({
 
           {step === 3 ? (
             <div className="mt-8 space-y-7">
-              <section className="rounded-xl border border-[#e2e6e2] bg-white p-6 sm:p-8">
+              <section className="rounded-xl border border-[var(--kc-line)] bg-[var(--kc-paper)] p-6 sm:p-8">
                 <div className="flex items-start gap-4 border-b border-[var(--kc-line)] pb-5">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-[var(--kc-green)] text-sm font-semibold text-[var(--kc-green-dark)]">
                     04
@@ -2427,7 +2427,7 @@ export function ApplicationForm({
                   </div>
                 </div>
 
-                <div className="mt-7 rounded-2xl border border-[#e0e5e0] bg-[#fbfcfa] shadow-[0_5px_18px_rgba(15,23,42,0.035)] p-5 sm:p-6">
+                <div className="mt-7 rounded-2xl border border-[var(--kc-line)] bg-[var(--kc-paper)] shadow-none p-5 sm:p-6">
                   <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--kc-muted)]">
                     Declaration &amp; Confirmation
                   </p>
@@ -2482,7 +2482,7 @@ export function ApplicationForm({
 
               setStep((current) => current - 1);
             }}
-            className="inline-flex h-11 items-center justify-center rounded-xl border border-[#d7ddd7] bg-white px-5 text-[13px] font-semibold text-[var(--kc-ink)] shadow-sm transition hover:border-[#bcc5bd] hover:bg-[#f8faf8]"
+            className="inline-flex h-11 items-center justify-center rounded-xl border border-[#d7ddd7] bg-white px-5 text-[13px] font-semibold text-[var(--kc-ink)] shadow-none transition hover:border-[#bcc5bd] hover:bg-[#f8faf8]"
           >
             ← Back
           </button>
@@ -2499,7 +2499,7 @@ export function ApplicationForm({
                 setStep((current) => current + 1);
               }
             }}
-            className="inline-flex h-11 min-w-[130px] items-center justify-center rounded-xl bg-[var(--kc-green)] px-6 text-[13px] font-semibold text-white shadow-[0_8px_18px_rgba(23,107,69,0.18)] transition hover:bg-[var(--kc-green-dark)]"
+            className="inline-flex h-11 min-w-[130px] items-center justify-center rounded-xl bg-[var(--kc-green)] px-6 text-[13px] font-semibold text-white shadow-none transition hover:bg-[var(--kc-green-dark)]"
           >
             Continue{" "}
             <span aria-hidden="true" className="ml-2">
@@ -2510,7 +2510,7 @@ export function ApplicationForm({
           <button
             type="submit"
             disabled={pending || !declarationAccepted}
-            className="inline-flex h-11 min-w-[150px] items-center justify-center rounded-xl bg-[var(--kc-green)] px-6 text-[13px] font-semibold text-white shadow-[0_8px_18px_rgba(23,107,69,0.18)] transition hover:bg-[var(--kc-green-dark)] disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none"
+            className="inline-flex h-11 min-w-[150px] items-center justify-center rounded-xl bg-[var(--kc-green)] px-6 text-[13px] font-semibold text-white shadow-none transition hover:bg-[var(--kc-green-dark)] disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none"
           >
             {pending ? submittingLabel : submitLabel}{" "}
             <span aria-hidden="true" className="ml-2">
