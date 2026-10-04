@@ -64,8 +64,8 @@ export function Footer({ locale }: { locale: Locale }) {
     {
       title: locale === "bn" ? "ক্যাম্পাস" : "CAMPUS",
       links: [
-        [locale === "bn" ? "শিক্ষার্থী জীবন" : "Student life", "student-life"],
-        [locale === "bn" ? "সুবিধাসমূহ" : "Facilities", "facilities"],
+        [locale === "bn" ? "শিক্ষাজীবন" : "Student life", "student-life"],
+        [locale === "bn" ? "সুযোগ-সুবিধা" : "Facilities", "facilities"],
       ] as const,
     },
     {

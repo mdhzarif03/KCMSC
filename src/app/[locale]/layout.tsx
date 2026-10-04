@@ -3,6 +3,19 @@ import { isLocale, defaultLocale, getDictionary, type Locale } from "@/i18n/conf
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { notFound } from "next/navigation";
+import { Noto_Sans_Bengali, Noto_Serif_Bengali } from "next/font/google";
+
+const banglaSans = Noto_Sans_Bengali({
+  subsets: ["bengali"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-bangla"
+});
+
+const banglaSerif = Noto_Serif_Bengali({
+  subsets: ["bengali"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-bangla-heading"
+});
 
 export function generateStaticParams() {
   return [{ locale: "en" }, { locale: "bn" }];
@@ -34,7 +47,7 @@ export default function LocaleLayout({
   return (
     <div
       lang={locale}
-      className={locale === "bn" ? "font-bangla" : "font-sans"}
+      className={locale === "bn" ? `font-bangla ${banglaSans.variable} ${banglaSerif.variable}` : "font-sans"}
     >
       <Navbar locale={locale} />
       <main>{children}</main>

@@ -51,7 +51,7 @@ export default function ContactPage({ params }: { params: { locale: string } }) 
           <div className="rounded-lg border border-border bg-surface p-6">
             <p className="text-sm text-ink-muted">
               {locale === "bn"
-                ? "উত্তরার নিকটে দক্ষিণখানে অবস্থিত ক্যাম্পাসটি গুগল ম্যাপে দেখুন।"
+                ? "উত্তরার নিকটে দক্ষিণখানে অবস্থিত ক্যাম্পাসটির অবস্থান গুগল ম্যাপে দেখুন।"
                 : "See the campus location — near Uttara, Dakshinkhan — on Google Maps."}
             </p>
             <a

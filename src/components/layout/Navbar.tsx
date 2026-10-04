@@ -16,7 +16,7 @@ export function Navbar({ locale }: { locale: Locale }) {
   const main: Item[] = [
     { href: "about", label: text("About", "পরিচিতি") },
     { href: "academics", label: text("Academics", "একাডেমিক") },
-    { href: "student-life", label: text("Student life", "শিক্ষার্থী জীবন") },
+    { href: "student-life", label: text("Student life", "শিক্ষাজীবন") },
     { href: "facilities", label: text("Campus", "ক্যাম্পাস") },
   ];
 
@@ -24,7 +24,7 @@ export function Navbar({ locale }: { locale: Locale }) {
     { href: "achievements", label: text("Results", "ফলাফল") },
     { href: "clubs", label: text("Clubs", "ক্লাব") },
     { href: "notices", label: text("Notices", "নোটিশ") },
-    { href: "careers", label: text("Careers", "ক্যারিয়ার") },
+    { href: "careers", label: text("Careers", "ক্যারিয়ার") },
     { href: "contact", label: text("Contact", "যোগাযোগ") },
   ];
 
@@ -136,7 +136,7 @@ export function Navbar({ locale }: { locale: Locale }) {
 
             <div className="mt-7">
               <p className="kc-classic-kicker">
-                {text("More from KCMSC", "KCMSC থেকে আরও")}
+                {text("More from KCMSC", "KCMSC সম্পর্কে আরও")}
               </p>
 
               <div className="mt-3 divide-y divide-[#d9d8cf] border-y border-[#d9d8cf]">
