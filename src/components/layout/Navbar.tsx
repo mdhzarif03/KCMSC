@@ -62,11 +62,11 @@ export function Navbar({ locale }: { locale: Locale }) {
 
             <span>
               <span className="block font-heading text-[17px] font-normal leading-none text-[#124c36]">
-                K C Model School
+                K C Model School & College
               </span>
-              <span className="mt-1 block text-[7px] font-normal uppercase tracking-[.2em] text-[#858b84]">
+              {/* <span className="mt-1 block text-[7px] font-normal uppercase tracking-[.2em] text-[#858b84]">
                 & College
-              </span>
+              </span> */}
             </span>
           </Link>
 
