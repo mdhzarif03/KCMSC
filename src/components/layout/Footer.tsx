@@ -168,7 +168,7 @@ export function Footer({ locale }: { locale: Locale }) {
                   {group.title ===
                     (locale === "bn" ? "তথ্য" : "INFORMATION") && (
                     <Link
-                      href="/admin"
+                      href="/admin/login"
                       className="
     block
     text-[12px]

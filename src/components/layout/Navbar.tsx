@@ -58,7 +58,7 @@ export function Navbar({ locale }: { locale: Locale }) {
 
           <div className="ml-4 flex items-center gap-2">
             <LanguageSwitcher current={locale} />
-            <Link href={`/${locale}/admissions/apply`} className="hidden rounded-full border border-[#176b45] px-4 py-2 text-[10px] font-medium uppercase tracking-[.08em] text-[#176b45] transition hover:bg-[#176b45] hover:text-white sm:inline-flex">
+            <Link href={`/${locale}/admissions`} className="hidden rounded-full border border-[#176b45] px-4 py-2 text-[10px] font-medium uppercase tracking-[.08em] text-[#176b45] transition hover:bg-[#176b45] hover:text-white sm:inline-flex">
               {locale === "bn" ? "ভর্তি" : dict.nav.admissions}
             </Link>
             <button type="button" aria-expanded={open} aria-controls="site-menu" onClick={() => setOpen((value) => !value)} className="rounded-full border border-[#d9d8cf] px-4 py-2 text-[10px] font-medium uppercase tracking-[.08em] text-[#3f4741] transition hover:border-[#176b45] hover:text-[#176b45]">
@@ -93,7 +93,7 @@ export function Navbar({ locale }: { locale: Locale }) {
 
             <div className="mt-8 rounded-xl border border-[#d9d8cf] bg-[#fffdf8] p-5">
               <p className="text-sm leading-6 text-[#69716b]">{text("Find admission information, school notices and contact details in one place.", "ভর্তি, নোটিশ ও যোগাযোগের তথ্য এক জায়গায় দেখুন।")}</p>
-              <Link href={`/${locale}/admissions/apply`} onClick={() => setOpen(false)} className="kc-classic-link mt-5">{locale === "bn" ? "ভর্তি তথ্য" : "Admission information"}<span>↗</span></Link>
+              <Link href={`/${locale}/admissions`} onClick={() => setOpen(false)} className="kc-classic-link mt-5">{locale === "bn" ? "ভর্তি তথ্য" : "Admission information"}<span>↗</span></Link>
             </div>
           </div>
         </div>
