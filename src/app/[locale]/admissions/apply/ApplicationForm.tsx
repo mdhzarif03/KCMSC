@@ -1737,42 +1737,8 @@ export function ApplicationForm({
       data.set("certificate", certificate);
     }
 
-    // Submit to the server FIRST. The PDF is only generated after the
-    // submission action has been invoked successfully, so downloading the
-    // document cannot replace or interfere with the actual application
-    // submission.
     startTransition(() => {
-      try {
-        const result = action(data);
-
-        if (result && typeof result.then === "function") {
-          void result
-            .then(() => {
-              downloadAdmissionPdf(
-                form,
-                fatherAlive,
-                motherAlive,
-                guardians,
-                certificate,
-              );
-            })
-            .catch(() => {
-              setError(
-                "The application could not be submitted. Please try again.",
-              );
-            });
-        } else {
-          downloadAdmissionPdf(
-            form,
-            fatherAlive,
-            motherAlive,
-            guardians,
-            certificate,
-          );
-        }
-      } catch {
-        setError("The application could not be submitted. Please try again.");
-      }
+      void action(data);
     });
   };
 

@@ -5,3 +5,7 @@ out/
 .env*.local
 *.tsbuildinfo
 .DS_Store
+
+# Uploaded admission certificates
+storage/admissions/*
+!storage/admissions/.gitkeep
