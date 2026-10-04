@@ -1600,21 +1600,27 @@ export function ApplicationForm({
   const stepValid = () => {
     setError("");
 
-    if (
-      step === 0 &&
-      (!form.fullName ||
-        !form.dateOfBirth ||
-        !form.gender ||
-        !form.nationality ||
-        !form.medium ||
-        !form.applyingClass ||
-        !/^\d{17}$/.test(form.birthRegistrationNo) ||
-        !certificate)
-    ) {
-      setError(
-        "Please complete every required student and birth registration field before continuing.",
-      );
-      return false;
+    if (step === 0) {
+      const missing: string[] = [];
+
+      if (!form.fullName.trim()) missing.push("Full Name");
+      if (!form.dateOfBirth) missing.push("Date of Birth");
+      if (!form.gender) missing.push("Gender");
+      if (!form.nationality) missing.push("Nationality");
+      if (!form.medium) missing.push("Medium");
+      if (!form.applyingClass) missing.push("Class Applying For");
+      if (!form.birthRegistrationNo) {
+        missing.push("Birth Registration No.");
+      } else if (!/^\d{17}$/.test(form.birthRegistrationNo)) {
+        setError("Birth Registration No. must contain exactly 17 digits.");
+        return false;
+      }
+      if (!certificate) missing.push("Birth Registration Certificate");
+
+      if (missing.length) {
+        setError(`Please complete: ${missing.join(", ")}.`);
+        return false;
+      }
     }
 
     if (step === 1) {
@@ -1629,55 +1635,60 @@ export function ApplicationForm({
         set("motherContactNumber", motherContact);
       }
 
-      const fatherInvalid =
-        !form.fatherName.trim() ||
-        !form.fatherNidNumber.trim() ||
-        (fatherAlive && !isValidBangladeshPhone(fatherContact)) ||
-        !form.fatherOccupation.trim() ||
-        !form.fatherNationality.trim();
+      const missing: string[] = [];
+      const invalid: string[] = [];
 
-      const motherInvalid =
-        !form.motherName.trim() ||
-        !form.motherNidNumber.trim() ||
-        (motherAlive && !isValidBangladeshPhone(motherContact)) ||
-        !form.motherOccupation.trim() ||
-        !form.motherNationality.trim();
+      if (!form.fatherName.trim()) missing.push("Father's Name");
+      if (!form.fatherNidNumber.trim()) missing.push("Father's NID Number");
+      if (fatherAlive && !fatherContact) missing.push("Father's Contact Number");
+      else if (fatherAlive && !isValidBangladeshPhone(fatherContact)) invalid.push("Father's Contact Number");
+      if (!form.fatherOccupation.trim()) missing.push("Father's Occupation");
+      if (!form.fatherNationality.trim()) missing.push("Father's Nationality");
 
-      const additionalGuardianInvalid = guardians.some((guardian) => {
+      if (!form.motherName.trim()) missing.push("Mother's Name");
+      if (!form.motherNidNumber.trim()) missing.push("Mother's NID Number");
+      if (motherAlive && !motherContact) missing.push("Mother's Contact Number");
+      else if (motherAlive && !isValidBangladeshPhone(motherContact)) invalid.push("Mother's Contact Number");
+      if (!form.motherOccupation.trim()) missing.push("Mother's Occupation");
+      if (!form.motherNationality.trim()) missing.push("Mother's Nationality");
+
+      guardians.forEach((guardian, index) => {
         const contact = formatBangladeshPhone(guardian.contactNumber);
+        const prefix = `Additional Guardian ${index + 1}`;
 
-        return (
-          !guardian.name.trim() ||
-          !guardian.relationship.trim() ||
-          !guardian.nidNumber.trim() ||
-          (guardian.isAlive && !isValidBangladeshPhone(contact)) ||
-          !guardian.occupation.trim() ||
-          !guardian.nationality.trim()
-        );
+        if (!guardian.name.trim()) missing.push(`${prefix} Name`);
+        if (!guardian.relationship.trim()) missing.push(`${prefix} Relationship`);
+        if (!guardian.nidNumber.trim()) missing.push(`${prefix} NID Number`);
+        if (guardian.isAlive && !contact) missing.push(`${prefix} Contact Number`);
+        else if (guardian.isAlive && !isValidBangladeshPhone(contact)) invalid.push(`${prefix} Contact Number`);
+        if (!guardian.occupation.trim()) missing.push(`${prefix} Occupation`);
+        if (!guardian.nationality.trim()) missing.push(`${prefix} Nationality`);
       });
 
-      if (fatherInvalid || motherInvalid || additionalGuardianInvalid) {
+      if (missing.length || invalid.length) {
+        const messages: string[] = [];
+        if (missing.length) messages.push(`Please complete: ${missing.join(", ")}.`);
+        if (invalid.length) messages.push(`Please correct: ${invalid.join(", ")}.`);
+        setError(messages.join(" "));
+        return false;
+      }
+    }
+
+    if (step === 2) {
+      const missing: string[] = [];
+      if (!form.presentAddress.trim()) missing.push("Present Address");
+      if (!sameAddress && !form.permanentAddress.trim()) missing.push("Permanent Address");
+
+      if (missing.length) {
         setError(
-          "Please complete all required father and mother fields. If you added an additional guardian, complete every field or remove that guardian.",
+          `Please complete: ${missing.join(", ")}. If the permanent address is the same as the present address, select the same-address option.`,
         );
         return false;
       }
     }
 
-    if (
-      step === 2 &&
-      (!form.presentAddress || (!sameAddress && !form.permanentAddress))
-    ) {
-      setError(
-        "Please complete both addresses before continuing, or confirm that the permanent address is the same as the present address.",
-      );
-      return false;
-    }
-
     if (step === 3 && !declarationAccepted) {
-      setError(
-        "Please confirm the declaration before submitting the application.",
-      );
+      setError("Please confirm the Declaration & Confirmation checkbox before submitting the application.");
       return false;
     }
 
