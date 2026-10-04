@@ -1088,7 +1088,7 @@ export function ApplicationForm({
                   value={age ? `${age} years` : ""}
                   readOnly
                   aria-label="Calculated age"
-                  placeholder="Calculated automatically"
+                  placeholder="Auto Calculated"
                   className="mt-2 h-11 w-full rounded-none border border-[var(--kc-line)] bg-[var(--kc-soft)] px-3.5 text-sm text-[var(--kc-muted)] outline-none"
                 />
               </div>
