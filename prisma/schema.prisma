@@ -119,6 +119,26 @@ model Facility {
   updatedAt   DateTime @updatedAt
 }
 
+
+model AlumniMessage {
+  id              String   @id @default(cuid())
+  nameEn          String
+  nameBn          String
+  messageEn       String
+  messageBn       String
+  graduationYear  Int?
+  roleEn          String?
+  roleBn          String?
+  organizationEn  String?
+  organizationBn  String?
+  photoUrl        String?
+  isFeatured      Boolean  @default(false)
+  isPublished     Boolean  @default(false)
+  sortOrder       Int      @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
 model Career {
   id           String    @id @default(cuid())
   titleEn      String

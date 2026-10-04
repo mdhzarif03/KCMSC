@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Locale } from "@/i18n/config";
+import type { AlumniMessage } from "@prisma/client";
 import { HeroSlideshow } from "./HeroSlideshow";
 
 const copy = {
@@ -46,6 +47,9 @@ const copy = {
     admissionBody: "Find admission information, notices and contact details in one place.",
     admissionLink: "Admissions",
     contactLink: "Contact",
+    alumniKicker: "ALUMNI",
+    alumniTitle: "A few words from former students.",
+    alumniLink: "Meet our alumni",
   },
   bn: {
     glance: "এক নজরে",
@@ -89,6 +93,9 @@ const copy = {
     admissionBody: "ভর্তি, নোটিশ ও যোগাযোগের তথ্য সহজে খুঁজে নিন।",
     admissionLink: "ভর্তি",
     contactLink: "যোগাযোগ",
+    alumniKicker: "প্রাক্তন শিক্ষার্থী",
+    alumniTitle: "প্রাক্তন শিক্ষার্থীদের কিছু কথা।",
+    alumniLink: "প্রাক্তন শিক্ষার্থীদের দেখুন",
   },
 } as const;
 
@@ -99,7 +106,7 @@ const images = {
   campus: "/kcmsc/media/IMG-20230807-WA0034.jpg",
 } as const;
 
-export function LandingExperience({ locale }: { locale: Locale }) {
+export function LandingExperience({ locale, alumni = [] }: { locale: Locale; alumni?: AlumniMessage[] }) {
   const t = copy[locale];
 
   const stats = [
@@ -210,6 +217,35 @@ export function LandingExperience({ locale }: { locale: Locale }) {
           </div>
         </div>
       </section>
+
+      {alumni.length > 0 && (
+        <section className="border-t border-[#d9d8cf] bg-[#fffdf8]">
+          <div className="mx-auto max-w-[1180px] px-5 py-14 sm:px-8 lg:px-10 lg:py-16">
+            <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+              <div className="max-w-2xl">
+                <p className="kc-classic-kicker">{t.alumniKicker}</p>
+                <h2 className="mt-3 font-heading text-[clamp(2.1rem,4vw,3.7rem)] font-normal leading-[1] tracking-[-.035em] text-[#124c36]">{t.alumniTitle}</h2>
+              </div>
+              <Link href={`/${locale}/alumni`} className="kc-classic-link">{t.alumniLink}<span>↗</span></Link>
+            </div>
+            <div className="mt-9 grid gap-0 border-y border-[#d9d8cf] md:grid-cols-3 md:divide-x md:divide-[#d9d8cf]">
+              {alumni.map((message) => {
+                const name = locale === "bn" ? message.nameBn : message.nameEn;
+                const quote = locale === "bn" ? message.messageBn : message.messageEn;
+                const role = locale === "bn" ? message.roleBn : message.roleEn;
+                return <article key={message.id} className="p-6 sm:p-7">
+                  <span className="font-heading text-4xl leading-none text-[#b59a4a]">“</span>
+                  <p className="mt-1 line-clamp-5 font-heading text-[19px] leading-[1.35] text-[#124c36]">{quote}</p>
+                  <div className="mt-6 border-t border-[#d9d8cf] pt-4">
+                    <p className="font-heading text-lg text-[#176b45]">{name}</p>
+                    <p className="mt-1 text-[11px] leading-5 text-[#69716b]">{[role, locale === "bn" ? message.organizationBn : message.organizationEn].filter(Boolean).join(" · ")}</p>
+                  </div>
+                </article>;
+              })}
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="border-t border-[#d9d8cf] bg-[#fffdf8]">
         <div className="mx-auto grid max-w-[1180px] gap-8 px-5 py-14 sm:px-8 sm:py-16 lg:grid-cols-[1fr_auto] lg:items-end lg:px-10">

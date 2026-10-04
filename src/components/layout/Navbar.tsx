@@ -23,6 +23,7 @@ export function Navbar({ locale }: { locale: Locale }) {
   const extra: Item[] = [
     { href: "achievements", label: text("Results", "ফলাফল") },
     { href: "clubs", label: text("Clubs", "ক্লাব") },
+    { href: "alumni", label: text("Alumni", "প্রাক্তন শিক্ষার্থী") },
     { href: "notices", label: text("Notices", "নোটিশ") },
     { href: "careers", label: text("Careers", "ক্যারিয়ার") },
     { href: "contact", label: text("Contact", "যোগাযোগ") },

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { FiChevronRight, FiClipboard, FiGrid, FiMenu, FiSettings, FiUsers, FiX } from "react-icons/fi";
+import { FiChevronRight, FiClipboard, FiGrid, FiMenu, FiSettings, FiUsers, FiX, FiMessageSquare } from "react-icons/fi";
 import { SignOutButton } from "./SignOutButton";
 
 const NAV_GROUPS = [
@@ -12,6 +12,7 @@ const NAV_GROUPS = [
     { href: "/admin/admissions", label: "Admissions", icon: FiClipboard },
     { href: "/admin/officers", label: "Admission Officers", icon: FiUsers },
   ] },
+  { label: "Content", items: [{ href: "/admin/alumni", label: "Alumni messages", icon: FiMessageSquare }] },
   { label: "Administration", items: [{ href: "/admin/administrators", label: "Administrators", icon: FiUsers }, { href: "/admin/settings", label: "My Account", icon: FiSettings }] },
 ];
 
