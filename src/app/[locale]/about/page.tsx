@@ -27,9 +27,9 @@ export default function AboutPage({ params }: { params: { locale: string } }) {
       <section className="border-b border-[#D9E2EC]">
         <div className="mx-auto grid max-w-[1440px] lg:grid-cols-[1.03fr_.97fr]">
           <div className="flex min-h-[420px] flex-col lg:min-h-[560px] justify-end px-6 pb-14 pt-20 sm:px-10 lg:px-16 lg:pb-20">
-            <span className="kc-classic-kicker">{bn ? "পরিচয় ও ঐতিহ্য" : "Our beginning"}</span>
+            <span className="kc-classic-kicker">{bn ? "আমাদের পরিচয়" : "Our beginning"}</span>
             <h1 className="mt-5 max-w-[760px] font-heading text-[clamp(2.5rem,6.5vw,6.8rem)] leading-[.88] tracking-[-.055em] text-[#12324A]">
-              {bn ? "একটি বিদ্যালয়ের গল্প, তার শিকড় থেকে।" : "The story of a school, from its roots."}
+              {bn ? "একটি বিদ্যালয়ের গল্প, শুরু থেকে আজ পর্যন্ত।" : "The story of a school, from its roots."}
             </h1>
             <p className="mt-8 max-w-[650px] text-[15px] leading-7 text-[#64748B] sm:text-[16px]">
               {dict.about.body}
@@ -59,12 +59,12 @@ export default function AboutPage({ params }: { params: { locale: string } }) {
         <div className="mx-auto max-w-[1240px] px-6 sm:px-10">
           <div className="grid gap-12 lg:grid-cols-[.7fr_1.3fr] lg:gap-20">
             <div>
-              <span className="kc-classic-kicker">{bn ? "যাত্রাপথ" : "A short history"}</span>
+              <span className="kc-classic-kicker">{bn ? "আমাদের পথচলা" : "A short history"}</span>
               <h2 className="mt-4 max-w-md font-heading text-4xl leading-[.98] tracking-[-.035em] text-[#12324A] sm:text-5xl">
-                {bn ? "সময়, স্থান ও একটি স্পষ্ট উদ্দেশ্য।" : "A beginning, a place and a clear purpose."}
+                {bn ? "একটি সময়, একটি স্থান, একটি লক্ষ্য।" : "A beginning, a place and a clear purpose."}
               </h2>
               <p className="mt-6 max-w-md text-sm leading-7 text-[#707770]">
-                {bn ? "KCMSC-এর পরিচয় তার প্রতিষ্ঠার গল্প, শিক্ষার্থীদের পরিসর এবং প্রতিদিনের শিক্ষা-জীবনের সঙ্গে গভীরভাবে যুক্ত।" : "KCMSC’s identity is tied to its founding, the students it serves, and the ordinary work of teaching and learning."}
+                {bn ? "কেসিএমএসসির পরিচয় তার প্রতিষ্ঠার ইতিহাস, শিক্ষার্থী এবং প্রতিদিনের শিক্ষা কার্যক্রমের সঙ্গে জড়িত।" : "KCMSC’s identity is tied to its founding, the students it serves, and the ordinary work of teaching and learning."}
               </p>
             </div>
             <div className="divide-y divide-[#D9E2EC] border-y border-[#D9E2EC]">
@@ -120,13 +120,13 @@ export default function AboutPage({ params }: { params: { locale: string } }) {
             <div className="flex flex-col justify-center p-8 sm:p-12 lg:p-16">
               <span className="kc-classic-kicker">{bn ? "মানুষ ও নেতৃত্ব" : "People behind the school"}</span>
               <h2 className="mt-5 font-heading text-4xl leading-[.98] tracking-[-.035em] text-[#12324A] sm:text-5xl">
-                {bn ? "একটি প্রতিষ্ঠানের পরিচয় তার মানুষদের মধ্যেও প্রতিফলিত হয়।" : "A school is shaped by the people who serve it."}
+                {bn ? "একটি প্রতিষ্ঠানের পরিচয় তার মানুষদের মধ্যেও ফুটে ওঠে।" : "A school is shaped by the people who serve it."}
               </h2>
               <p className="mt-6 text-sm leading-7 text-[#64748B]">
-                {bn ? "প্রতিষ্ঠাতা, প্রশাসন ও শিক্ষক নেতৃত্ব KCMSC-এর শিক্ষা-পরিবেশকে পরিচালনা করে।" : "The founders, administration and academic leadership form the people responsible for guiding KCMSC’s educational environment."}
+                {bn ? "প্রতিষ্ঠাতা, প্রশাসন ও শিক্ষক নেতৃত্ব কেসিএমএসসির শিক্ষা কার্যক্রমকে এগিয়ে নিয়ে যায়।" : "The founders, administration and academic leadership form the people responsible for guiding KCMSC’s educational environment."}
               </p>
               <div className="mt-8 border-t border-[#D9E2EC] pt-5 text-[10px] font-semibold uppercase tracking-[.13em] text-[#8a8d87]">
-                {bn ? "KCMSC · নেতৃত্ব ও সম্প্রদায়" : "KCMSC · leadership and community"}
+                {bn ? "কেসিএমএসসি · নেতৃত্ব ও কমিউনিটি" : "KCMSC · leadership and community"}
               </div>
             </div>
           </div>
@@ -139,9 +139,9 @@ export default function AboutPage({ params }: { params: { locale: string } }) {
           <div className="flex flex-col justify-between gap-6 border-b border-[#D9E2EC] pb-8 md:flex-row md:items-end">
             <div>
               <span className="kc-classic-kicker">{bn ? "নেতৃত্ব" : "Leadership"}</span>
-              <h2 className="mt-4 font-heading text-4xl tracking-[-.03em] text-[#12324A] sm:text-5xl">{bn ? "যাঁরা প্রতিষ্ঠানটি পরিচালনা করেন।" : "The people who lead the institution."}</h2>
+              <h2 className="mt-4 font-heading text-4xl tracking-[-.03em] text-[#12324A] sm:text-5xl">{bn ? "যাঁরা প্রতিষ্ঠানটির নেতৃত্ব দেন।" : "The people who lead the institution."}</h2>
             </div>
-            <p className="max-w-sm text-sm leading-6 text-[#727970]">{bn ? "প্রতিষ্ঠানের নেতৃত্বের প্রধান দায়িত্বগুলো।" : "The institution’s principal leadership roles."}</p>
+            <p className="max-w-sm text-sm leading-6 text-[#727970]">{bn ? "প্রতিষ্ঠানের নেতৃত্বের প্রধান দায়িত্বগুলো এক নজরে।" : "The institution’s principal leadership roles."}</p>
           </div>
 
           <div className="mt-2 divide-y divide-[#D9E2EC]">
@@ -185,11 +185,11 @@ export default function AboutPage({ params }: { params: { locale: string } }) {
           <div>
             <span className="kc-light-kicker">{bn ? "আরও জানুন" : "Continue exploring"}</span>
             <h2 className="mt-4 max-w-2xl font-heading text-4xl leading-[.98] tracking-[-.03em] sm:text-5xl">
-              {bn ? "KCMSC-কে তার শিক্ষা ও দৈনন্দিন কার্যক্রমের মাধ্যমে দেখুন।" : "See KCMSC through its teaching and everyday school life."}
+              {bn ? "শিক্ষা ও দৈনন্দিন কার্যক্রমের মাধ্যমে কেসিএমএসসিকে আরও কাছ থেকে দেখুন।" : "See KCMSC through its teaching and everyday school life."}
             </h2>
           </div>
           <div className="flex flex-wrap gap-3">
-            <Link href={`/${locale}/academics`} className="kc-classic-button kc-classic-button-light">{bn ? "একাডেমিক" : "Academics"}</Link>
+            <Link href={`/${locale}/academics`} className="kc-classic-button kc-classic-button-light">{bn ? "শিক্ষাব্যবস্থা" : "Academics"}</Link>
             <Link href={`/${locale}/student-life`} className="kc-classic-button kc-classic-button-ghost-light">{bn ? "শিক্ষাজীবন" : "Student life"}</Link>
           </div>
         </div>

@@ -66,18 +66,18 @@ export default async function ClubsPage({
   const copy = bn
     ? {
         eyebrow: "শিক্ষাজীবন",
-        title: "স্কুলের দিন শুধু শ্রেণিকক্ষেই শেষ হয় না।",
+        title: "স্কুলের দিন শুধু শ্রেণিকক্ষেই সীমাবদ্ধ নয়।",
         intro:
-          "কেসিএমএসসিতে খেলাধুলা, প্রযুক্তি, সংস্কৃতি, ভাষা ও সামাজিক কার্যক্রম শিক্ষার্থীদের দৈনন্দিন স্কুলজীবনেরই অংশ।",
+          "কেসিএমএসসিতে খেলাধুলা, প্রযুক্তি, সংস্কৃতি, ভাষা ও সামাজিক নানা কার্যক্রমে শিক্ষার্থীদের অংশ নেওয়ার সুযোগ রয়েছে।",
         explore: "কার্যক্রমগুলো দেখুন",
         clubsEyebrow: "ক্লাবসমূহ",
-        clubsTitle: "যেসব আগ্রহ স্কুলজীবনকে আরও সমৃদ্ধ করে।",
+        clubsTitle: "নিজের আগ্রহকে কাজে লাগানোর সুযোগ।",
         clubsIntro:
-          "কেসিএমএসসির ক্লাব ও সংগঠনগুলো শিক্ষার্থীদের বিভিন্ন আগ্রহে যুক্ত হওয়া ও অংশগ্রহণের সুযোগ দেয়।",
-        alumniEyebrow: "অ্যালামনাই",
-        alumniTitle: "স্কুলের সঙ্গে সম্পর্ক এখানেই শেষ হয় না।",
+          "কেসিএমএসসির বিভিন্ন ক্লাব ও সংগঠন শিক্ষার্থীদের নিজেদের আগ্রহ অনুযায়ী কাজ ও শেখার সুযোগ দেয়।",
+        alumniEyebrow: "প্রাক্তন শিক্ষার্থী",
+        alumniTitle: "স্কুলের সঙ্গে সম্পর্ক শেষ হয় না এখানেই।",
         alumniText:
-          "অ্যালামনাই অ্যাসোসিয়েশন পুনর্মিলনী, ক্যারিয়ার আলোচনা ও মেন্টরশিপের মাধ্যমে প্রাক্তন ও বর্তমান শিক্ষার্থীদের সংযুক্ত রাখে।",
+          "প্রাক্তন শিক্ষার্থী অ্যাসোসিয়েশন পুনর্মিলনী, ক্যারিয়ার আলোচনা ও মেন্টরশিপের মাধ্যমে প্রাক্তন ও বর্তমান শিক্ষার্থীদের সংযুক্ত রাখে।",
         contact: "কেসিএমএসসি সম্পর্কে জানুন",
       }
     : {
@@ -100,12 +100,12 @@ export default async function ClubsPage({
   const studentClubs = clubs.filter(
     (club) =>
       !club.name.toLowerCase().includes("alumni") &&
-      !club.name.includes("অ্যালামনাই"),
+      !club.name.includes("প্রাক্তন শিক্ষার্থী"),
   );
   const alumni = clubs.find(
     (club) =>
       club.name.toLowerCase().includes("alumni") ||
-      club.name.includes("অ্যালামনাই"),
+      club.name.includes("প্রাক্তন শিক্ষার্থী"),
   );
 
   return (
@@ -254,7 +254,7 @@ export default async function ClubsPage({
               <p className="kc-classic-kicker">KCMSC</p>
               <p className="mt-3 max-w-2xl font-heading text-[clamp(1.9rem,3vw,3.1rem)] leading-tight tracking-[-.025em] text-[#12324A]">
                 {bn
-                  ? "খেলাধুলা, সংস্কৃতি, প্রযুক্তি ও অংশগ্রহণ স্কুলজীবনের অংশ।"
+                  ? "খেলাধুলা, সংস্কৃতি, প্রযুক্তি ও নানা কার্যক্রম স্কুলজীবনেরই অংশ।"
                   : "Sport, culture, technology and participation all have a place in school life."}
               </p>
             </div>

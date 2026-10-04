@@ -73,14 +73,14 @@ export default async function AchievementsPage({
 
   const copy = bn
     ? {
-        eyebrow: "সাফল্যের গল্প",
-        heroTitle: "ফলাফল শুধু সংখ্যা নয়।",
+        eyebrow: "সাফল্যের কিছু গল্প",
+        heroTitle: "ফলাফল শুধু সংখ্যায় মাপা যায় না।",
         heroText:
-          "শ্রেণিকক্ষের পরিশ্রম, প্রতিযোগিতার মঞ্চে আত্মবিশ্বাস এবং সময়ের সঙ্গে শিক্ষার্থীদের অগ্রগতিই KCMSC-এর সাফল্যের গল্প।",
+          "শ্রেণিকক্ষের পরিশ্রম, প্রতিযোগিতার মঞ্চে আত্মবিশ্বাস এবং সময়ের সঙ্গে শিক্ষার্থীদের অগ্রগতিই KCMSC-এর সাফল্যের কিছু গল্প।",
         record: "সাম্প্রতিক অর্জন",
-        recordTitle: "যেসব ফলাফল মনে রাখার মতো।",
+        recordTitle: "উল্লেখযোগ্য কিছু অর্জন।",
         recordText:
-          "এক নজরে ২০২৪ সালের বোর্ড ফলাফল এবং ২০২৫ সালের জাতীয় পর্যায়ের অর্জন।",
+          "২০২৪ সালের বোর্ড পরীক্ষার ফলাফল এবং ২০২৫ সালের জাতীয় পর্যায়ের কিছু অর্জন এক নজরে।",
         sscLabel: "এসএসসি ২০২৪",
         hscLabel: "এইচএসসি ২০২৪",
         passRate: "পাসের হার",
@@ -88,11 +88,11 @@ export default async function AchievementsPage({
         highlights: "উল্লেখযোগ্য অর্জন",
         competition: "প্রতিযোগিতা ও স্বীকৃতি",
         scholarshipTitle: "বৃত্তি ও প্রাতিষ্ঠানিক স্বীকৃতি",
-        schoolStory: "একটি স্কুলের সাফল্যের গল্প",
+        schoolStory: "একটি স্কুলের সাফল্যের কিছু গল্প",
         schoolStoryText:
-          "কেসিএমএসসির শিক্ষার্থীদের সাফল্য শুধু পরীক্ষার ফলাফলে সীমাবদ্ধ নয়। অলিম্পিয়াড, বৃত্তি ও বিভিন্ন প্রতিযোগিতায় অংশগ্রহণও তাদের স্কুলজীবনের গুরুত্বপূর্ণ অভিজ্ঞতা।",
-        viewAcademics: "একাডেমিকস দেখুন",
-        viewStudentLife: "স্টুডেন্ট লাইফ দেখুন",
+          "কেসিএমএসসির শিক্ষার্থীদের সাফল্য শুধু পরীক্ষার ফলাফলে নয়। অলিম্পিয়াড, বৃত্তি ও বিভিন্ন প্রতিযোগিতায় অংশ নেওয়াও তাদের শেখার গুরুত্বপূর্ণ অংশ।",
+        viewAcademics: "শিক্ষাব্যবস্থা দেখুন",
+        viewStudentLife: "শিক্ষাজীবন দেখুন",
         years: "বছর",
       }
     : {
@@ -159,7 +159,7 @@ export default async function AchievementsPage({
               src="/kcmsc/media/ict_olympiad_at_kc.jpg"
               alt={
                 bn
-                  ? "কেসিএমএসসি শিক্ষার্থীদের আইসিটি অলিম্পিয়াড কার্যক্রম"
+                  ? "কেসিএমএসসির শিক্ষার্থীদের আইসিটি অলিম্পিয়াডে অংশগ্রহণ"
                   : "KCMSC students at an ICT Olympiad activity"
               }
               fill
@@ -171,7 +171,7 @@ export default async function AchievementsPage({
             <div className="absolute bottom-0 left-0 right-0 p-8 sm:p-10">
               <p className="max-w-lg font-heading text-2xl leading-tight text-white sm:text-3xl">
                 {bn
-                  ? "শ্রেণিকক্ষের বাইরে শেখারও একটি মঞ্চ আছে।"
+                  ? "শেখার সুযোগ শ্রেণিকক্ষের বাইরেও আছে।"
                   : "There is another classroom beyond the classroom."}
               </p>
               <p className="mt-3 max-w-md text-xs leading-5 text-white/75">
@@ -286,7 +286,7 @@ export default async function AchievementsPage({
               </h2>
               <p className="mt-6 max-w-md text-sm leading-7 text-white/65">
                 {bn
-                  ? "অলিম্পিয়াডের অর্জনগুলো শিক্ষার্থীদের প্রতিযোগিতামূলক শিক্ষার একটি গুরুত্বপূর্ণ দিক তুলে ধরে।"
+                  ? "অলিম্পিয়াডের অর্জনগুলো শিক্ষার্থীদের প্রতিযোগিতায় অংশ নেওয়া ও শেখার আগ্রহকে তুলে ধরে।"
                   : "National Olympiad results give a glimpse of how students take classroom learning into competitive settings."}
               </p>
             </div>
@@ -370,7 +370,7 @@ export default async function AchievementsPage({
               src="/kcmsc/media/winner.jpg"
               alt={
                 bn
-                  ? "কেসিএমএসসি শিক্ষার্থীর পুরস্কার অর্জন"
+                  ? "কেসিএমএসসির শিক্ষার্থীদের পুরস্কার অর্জন"
                   : "KCMSC student with a competition award"
               }
               fill
@@ -402,12 +402,12 @@ export default async function AchievementsPage({
               </span>
               <h2 className="mt-4 max-w-md font-heading text-4xl leading-[.96] tracking-[-.035em] text-[#0B2538] sm:text-5xl">
                 {bn
-                  ? "পুরোনো অর্জনও সাফল্যের গল্পের অংশ।"
+                  ? "পুরোনো অর্জনও সাফল্যের কিছু গল্পের অংশ।"
                   : "The record extends beyond one year."}
               </h2>
               <p className="mt-6 max-w-md text-sm leading-7 text-[#64748B]">
                 {bn
-                  ? "বৃত্তি ও প্রাতিষ্ঠানিক স্বীকৃতিগুলোও KCMSC-এর দীর্ঘমেয়াদি অগ্রগতির গুরুত্বপূর্ণ অংশ।"
+                  ? "বৃত্তি ও প্রাতিষ্ঠানিক স্বীকৃতিগুলোও কেসিএমএসসির অগ্রযাত্রার গুরুত্বপূর্ণ অংশ।"
                   : "Scholarships and institutional recognition add another layer to KCMSC's longer record of progress."}
               </p>
             </div>
@@ -477,7 +477,7 @@ export default async function AchievementsPage({
             </span>
             <h2 className="mt-4 max-w-2xl font-heading text-4xl leading-[.95] tracking-[-.035em] text-[#0B2538] sm:text-5xl">
               {bn
-                ? "এই সাফল্যের পেছনের শিক্ষাজীবনটি দেখুন।"
+                ? "এই সাফল্যের পেছনের শিক্ষাজীবন সম্পর্কে জানুন।"
                 : "See the school life behind the results."}
             </h2>
           </div>

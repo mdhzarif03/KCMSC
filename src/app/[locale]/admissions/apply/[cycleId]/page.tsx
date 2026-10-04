@@ -46,7 +46,7 @@ export default async function ApplyCyclePage({
               <h2 className="mt-3 font-heading text-3xl text-[var(--kc-green-dark)]">{page.closedHeading}</h2>
               <p className="mx-auto mt-3 max-w-xl text-sm leading-7 text-[var(--kc-muted)]">{page.closedBody}</p>
               <Link href={`/${locale}/admissions`} className="kc-classic-button kc-classic-button-outline mt-7">
-                {locale === "bn" ? "ভর্তি পাতায় ফিরে যান" : "Back to admissions"}
+                {locale === "bn" ? "ভর্তি পাতায় ফিরে যান" : "Back to admissions"}
               </Link>
             </div>
           </div>
@@ -68,18 +68,18 @@ export default async function ApplyCyclePage({
         <div className="mx-auto max-w-[1180px] px-5 py-10 sm:px-8 sm:py-14 lg:px-10 lg:py-16">
           <div className="mb-8 flex flex-col gap-5 border-b border-[var(--kc-line)] pb-7 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="kc-section-label">{locale === "bn" ? "নির্বাচিত ভর্তি চক্র" : "Selected admission cycle"}</p>
+              <p className="kc-section-label">{locale === "bn" ? "নির্বাচিত ভর্তি কার্যক্রম" : "Selected admission cycle"}</p>
               <h2 className="mt-2 font-heading text-2xl text-[var(--kc-green-dark)]">{locale === "bn" ? cycle.nameBn : cycle.nameEn}</h2>
             </div>
             <div className="text-xs leading-6 text-[var(--kc-muted)] sm:text-right">
               <div>{formatDate(cycle.opensAt, locale)} — {formatDate(cycle.closesAt, locale)}</div>
-              <Link href={`/${locale}/admissions`} className="kc-classic-link mt-1">{locale === "bn" ? "চক্র পরিবর্তন করুন" : "Choose a different cycle"} <span aria-hidden="true">→</span></Link>
+              <Link href={`/${locale}/admissions`} className="kc-classic-link mt-1">{locale === "bn" ? "অন্য ভর্তি কার্যক্রম বেছে নিন" : "Choose a different cycle"} <span aria-hidden="true">→</span></Link>
             </div>
           </div>
 
           {searchParams.error === "invalid" ? (
             <p className="mb-6 border border-[#a7473b]/30 bg-[#a7473b]/5 px-4 py-3 text-sm text-[#8c3c32]">
-              {locale === "bn" ? "একটি ত্রুটি হয়েছে। অনুগ্রহ করে তথ্যগুলো যাচাই করে আবার চেষ্টা করুন।" : "Something was missing or invalid. Please check the form and try again."}
+              {locale === "bn" ? "তথ্যে কোনো সমস্যা হয়েছে। অনুগ্রহ করে তথ্যগুলো যাচাই করে আবার চেষ্টা করুন।" : "Something was missing or invalid. Please check the form and try again."}
             </p>
           ) : null}
 
@@ -89,7 +89,7 @@ export default async function ApplyCyclePage({
               student: locale === "bn" ? "শিক্ষার্থীর তথ্য" : "Student Information",
               father: locale === "bn" ? "পিতার তথ্য" : "Father's Information",
               mother: locale === "bn" ? "মাতার তথ্য" : "Mother's Information",
-              guardians: locale === "bn" ? "অতিরিক্ত অভিভাবক" : "Additional Guardians",
+              guardians: locale === "bn" ? "অতিরিক্ত অভিভাবকের তথ্য" : "Additional Guardians",
               address: locale === "bn" ? "ঠিকানা" : "Address"
             }}
             fields={page.fields}

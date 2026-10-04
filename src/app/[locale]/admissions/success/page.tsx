@@ -20,7 +20,7 @@ export default function ApplicationSuccessPage({
     <>
       <PageHeader
         heading={page.heading}
-        intro={locale === "bn" ? "আপনার আবেদন সফলভাবে জমা হয়েছে। আবেদন ফর্মটি ডাউনলোড করে সংরক্ষণ করুন।" : "Your application has been submitted successfully. Download and keep a copy of your application form."}
+        intro={locale === "bn" ? "আপনার আবেদন সফলভাবে জমা হয়েছে। আবেদন ফর্মটি ডাউনলোড করে ভবিষ্যতের জন্য সংরক্ষণ করুন।" : "Your application has been submitted successfully. Download and keep a copy of your application form."}
       />
       <section className="kc-page-shell">
         <div className="mx-auto max-w-[900px] px-5 py-16 sm:px-8 sm:py-20">
