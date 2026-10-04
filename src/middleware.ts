@@ -18,29 +18,43 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // --- Admin/officer auth gate ------------------------------------------
-  if (PROTECTED_PREFIXES.some((p) => pathname === p || pathname.startsWith(p + "/"))) {
+  if (
+    PROTECTED_PREFIXES.some(
+      (p) => pathname === p || pathname.startsWith(p + "/"),
+    )
+  ) {
     if (PUBLIC_ADMIN_PATHS.some((p) => pathname.startsWith(p))) {
       return NextResponse.next();
     }
-    const token = await getToken({ req: request, secret: process.env.AUTH_SECRET });
+
+    const token = await getToken({
+      req: request,
+      secret: process.env.AUTH_SECRET,
+    });
+
     if (!token) {
       const loginUrl = request.nextUrl.clone();
       loginUrl.pathname = "/admin/login";
       return NextResponse.redirect(loginUrl);
     }
-    // Keep the admin workspace deliberately small: only admissions,
-    // officer management, and administrator management are part of the
-    // live admin surface. Removed CMS-only routes must not remain reachable
-    // as orphaned pages.
+
+    // Keep the admin workspace deliberately small.
+    // Alumni management is now part of the live admin surface.
     const allowedAdminPrefixes = [
       "/admin/login",
       "/admin/admissions",
       "/admin/officers",
       "/admin/administrators",
       "/admin/settings",
+      "/admin/alumni",
     ];
 
-    if (pathname.startsWith("/admin/") && !allowedAdminPrefixes.some((p) => pathname === p || pathname.startsWith(p + "/"))) {
+    if (
+      pathname.startsWith("/admin/") &&
+      !allowedAdminPrefixes.some(
+        (p) => pathname === p || pathname.startsWith(p + "/"),
+      )
+    ) {
       const adminUrl = request.nextUrl.clone();
       adminUrl.pathname = "/admin/admissions";
       adminUrl.search = "";
@@ -68,5 +82,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!_next|favicon.ico).*)"]
+  matcher: ["/((?!_next|favicon.ico).*)"],
 };
