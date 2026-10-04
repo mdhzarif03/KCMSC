@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
-import { getCurrentAdmin } from "@/lib/session";
 import { verifyApplicationDownloadToken } from "@/lib/admission-download";
 import { createAdmissionPdf } from "@/lib/admission-pdf";
 import { getCurrentAdmissionsStaff } from "@/lib/session";
@@ -12,7 +11,7 @@ export async function GET(
   request: Request,
   { params }: { params: { id: string } },
 ) {
-  const admin = await getCurrentAdmin();
+  const admin = await getCurrentAdmissionsStaff();
   const token = new URL(request.url).searchParams.get("token");
 
   if (!admin && (!token || !verifyApplicationDownloadToken(params.id, token))) {
@@ -54,7 +53,7 @@ export async function GET(
       permanentAddress: application.permanentAddress,
       createdAt: application.createdAt,
       cycleName: application.cycle.nameEn,
-      guardians: application.guardians.map((guardian) => ({
+      guardians: application.guardians.map((guardian: typeof application.guardians[number]) => ({
         name: guardian.name,
         relationship: guardian.relationship,
         nidNumber: guardian.nidNumber,
@@ -71,7 +70,7 @@ export async function GET(
         .replace(/-+/g, "-")
         .replace(/^-|-$/g, "") + ".pdf";
 
-    return new NextResponse(pdf, {
+    return new NextResponse(pdf as unknown as BodyInit, {
       status: 200,
       headers: {
         "Content-Type": "application/pdf",

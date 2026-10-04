@@ -87,7 +87,7 @@ export default async function OfficerCyclesPage({
   });
 
   const editing = searchParams.edit
-    ? cycles.find((cycle) => cycle.id === searchParams.edit)
+    ? cycles.find((cycle: typeof cycles[number]) => cycle.id === searchParams.edit)
     : null;
 
   return (
@@ -130,7 +130,7 @@ export default async function OfficerCyclesPage({
       ) : null}
 
       <section className="mt-6 space-y-3">
-        {cycles.map((cycle) => {
+        {cycles.map((cycle: typeof cycles[number]) => {
           const state = cycleState(cycle.opensAt, cycle.closesAt);
 
           const isEditing = editing?.id === cycle.id;
