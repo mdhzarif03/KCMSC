@@ -1,9 +1,10 @@
-# K C Model School and College — Website (Phase 1 + 2 + 3 + 4)
+# K C Model School and College — Website (Public Site + Admissions Admin)
 
-All four phases from the build brief are here: foundation, the public
-website, authentication + CMS, and now the full admissions system —
-officer accounts, the public application form, reference-code tracking,
-and the review workflow.
+The live project contains the public KCMSC website plus a focused admissions
+administration system. The admin workspace intentionally contains only the
+features that are part of the live admissions workflow: admissions, officer
+management, and administrator management. Legacy CMS-only admin routes have
+been removed rather than left as orphaned pages.
 
 ## Build verification — this time against real Prisma types
 
@@ -129,6 +130,7 @@ through a project rather than just writing it.
 
 ## Still not built
 
+- **Public-content CMS editing.** Public content is currently backed by the existing seeded database records/static fallbacks; the old orphaned admin CRUD screens for notices, achievements, clubs, facilities, and careers are intentionally not part of the live admin workspace.
 - **Document upload.** The application form has a declaration checkbox
   but no file attachment — that needs blob storage (Vercel Blob, S3,
   etc.), which isn't configured. The officer/admin detail view says so

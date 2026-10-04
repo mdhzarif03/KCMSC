@@ -2,115 +2,32 @@ import Link from "next/link";
 import { prisma } from "@/lib/db";
 import { requireAdmin } from "@/lib/session";
 import { SubmitButton } from "@/components/admin/SubmitButton";
-import { createCycleAction, updateCycleAction } from "./actions";
+import { createCycleAction, deleteCycleAction, updateCycleAction } from "./actions";
+import { DeleteCycleButton } from "./DeleteCycleButton";
 
-const ERRORS: Record<string, string> = {
-  invalid_cycle: "Fill in every cycle field.",
-  invalid_dates: "The closing date and time must be after the opening date and time.",
-  overlap: "This cycle overlaps another cycle. Keep admission windows separate."
-};
+const ERRORS: Record<string,string> = { invalid_cycle:"Fill in every cycle field.", invalid_dates:"The closing date and time must be after the opening date and time.", overlap:"This cycle overlaps another cycle. Keep admission windows separate.", cycle_has_applications:"This cycle cannot be deleted because it already has applications. Keep the records and close the cycle instead.", cycle_not_found:"The cycle could not be found." };
+function inputDate(date: Date) { const p=new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Dhaka",year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",hourCycle:"h23"}).formatToParts(date); const get=(t:string)=>p.find(x=>x.type===t)?.value??"00"; return `${get("year")}-${get("month")}-${get("day")}T${get("hour")}:${get("minute")}`; }
+function formatDhaka(date:Date){return new Intl.DateTimeFormat("en-GB",{timeZone:"Asia/Dhaka",dateStyle:"medium",timeStyle:"short"}).format(date);}
+function cycleState(o:Date,c:Date){const n=Date.now();return n<o.getTime()?"Upcoming":n<=c.getTime()?"Running":"Closed";}
+function statusText(s:string){const labels:Record<string,string>={ASSIGNED:"New",UNDER_REVIEW:"Under Review",AWAITING_APPLICANT:"Awaiting Applicant",ELIGIBLE:"Eligible",NOT_ELIGIBLE:"Not Eligible",EXAM_ELIGIBLE:"Exam Eligible",EXAM_COMPLETED:"Exam Completed",FINAL_DECISION:"Final Decision",UNASSIGNED:"New"};return labels[s]??s.replaceAll("_"," ").replace(/(^|\s)\S/g,c=>c.toUpperCase());}
 
-function inputDate(date: Date) {
-  const parts = new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Dhaka", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hourCycle: "h23" }).formatToParts(date);
-  const get = (type: string) => parts.find((p) => p.type === type)?.value ?? "00";
-  return `${get("year")}-${get("month")}-${get("day")}T${get("hour")}:${get("minute")}`;
-}
-
-function formatDhaka(date: Date) {
-  return new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Dhaka", dateStyle: "medium", timeStyle: "short" }).format(date);
-}
-
-function cycleState(opensAt: Date, closesAt: Date) {
-  const now = Date.now();
-  if (now < opensAt.getTime()) return "Upcoming";
-  if (now <= closesAt.getTime()) return "Running";
-  return "Closed";
-}
-
-export default async function AdminAdmissionsPage({ searchParams }: { searchParams: { error?: string; edit?: string } }) {
+export default async function AdminAdmissionsPage({searchParams}:{searchParams:{error?:string;edit?:string;view?:string;query?:string;status?:string;deleted?:string}}){
   await requireAdmin();
-  const [cycles, applications, officers] = await Promise.all([
-    prisma.admissionCycle.findMany({ orderBy: { opensAt: "desc" }, include: { _count: { select: { applications: true } } } }),
-    prisma.admissionApplication.findMany({ orderBy: { createdAt: "desc" }, take: 30, select: { id: true, fullName: true, applyingClass: true, status: true, createdAt: true, cycle: { select: { nameEn: true } } } }),
-    prisma.user.findMany({ where: { role: "ADMISSION_OFFICER" }, select: { id: true, name: true }, orderBy: { name: "asc" } })
+  const view=searchParams.view==="cycles"?"cycles":"applications"; const query=(searchParams.query??"").trim(); const status=searchParams.status??"";
+  const [cycles,applications,counts]=await Promise.all([
+    prisma.admissionCycle.findMany({orderBy:{opensAt:"desc"},include:{_count:{select:{applications:true}}}}),
+    prisma.admissionApplication.findMany({where:{AND:[query?{OR:[{fullName:{contains:query,mode:"insensitive"}},{fatherName:{contains:query,mode:"insensitive"}},{motherName:{contains:query,mode:"insensitive"}},{fatherContactNumber:{contains:query}},{motherContactNumber:{contains:query}},{birthRegistrationNo:{contains:query}}]}:{},status?{status:status as any}:{}]},orderBy:{createdAt:"desc"},take:100,select:{id:true,fullName:true,applyingClass:true,status:true,createdAt:true,fatherName:true,motherName:true,fatherContactNumber:true,motherContactNumber:true,cycle:{select:{nameEn:true}}}}),
+    prisma.admissionApplication.groupBy({by:["status"],_count:{_all:true}})
   ]);
-  const running = cycles.find((c) => cycleState(c.opensAt, c.closesAt) === "Running");
-  const editCycle = searchParams.edit ? cycles.find((c) => c.id === searchParams.edit) : null;
-
-  return (
-    <div className="max-w-6xl">
-      <div className="flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <h1 className="font-heading text-2xl text-ink">Admissions</h1>
-          <p className="mt-1 text-sm text-ink-muted">Admission cycles and submitted applications.</p>
-        </div>
-        <div className="rounded-lg border border-border bg-white px-4 py-3 text-right">
-          <p className="text-xs uppercase tracking-wide text-ink-muted">Current cycle</p>
-          <p className="mt-1 text-sm font-medium text-primary-dark">{running?.nameEn ?? "No cycle running"}</p>
-        </div>
-      </div>
-
-      {searchParams.error ? <p className="mt-4 rounded-md border border-brick/30 bg-brick/5 px-4 py-3 text-sm text-brick">{ERRORS[searchParams.error] ?? "Something went wrong."}</p> : null}
-
-      <section className="mt-8">
-        <div className="flex items-center justify-between gap-3">
-          <div>
-            <h2 className="text-sm font-semibold uppercase tracking-wide text-ink-muted">Admission cycles</h2>
-            <p className="mt-1 text-xs text-ink-muted">Applications are accepted only while the current time falls inside a cycle window.</p>
-          </div>
-          <a href="#new-cycle" className="rounded-full bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-primary-dark">New cycle</a>
-        </div>
-
-        <div className="mt-4 space-y-3">
-          {cycles.map((cycle) => {
-            const state = cycleState(cycle.opensAt, cycle.closesAt);
-            const editing = editCycle?.id === cycle.id;
-            return (
-              <div key={cycle.id} className="rounded-lg border border-border bg-white p-5">
-                <div className="flex flex-wrap items-start justify-between gap-4">
-                  <div>
-                    <div className="flex flex-wrap items-center gap-2">
-                      <h3 className="font-medium text-ink">{cycle.nameEn}</h3>
-                      <span className={`rounded-full px-2.5 py-1 text-xs ${state === "Running" ? "bg-primary/10 text-primary-dark" : "bg-surface text-ink-muted"}`}>{state}</span>
-                    </div>
-                    <p className="mt-1 text-xs text-ink-muted">{cycle.nameBn}</p>
-                    <p className="mt-3 text-sm text-ink-muted">{formatDhaka(cycle.opensAt)} → {formatDhaka(cycle.closesAt)} · {cycle._count.applications} applications</p>
-                  </div>
-                  <Link href={`/admin/admissions?edit=${cycle.id}`} className="text-sm text-primary hover:underline">{editing ? "Editing" : "Edit cycle"}</Link>
-                </div>
-                {editing ? (
-                  <form action={updateCycleAction.bind(null, cycle.id)} className="mt-5 grid gap-3 border-t border-border pt-5 sm:grid-cols-2">
-                    <input name="nameEn" required defaultValue={cycle.nameEn} className="rounded-md border border-border px-3 py-2 text-sm" />
-                    <input name="nameBn" required defaultValue={cycle.nameBn} className="rounded-md border border-border px-3 py-2 text-sm font-bangla" />
-                    <label className="text-xs text-ink-muted">Starts<input name="opensAt" type="datetime-local" required defaultValue={inputDate(cycle.opensAt)} className="mt-1 block w-full rounded-md border border-border px-3 py-2 text-sm text-ink" /></label>
-                    <label className="text-xs text-ink-muted">Ends<input name="closesAt" type="datetime-local" required defaultValue={inputDate(cycle.closesAt)} className="mt-1 block w-full rounded-md border border-border px-3 py-2 text-sm text-ink" /></label>
-                    <div className="flex gap-3 sm:col-span-2"><SubmitButton label="Save cycle" pendingLabel="Saving…" /><Link href="/admin/admissions" className="rounded-full border border-border px-5 py-2 text-sm text-ink">Cancel</Link></div>
-                  </form>
-                ) : null}
-              </div>
-            );
-          })}
-          {cycles.length === 0 ? <div className="rounded-lg border border-dashed border-border p-8 text-center text-sm text-ink-muted">No admission cycles yet.</div> : null}
-        </div>
-
-        <form id="new-cycle" action={createCycleAction} className="mt-5 grid max-w-3xl gap-3 rounded-lg border border-border bg-surface p-5 sm:grid-cols-2">
-          <h3 className="sm:col-span-2 font-medium text-ink">Create a cycle</h3>
-          <input name="nameEn" required placeholder="Cycle name (English)" className="rounded-md border border-border px-3 py-2 text-sm" />
-          <input name="nameBn" required placeholder="চক্রের নাম (বাংলা)" className="rounded-md border border-border px-3 py-2 text-sm font-bangla" />
-          <label className="text-xs text-ink-muted">Starts<input name="opensAt" type="datetime-local" required className="mt-1 block w-full rounded-md border border-border px-3 py-2 text-sm text-ink" /></label>
-          <label className="text-xs text-ink-muted">Ends<input name="closesAt" type="datetime-local" required className="mt-1 block w-full rounded-md border border-border px-3 py-2 text-sm text-ink" /></label>
-          <div className="sm:col-span-2"><SubmitButton label="Create cycle" pendingLabel="Creating…" /></div>
-        </form>
-      </section>
-
-      <section className="mt-10">
-        <div className="flex items-end justify-between"><div><h2 className="text-sm font-semibold uppercase tracking-wide text-ink-muted">Applications</h2><p className="mt-1 text-xs text-ink-muted">Latest submissions appear here. No public tracking number is generated.</p></div></div>
-        <div className="mt-3 overflow-hidden rounded-lg border border-border bg-white">
-          {applications.length === 0 ? <p className="p-8 text-center text-sm text-ink-muted">No applications yet.</p> : <ul className="divide-y divide-border">
-            {applications.map((app) => <li key={app.id}><Link href={`/admin/admissions/${app.id}`} className="flex items-center justify-between gap-4 p-4 hover:bg-surface"><div><p className="font-medium text-ink">{app.fullName}</p><p className="text-xs text-ink-muted">{app.applyingClass} · {app.cycle.nameEn} · {app.createdAt.toLocaleDateString()}</p></div><p className="text-xs font-medium text-primary-dark">{app.status.replaceAll("_", " ")}</p></Link></li>)}
-          </ul>}
-        </div>
-      </section>
-    </div>
-  );
+  const editCycle=searchParams.edit?cycles.find(c=>c.id===searchParams.edit):null;
+  const total=counts.reduce((n,x)=>n+x._count._all,0);
+  return <div className="max-w-[1280px]">
+    <header className="border-b border-[#d9d8cf] pb-6"><div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between"><div><p className="text-[9px] font-medium uppercase tracking-[0.2em] text-[#176b45]">Admissions</p><h1 className="mt-2 font-heading text-3xl font-normal text-[#124c36]">Applications & cycles</h1><p className="mt-2 text-sm text-[#69716b]">Review applicants, search parent details, search applications and manage admission windows.</p></div><div className="flex rounded-full border border-[#d9d8cf] bg-[#fffdf8] p-1"><Link href="/admin/admissions?view=applications" className={`rounded-full px-4 py-2 text-xs ${view==="applications"?"bg-[#176b45] text-white":"text-[#59615b] hover:bg-[#efeee7]"}`}>Applications</Link><Link href="/admin/admissions?view=cycles" className={`rounded-full px-4 py-2 text-xs ${view==="cycles"?"bg-[#176b45] text-white":"text-[#59615b] hover:bg-[#efeee7]"}`}>Cycles</Link></div></div></header>
+    {searchParams.error?<p className="mt-5 rounded-[10px] border border-[#b35d4b]/30 bg-[#b35d4b]/5 px-4 py-3 text-sm text-[#8e4638]">{ERRORS[searchParams.error]??"Something went wrong."}</p>:null}{searchParams.deleted?<p className="mt-5 rounded-[10px] border border-[#176b45]/30 bg-[#176b45]/5 px-4 py-3 text-sm text-[#176b45]">Admission cycle deleted.</p>:null}
+    {view==="applications"?<>
+      <section className="mt-6 grid gap-3 sm:grid-cols-2"><div className="rounded-[14px] border border-[#d9d8cf] bg-[#fffdf8] p-4"><p className="text-[9px] uppercase tracking-[.16em] text-[#8a918b]">Applications</p><p className="mt-2 font-heading text-2xl text-[#124c36]">{total}</p><p className="mt-1 text-xs text-[#69716b]">All submitted applications.</p></div><div className="rounded-[14px] border border-[#d9d8cf] bg-[#fffdf8] p-4"><p className="text-[9px] uppercase tracking-[.16em] text-[#8a918b]">Showing</p><p className="mt-2 font-heading text-2xl text-[#124c36]">{applications.length}</p><p className="mt-1 text-xs text-[#69716b]">Up to 100 matching records.</p></div></section>
+      <form className="mt-6 rounded-[14px] border border-[#d9d8cf] bg-[#fffdf8] p-4" method="get"><input type="hidden" name="view" value="applications"/><div className="grid gap-3 lg:grid-cols-[1fr_190px_auto]"><input name="query" defaultValue={query} placeholder="Search name, father/mother name, phone number or birth registration no." className="rounded-full border border-[#d9d8cf] bg-[#fffdf8] px-4 py-2.5 text-sm outline-none focus:border-[#176b45]"/><select name="status" defaultValue={status} className="rounded-full border border-[#d9d8cf] bg-[#fffdf8] px-4 py-2.5 text-sm text-[#242824] outline-none focus:border-[#176b45]"><option value="">All statuses</option>{["ASSIGNED","UNDER_REVIEW","AWAITING_APPLICANT","ELIGIBLE","NOT_ELIGIBLE","EXAM_ELIGIBLE","EXAM_COMPLETED","FINAL_DECISION"].map(s=><option key={s} value={s}>{statusText(s)}</option>)}</select><button className="kc-classic-button kc-classic-button-primary" type="submit">Search</button></div><p className="mt-2 px-2 text-[11px] text-[#8a918b]">Search works across the student name, father and mother names, both parent phone numbers and birth registration number.</p></form>
+      <section className="mt-5 overflow-hidden rounded-[14px] border border-[#d9d8cf] bg-[#fffdf8]"><div className="grid grid-cols-[1.2fr_1fr_1fr_130px] border-b border-[#d9d8cf] px-5 py-3 text-[9px] font-medium uppercase tracking-[.14em] text-[#8a918b]"><span>Applicant</span><span>Parents</span><span>Cycle</span><span>Status</span></div>{applications.length?applications.map(a=><Link key={a.id} href={`/admin/admissions/${a.id}`} className="grid gap-2 border-b border-[#d9d8cf] px-5 py-4 last:border-0 hover:bg-[#efeee7] lg:grid-cols-[1.2fr_1fr_1fr_130px] lg:items-center"><div><p className="text-sm font-medium text-[#242824]">{a.fullName}</p><p className="mt-1 text-xs text-[#69716b]">{a.applyingClass} · {a.createdAt.toLocaleDateString("en-GB")}</p></div><div className="text-xs text-[#59615b]"><p>{a.fatherName} · {a.fatherContactNumber}</p><p className="mt-1">{a.motherName} · {a.motherContactNumber}</p></div><p className="text-xs text-[#59615b]">{a.cycle.nameEn}</p><span className="w-fit rounded-full bg-[#efeee7] px-2.5 py-1 text-[10px] font-medium text-[#176b45]">{statusText(a.status)}</span></Link>):<div className="p-10 text-center text-sm text-[#69716b]">No applications match this search.</div>}</section>
+    </>:<section className="mt-6"><div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between"><div><p className="text-[9px] font-medium uppercase tracking-[.16em] text-[#176b45]">Admission windows</p><h2 className="mt-1 font-heading text-2xl text-[#124c36]">Manage cycles</h2></div><a href="#new-cycle" className="kc-classic-button kc-classic-button-primary">New cycle</a></div><div className="mt-5 space-y-3">{cycles.map(c=>{const state=cycleState(c.opensAt,c.closesAt);const editing=editCycle?.id===c.id;return <div key={c.id} className="rounded-[14px] border border-[#d9d8cf] bg-[#fffdf8] p-5"><div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between"><div><div className="flex flex-wrap items-center gap-2"><h3 className="font-medium text-[#242824]">{c.nameEn}</h3><span className="rounded-full bg-[#efeee7] px-2.5 py-1 text-[10px] font-medium text-[#176b45]">{state}</span></div><p className="mt-1 text-xs text-[#69716b]">{c.nameBn}</p><p className="mt-3 text-sm text-[#69716b]">{formatDhaka(c.opensAt)} → {formatDhaka(c.closesAt)} · {c._count.applications} applications</p></div><div className="flex items-center gap-3"><Link href={`/admin/admissions?view=cycles&edit=${c.id}`} className="text-xs font-medium text-[#176b45] hover:underline">{editing?"Editing":"Edit"}</Link>{c._count.applications===0?<DeleteCycleButton action={deleteCycleAction.bind(null,c.id)} cycleName={c.nameEn} />:<span title="Cycles with applications are protected so applicant records are not deleted by accident." className="text-xs text-[#9a9d99]">Protected</span>}</div></div>{editing?<form action={updateCycleAction.bind(null,c.id)} className="mt-5 grid gap-3 border-t border-[#d9d8cf] pt-5 sm:grid-cols-2"><input name="nameEn" required defaultValue={c.nameEn} className="rounded-md border border-[#d9d8cf] px-3 py-2 text-sm"/><input name="nameBn" required defaultValue={c.nameBn} className="rounded-md border border-[#d9d8cf] px-3 py-2 text-sm font-bangla"/><label className="text-xs text-[#69716b]">Starts<input name="opensAt" type="datetime-local" required defaultValue={inputDate(c.opensAt)} className="mt-1 block w-full rounded-md border border-[#d9d8cf] px-3 py-2 text-sm text-[#242824]"/></label><label className="text-xs text-[#69716b]">Ends<input name="closesAt" type="datetime-local" required defaultValue={inputDate(c.closesAt)} className="mt-1 block w-full rounded-md border border-[#d9d8cf] px-3 py-2 text-sm text-[#242824]"/></label><div className="flex gap-3 sm:col-span-2"><SubmitButton label="Save cycle" pendingLabel="Saving…"/><Link href="/admin/admissions?view=cycles" className="kc-classic-button kc-classic-button-outline">Cancel</Link></div></form>:null}</div>})}</div><form id="new-cycle" action={createCycleAction} className="mt-6 grid max-w-3xl gap-3 rounded-[14px] border border-[#d9d8cf] bg-[#fffdf8] p-5 sm:grid-cols-2"><div className="sm:col-span-2"><p className="text-[9px] font-medium uppercase tracking-[.16em] text-[#176b45]">New window</p><h3 className="mt-1 font-heading text-xl text-[#124c36]">Create an admission cycle</h3></div><input name="nameEn" required placeholder="Cycle name (English)" className="rounded-md border border-[#d9d8cf] px-3 py-2 text-sm"/><input name="nameBn" required placeholder="চক্রের নাম (বাংলা)" className="rounded-md border border-[#d9d8cf] px-3 py-2 text-sm font-bangla"/><label className="text-xs text-[#69716b]">Starts<input name="opensAt" type="datetime-local" required className="mt-1 block w-full rounded-md border border-[#d9d8cf] px-3 py-2 text-sm text-[#242824]"/></label><label className="text-xs text-[#69716b]">Ends<input name="closesAt" type="datetime-local" required className="mt-1 block w-full rounded-md border border-[#d9d8cf] px-3 py-2 text-sm text-[#242824]"/></label><div className="sm:col-span-2"><SubmitButton label="Create cycle" pendingLabel="Creating…"/></div></form></section>}
+  </div>;
 }

@@ -168,16 +168,16 @@ export function Footer({ locale }: { locale: Locale }) {
                   {group.title ===
                     (locale === "bn" ? "তথ্য" : "INFORMATION") && (
                     <Link
-                      href={`/${locale}/admin/login`}
+                      href="/admin"
                       className="
-                        block
-                        text-[12px]
-                        font-medium
-                        text-[#176b45]
-                        transition-colors
-                        duration-200
-                        hover:text-[#0f4d35]
-                      "
+    block
+    text-[12px]
+    font-medium
+    text-[#176b45]
+    transition-colors
+    duration-200
+    hover:text-[#0f4d35]
+  "
                     >
                       {locale === "bn" ? "অ্যাডমিন লগইন" : "Admin Login"}
                     </Link>

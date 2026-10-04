@@ -4,45 +4,78 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/db";
 import { requireAdmin } from "@/lib/session";
-import { createInvitation } from "@/lib/invitation";
+import { hashPassword } from "@/lib/password";
 import { removeOfficerAccount } from "@/lib/officers";
 import { logAudit } from "@/lib/audit";
 
-export async function inviteOfficerAction(formData: FormData) {
+function validEmail(value: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+function passwordIssue(password: string) {
+  if (password.length < 8) return true;
+  return !/[A-Za-z]/.test(password) || !/[0-9]/.test(password);
+}
+
+export async function createOfficerAction(formData: FormData) {
   const actor = await requireAdmin();
+  const name = String(formData.get("name") ?? "").trim();
   const email = String(formData.get("email") ?? "").trim().toLowerCase();
+  const password = String(formData.get("password") ?? "");
+  const confirmPassword = String(formData.get("confirmPassword") ?? "");
 
-  if (!email || !email.includes("@")) redirect("/admin/officers?error=invalid_email");
-  if (await prisma.user.findUnique({ where: { email } })) {
-    redirect("/admin/officers?error=already_exists");
-  }
+  if (!name) redirect("/admin/officers?error=invalid_name");
+  if (!validEmail(email)) redirect("/admin/officers?error=invalid_email");
+  if (passwordIssue(password)) redirect("/admin/officers?error=weak_password");
+  if (password !== confirmPassword) redirect("/admin/officers?error=password_mismatch");
+  if (await prisma.user.findUnique({ where: { email } })) redirect("/admin/officers?error=already_exists");
 
-  const { rawToken, expiresAt } = await createInvitation({
-    email,
-    role: "ADMISSION_OFFICER",
-    createdById: actor.id
+  const user = await prisma.user.create({
+    data: {
+      name,
+      email,
+      passwordHash: await hashPassword(password),
+      role: "ADMISSION_OFFICER"
+    }
   });
 
   await logAudit({
     userId: actor.id,
     actorLabel: actor.email,
-    action: "INVITE_OFFICER",
-    targetType: "AccountInvitation",
-    targetId: email
+    action: "CREATE_OFFICER",
+    targetType: "User",
+    targetId: `${user.id} (${user.email})`
   });
 
-  const link = `${process.env.NEXT_PUBLIC_APP_URL ?? ""}/admin/accept-invite?token=${rawToken}`;
   revalidatePath("/admin/officers");
-  redirect(
-    `/admin/officers?invited=${encodeURIComponent(email)}&link=${encodeURIComponent(
-      link
-    )}&expires=${encodeURIComponent(expiresAt.toISOString())}`
-  );
+  redirect("/admin/officers?created=1");
 }
 
-// Unlike admin accounts (self-delete only), admins CAN remove officer
-// accounts — brief §21. Requires ADMIN server-side; the officer's
-// applications and history are preserved by removeOfficerAccount().
+export async function resetOfficerPasswordAction(formData: FormData) {
+  const actor = await requireAdmin();
+  const userId = String(formData.get("userId") ?? "");
+  const password = String(formData.get("password") ?? "");
+  const confirmPassword = String(formData.get("confirmPassword") ?? "");
+
+  if (passwordIssue(password)) redirect("/admin/officers?error=weak_password");
+  if (password !== confirmPassword) redirect("/admin/officers?error=password_mismatch");
+
+  const target = await prisma.user.findUnique({ where: { id: userId } });
+  if (!target || target.role !== "ADMISSION_OFFICER") redirect("/admin/officers?error=not_found");
+
+  await prisma.user.update({ where: { id: target.id }, data: { passwordHash: await hashPassword(password) } });
+  await logAudit({
+    userId: actor.id,
+    actorLabel: actor.email,
+    action: "RESET_OFFICER_PASSWORD",
+    targetType: "User",
+    targetId: `${target.id} (${target.email})`
+  });
+
+  revalidatePath("/admin/officers");
+  redirect("/admin/officers?reset=1");
+}
+
 export async function removeOfficerAction(formData: FormData) {
   const actor = await requireAdmin();
   const officerId = String(formData.get("userId") ?? "");

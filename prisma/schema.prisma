@@ -69,29 +69,6 @@ model AccountInvitation {
 // volume here doesn't warrant that complexity yet. Revisit only if a
 // future locale (a third language) is actually requested.
 
-model NavigationItem {
-  id        String   @id @default(cuid())
-  labelEn   String
-  labelBn   String
-  href      String
-  order     Int      @default(0)
-  isVisible Boolean  @default(true)
-  parentId  String?
-  parent    NavigationItem?  @relation("NavChildren", fields: [parentId], references: [id])
-  children  NavigationItem[] @relation("NavChildren")
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model Media {
-  id        String   @id @default(cuid())
-  url       String
-  altEn     String?
-  altBn     String?
-  kind      String // "image" | "document" — kept as string, not enum, so Phase 3 can extend without a migration
-  createdAt DateTime @default(now())
-}
-
 // --- Content models (stubs — full fields land with Phase 3 CMS) -----
 
 model Notice {

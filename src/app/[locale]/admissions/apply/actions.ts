@@ -150,7 +150,8 @@ export async function createApplicationAction(locale: Locale, cycleId: string, f
       presentAddress: data.presentAddress,
       permanentAddress: data.permanentAddress,
       guardians: { create: data.guardians },
-    },
+      status: "UNASSIGNED",
+    }
   });
 
   const extension = certificate.type === "application/pdf" ? "pdf" : certificate.type === "image/png" ? "png" : "jpg";

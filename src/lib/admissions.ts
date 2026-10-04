@@ -25,3 +25,15 @@ export type ApplicationStatusValue = (typeof APPLICATION_STATUSES)[number];
 export async function getActiveCycleSafe() {
   try { return await getActiveCycle(); } catch { return null; }
 }
+
+export const APPLICATION_STATUS_LABELS: Record<ApplicationStatusValue, string> = {
+  UNASSIGNED: "New",
+  ASSIGNED: "New",
+  UNDER_REVIEW: "Under Review",
+  AWAITING_APPLICANT: "Awaiting Applicant",
+  ELIGIBLE: "Eligible",
+  NOT_ELIGIBLE: "Not Eligible",
+  EXAM_ELIGIBLE: "Exam Eligible",
+  EXAM_COMPLETED: "Exam Completed",
+  FINAL_DECISION: "Final Decision",
+};

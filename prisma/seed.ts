@@ -149,18 +149,6 @@ const facilities = [
   { titleEn: "Security and academic activities monitored through CCTV", titleBn: "সিসিটিভি নজরদারির মাধ্যমে নিরাপত্তা পর্যবেক্ষণ", isFeatured: false }
 ].map((f) => ({ ...f, descriptionEn: "", descriptionBn: "" }));
 
-const navigationItems = [
-  { labelEn: "About", labelBn: "পরিচিতি", href: "/about", order: 1 },
-  { labelEn: "Academics", labelBn: "শিক্ষাক্রম", href: "/academics", order: 2 },
-  { labelEn: "Admissions", labelBn: "ভর্তি", href: "/admissions", order: 3 },
-  { labelEn: "Student Life", labelBn: "শিক্ষার্থী জীবন", href: "/student-life", order: 4 },
-  { labelEn: "Clubs & Activities", labelBn: "ক্লাব ও কার্যক্রম", href: "/clubs", order: 5 },
-  { labelEn: "Achievements", labelBn: "অর্জন", href: "/achievements", order: 6 },
-  { labelEn: "Campus & Facilities", labelBn: "ক্যাম্পাস ও সুবিধাসমূহ", href: "/facilities", order: 7 },
-  { labelEn: "Notices", labelBn: "নোটিশ", href: "/notices", order: 8 },
-  { labelEn: "Careers", labelBn: "কর্মসংস্থান", href: "/careers", order: 9 },
-  { labelEn: "Contact", labelBn: "যোগাযোগ", href: "/contact", order: 10 }
-];
 
 async function seedContent() {
   const achievementCount = await prisma.achievement.count();
@@ -179,12 +167,6 @@ async function seedContent() {
   if (facilityCount === 0) {
     await prisma.facility.createMany({ data: facilities });
     console.log(`Seeded ${facilities.length} facilities.`);
-  }
-
-  const navCount = await prisma.navigationItem.count();
-  if (navCount === 0) {
-    await prisma.navigationItem.createMany({ data: navigationItems });
-    console.log(`Seeded ${navigationItems.length} navigation items.`);
   }
 
   // Deliberately NOT seeding Notice or Career rows — the source material

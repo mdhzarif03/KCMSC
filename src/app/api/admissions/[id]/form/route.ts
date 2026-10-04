@@ -3,11 +3,15 @@ import { prisma } from "@/lib/db";
 import { getCurrentAdmin } from "@/lib/session";
 import { verifyApplicationDownloadToken } from "@/lib/admission-download";
 import { createAdmissionPdf } from "@/lib/admission-pdf";
+import { getCurrentAdmissionsStaff } from "@/lib/session";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-export async function GET(request: Request, { params }: { params: { id: string } }) {
+export async function GET(
+  request: Request,
+  { params }: { params: { id: string } },
+) {
   const admin = await getCurrentAdmin();
   const token = new URL(request.url).searchParams.get("token");
 
@@ -61,10 +65,11 @@ export async function GET(request: Request, { params }: { params: { id: string }
       })),
     });
 
-    const filename = `${application.fullName || "Applicant"}-Admission-Application-${application.cycle.nameEn || "Application"}`
-      .replace(/[^a-zA-Z0-9._-]+/g, "-")
-      .replace(/-+/g, "-")
-      .replace(/^-|-$/g, "") + ".pdf";
+    const filename =
+      `${application.fullName || "Applicant"}-Admission-Application-${application.cycle.nameEn || "Application"}`
+        .replace(/[^a-zA-Z0-9._-]+/g, "-")
+        .replace(/-+/g, "-")
+        .replace(/^-|-$/g, "") + ".pdf";
 
     return new NextResponse(pdf, {
       status: 200,
@@ -76,6 +81,8 @@ export async function GET(request: Request, { params }: { params: { id: string }
     });
   } catch (error) {
     console.error("Admission PDF generation failed", error);
-    return new NextResponse("Unable to generate the application PDF", { status: 500 });
+    return new NextResponse("Unable to generate the application PDF", {
+      status: 500,
+    });
   }
 }

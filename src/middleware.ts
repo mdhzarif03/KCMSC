@@ -11,7 +11,7 @@ function getLocaleFromPath(pathname: string) {
 // Admin/officer auth routes are NOT localized — the CMS operator UI stays
 // in English regardless of the public site's language. These paths must
 // stay reachable without a session (you need them to get one).
-const PUBLIC_ADMIN_PATHS = ["/admin/login", "/admin/accept-invite"];
+const PUBLIC_ADMIN_PATHS = ["/admin/login"];
 const PROTECTED_PREFIXES = ["/admin", "/officer"];
 
 export async function middleware(request: NextRequest) {
@@ -28,10 +28,19 @@ export async function middleware(request: NextRequest) {
       loginUrl.pathname = "/admin/login";
       return NextResponse.redirect(loginUrl);
     }
-    // The admin workspace is intentionally admissions-only for this phase.
-    // Other CMS sections remain in the repository for later phases but are
-    // not reachable from the rebuilt admin workspace yet.
-    if (pathname.startsWith("/admin/") && !pathname.startsWith("/admin/login") && !pathname.startsWith("/admin/accept-invite") && !pathname.startsWith("/admin/admissions")) {
+    // Keep the admin workspace deliberately small: only admissions,
+    // officer management, and administrator management are part of the
+    // live admin surface. Removed CMS-only routes must not remain reachable
+    // as orphaned pages.
+    const allowedAdminPrefixes = [
+      "/admin/login",
+      "/admin/admissions",
+      "/admin/officers",
+      "/admin/administrators",
+      "/admin/settings",
+    ];
+
+    if (pathname.startsWith("/admin/") && !allowedAdminPrefixes.some((p) => pathname === p || pathname.startsWith(p + "/"))) {
       const adminUrl = request.nextUrl.clone();
       adminUrl.pathname = "/admin/admissions";
       adminUrl.search = "";
