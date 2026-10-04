@@ -9,13 +9,13 @@ import {
   FaInstagram,
   FaLinkedinIn,
   FaQuora,
+  FaXTwitter,
 } from "react-icons/fa6";
-import { FaXTwitter } from "react-icons/fa6";
 
 const socialLinks = [
   {
     name: "Facebook",
-    href: "https://www.facebook.com/share/p/LoFatdnLcevtmHmN/",
+    href: "https://www.facebook.com/kcmsc.edu.bd",
     icon: <FaFacebookF />,
   },
   {
@@ -163,6 +163,25 @@ export function Footer({ locale }: { locale: Locale }) {
                       {label}
                     </Link>
                   ))}
+
+                  {/* Admin Login */}
+                  {group.title ===
+                    (locale === "bn" ? "তথ্য" : "INFORMATION") && (
+                    <Link
+                      href={`/${locale}/admin/login`}
+                      className="
+                        block
+                        text-[12px]
+                        font-medium
+                        text-[#176b45]
+                        transition-colors
+                        duration-200
+                        hover:text-[#0f4d35]
+                      "
+                    >
+                      {locale === "bn" ? "অ্যাডমিন লগইন" : "Admin Login"}
+                    </Link>
+                  )}
                 </div>
               </div>
             ))}
