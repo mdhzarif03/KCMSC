@@ -88,8 +88,8 @@ export function Footer({ locale }: { locale: Locale }) {
               href={`/${locale}`}
               className="inline-flex items-center gap-3 text-[#124c36]"
             >
-              <span className="grid h-9 w-9 place-items-center rounded-[2px] bg-[#176b45] font-heading text-sm text-white">
-                KC
+              <span className="grid h-9 w-9 place-items-center overflow-hidden rounded-[2px] bg-[#fffdf8]">
+                <img src="/kcmsc/kcmsc-logo.png" alt="K C Model School & College logo" className="h-full w-full object-contain" />
               </span>
 
               <span className="font-heading text-[18px] font-normal">
