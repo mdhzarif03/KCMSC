@@ -72,7 +72,7 @@ export default async function LocaleLayout({
   return (
     <div
       lang={locale}
-      className={locale === "bn" ? `font-bangla ${banglaSans.variable} ${banglaSerif.variable}` : "font-sans"}
+      className={`${locale === "bn" ? "font-bangla" : "font-sans"} ${banglaSans.variable} ${banglaSerif.variable}`}
     >
       <SiteNotification locale={locale} notification={notification} />
       <Navbar locale={locale} />

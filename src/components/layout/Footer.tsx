@@ -58,6 +58,7 @@ export function Footer({ locale }: { locale: Locale }) {
       title: locale === "bn" ? "পরিচিতি" : "ABOUT",
       links: [
         [locale === "bn" ? "আমাদের গল্প" : "Our story", "about"],
+        [locale === "bn" ? "নেতৃত্বের বার্তা" : "Leadership messages", "leadership-messages"],
         [locale === "bn" ? "একাডেমিক" : "Academics", "academics"],
       ] as const,
     },
