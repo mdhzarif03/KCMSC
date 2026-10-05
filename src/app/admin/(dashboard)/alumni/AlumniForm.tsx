@@ -36,44 +36,52 @@ export function AlumniForm({
           name="name"
           required
           defaultValue={name}
-          placeholder="e.g. Md. Hasan Ali"
+          placeholder=""
           className="mt-1 w-full rounded-md border border-border px-3 py-2 text-sm"
         />
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
-          <label className="block text-sm font-medium text-ink">SSC Batch</label>
+          <label className="block text-sm font-medium text-ink">
+            SSC Batch
+          </label>
           <input
             name="sscBatch"
             defaultValue={defaults.sscBatch ?? ""}
-            placeholder="e.g. 2024"
+            placeholder=""
             className="mt-1 w-full rounded-md border border-border px-3 py-2 text-sm"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-ink">HSC Batch</label>
+          <label className="block text-sm font-medium text-ink">
+            HSC Batch
+          </label>
           <input
             name="hscBatch"
             defaultValue={defaults.hscBatch ?? ""}
-            placeholder="e.g. 2026"
+            placeholder=""
             className="mt-1 w-full rounded-md border border-border px-3 py-2 text-sm"
           />
         </div>
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-ink">Current Position</label>
+        <label className="block text-sm font-medium text-ink">
+          Current Position
+        </label>
         <input
           name="currentPosition"
           defaultValue={currentPosition}
-          placeholder="e.g. Software Engineer at Google"
+          placeholder=""
           className="mt-1 w-full rounded-md border border-border px-3 py-2 text-sm"
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-ink">Preview Message</label>
+        <label className="block text-sm font-medium text-ink">
+          Preview Message
+        </label>
         <textarea
           name="preview"
           required
@@ -82,11 +90,16 @@ export function AlumniForm({
           placeholder="Write the short text visitors should see before opening the full experience..."
           className="mt-1 w-full rounded-md border border-border px-3 py-2 text-sm"
         />
-        <p className="mt-1.5 text-xs text-ink-muted">This is shown on the Alumni page. It is separate from the full message below.</p>
+        <p className="mt-1.5 text-xs text-ink-muted">
+          This is shown on the Alumni page. It is separate from the full message
+          below.
+        </p>
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-ink">Full Experience / Body</label>
+        <label className="block text-sm font-medium text-ink">
+          Full Experience / Body
+        </label>
         <textarea
           name="body"
           required
@@ -98,7 +111,9 @@ export function AlumniForm({
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-ink">Display order</label>
+        <label className="block text-sm font-medium text-ink">
+          Display order
+        </label>
         <input
           name="sortOrder"
           type="number"
@@ -110,11 +125,19 @@ export function AlumniForm({
 
       <div className="space-y-3">
         <label className="flex items-center gap-2 text-sm text-ink">
-          <input type="checkbox" name="isPublished" defaultChecked={defaults.isPublished} />
+          <input
+            type="checkbox"
+            name="isPublished"
+            defaultChecked={defaults.isPublished}
+          />
           Publish on the alumni page
         </label>
         <label className="flex items-center gap-2 text-sm text-ink">
-          <input type="checkbox" name="isFeatured" defaultChecked={defaults.isFeatured} />
+          <input
+            type="checkbox"
+            name="isFeatured"
+            defaultChecked={defaults.isFeatured}
+          />
           Feature on homepage
         </label>
       </div>
