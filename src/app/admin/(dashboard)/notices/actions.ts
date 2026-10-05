@@ -46,6 +46,8 @@ export async function createNoticeAction(formData: FormData) {
   revalidatePath("/admin/notices");
   revalidatePath("/en/notices");
   revalidatePath("/bn/notices");
+  revalidatePath("/en", "layout");
+  revalidatePath("/bn", "layout");
   redirect("/admin/notices");
 }
 
@@ -74,6 +76,8 @@ export async function updateNoticeAction(id: string, formData: FormData) {
   revalidatePath("/admin/notices");
   revalidatePath("/en/notices");
   revalidatePath("/bn/notices");
+  revalidatePath("/en", "layout");
+  revalidatePath("/bn", "layout");
   redirect("/admin/notices");
 }
 
@@ -94,4 +98,6 @@ export async function deleteNoticeAction(formData: FormData) {
   revalidatePath("/admin/notices");
   revalidatePath("/en/notices");
   revalidatePath("/bn/notices");
+  revalidatePath("/en", "layout");
+  revalidatePath("/bn", "layout");
 }

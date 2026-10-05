@@ -31,7 +31,7 @@ export default async function NoticesListPage() {
                   <span className={n.isPublished ? "text-primary" : "text-ink-muted"}>
                     {n.isPublished ? "Published" : "Draft"}
                   </span>
-                  {n.isImportant ? <span className="text-brick">Important</span> : null}
+                  {n.isImportant ? <span className="text-brick">Top notification</span> : null}
                 </p>
               </div>
               <div className="flex shrink-0 items-center gap-4">

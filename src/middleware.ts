@@ -8,9 +8,7 @@ function getLocaleFromPath(pathname: string) {
   return locales.find((l) => l === segment);
 }
 
-// Admin/officer auth routes are NOT localized — the CMS operator UI stays
-// in English regardless of the public site's language. These paths must
-// stay reachable without a session (you need them to get one).
+// Admin/officer auth routes are NOT localized.
 const PUBLIC_ADMIN_PATHS = ["/admin/login"];
 const PROTECTED_PREFIXES = ["/admin", "/officer"];
 
@@ -38,8 +36,7 @@ export async function middleware(request: NextRequest) {
       return NextResponse.redirect(loginUrl);
     }
 
-    // Keep the admin workspace deliberately small.
-    // Alumni management is now part of the live admin surface.
+    // Allowed admin workspace routes.
     const allowedAdminPrefixes = [
       "/admin/login",
       "/admin/admissions",
@@ -47,6 +44,9 @@ export async function middleware(request: NextRequest) {
       "/admin/administrators",
       "/admin/settings",
       "/admin/alumni",
+
+      // Notices & notifications
+      "/admin/notices",
     ];
 
     if (
@@ -66,7 +66,10 @@ export async function middleware(request: NextRequest) {
 
   // --- Public site locale redirect --------------------------------------
   const hasLocale = getLocaleFromPath(pathname);
-  if (hasLocale) return NextResponse.next();
+
+  if (hasLocale) {
+    return NextResponse.next();
+  }
 
   if (
     pathname.startsWith("/_next") ||
@@ -78,6 +81,7 @@ export async function middleware(request: NextRequest) {
 
   const url = request.nextUrl.clone();
   url.pathname = `/${defaultLocale}${pathname}`;
+
   return NextResponse.redirect(url);
 }
 

@@ -65,13 +65,15 @@ export function NoticeForm({
       <div className="flex gap-6">
         <label className="flex items-center gap-2 text-sm text-ink">
           <input type="checkbox" name="isImportant" defaultChecked={defaults.isImportant} />
-          Mark important
+          Show as top notification
         </label>
         <label className="flex items-center gap-2 text-sm text-ink">
           <input type="checkbox" name="isPublished" defaultChecked={defaults.isPublished} />
           Published
         </label>
       </div>
+
+      <p className="text-xs leading-5 text-ink-muted">When “Show as top notification” and “Published” are enabled, this notice appears in the notification bar at the top of the public website. The newest active notification is shown.</p>
 
       <SubmitButton label="Save notice" pendingLabel="Saving…" />
     </form>

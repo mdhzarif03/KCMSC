@@ -4,6 +4,8 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { notFound } from "next/navigation";
 import { Noto_Sans_Bengali, Noto_Serif_Bengali } from "next/font/google";
+import { prisma } from "@/lib/db";
+import { SiteNotification } from "@/components/layout/SiteNotification";
 
 const banglaSans = Noto_Sans_Bengali({
   subsets: ["bengali"],
@@ -34,7 +36,26 @@ export async function generateMetadata({
   };
 }
 
-export default function LocaleLayout({
+async function getActiveNotification() {
+  try {
+    return await prisma.notice.findFirst({
+      where: { isPublished: true, isImportant: true },
+      orderBy: [{ publishedAt: "desc" }, { createdAt: "desc" }],
+      select: {
+        id: true,
+        titleEn: true,
+        titleBn: true,
+        bodyEn: true,
+        bodyBn: true,
+        updatedAt: true,
+      },
+    });
+  } catch {
+    return null;
+  }
+}
+
+export default async function LocaleLayout({
   children,
   params
 }: {
@@ -43,12 +64,17 @@ export default function LocaleLayout({
 }) {
   if (!isLocale(params.locale)) notFound();
   const locale: Locale = params.locale;
+  const rawNotification = await getActiveNotification();
+  const notification = rawNotification
+    ? { ...rawNotification, updatedAt: rawNotification.updatedAt.toISOString() }
+    : null;
 
   return (
     <div
       lang={locale}
       className={locale === "bn" ? `font-bangla ${banglaSans.variable} ${banglaSerif.variable}` : "font-sans"}
     >
+      <SiteNotification locale={locale} notification={notification} />
       <Navbar locale={locale} />
       <main>{children}</main>
       <Footer locale={locale} />
