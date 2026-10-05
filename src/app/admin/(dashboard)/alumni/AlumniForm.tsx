@@ -1,7 +1,7 @@
 import { SubmitButton } from "@/components/admin/SubmitButton";
 
 type AlumniDefaults = {
-  nameEn?: string; nameBn?: string; messageEn?: string; messageBn?: string;
+  nameEn?: string; nameBn?: string; messageEn?: string; messageBn?: string; previewEn?: string | null; previewBn?: string | null;
   graduationYear?: number | null; roleEn?: string | null; roleBn?: string | null;
   organizationEn?: string | null; organizationBn?: string | null; photoUrl?: string | null;
   isFeatured?: boolean; isPublished?: boolean; sortOrder?: number;
@@ -17,6 +17,10 @@ export function AlumniForm({ action, defaults = {} }: { action: (formData: FormD
       <div className="grid gap-4 sm:grid-cols-2">
         <div><label className="block text-sm font-medium text-ink">Message (English)</label><textarea name="messageEn" required rows={6} defaultValue={defaults.messageEn} className="mt-1 w-full rounded-md border border-border px-3 py-2 text-sm" /></div>
         <div><label className="block text-sm font-medium text-ink">Message (বাংলা)</label><textarea name="messageBn" required rows={6} defaultValue={defaults.messageBn} className="mt-1 w-full rounded-md border border-border px-3 py-2 text-sm font-bangla" /></div>
+      </div>
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div><label className="block text-sm font-medium text-ink">Preview message (English)</label><textarea name="previewEn" rows={4} required defaultValue={defaults.previewEn ?? ""} placeholder="The short text shown on the public alumni page…" className="mt-1 w-full rounded-md border border-border px-3 py-2 text-sm" /><p className="mt-1 text-xs text-muted-foreground">Write the exact excerpt you want visitors to see before opening the full experience.</p></div>
+        <div><label className="block text-sm font-medium text-ink">Preview message (বাংলা)</label><textarea name="previewBn" rows={4} required defaultValue={defaults.previewBn ?? ""} placeholder="পাবলিক অ্যালামনাই পেজে দেখানোর সংক্ষিপ্ত বার্তা…" className="mt-1 w-full rounded-md border border-border px-3 py-2 text-sm font-bangla" /><p className="mt-1 text-xs text-muted-foreground">পূর্ণ অভিজ্ঞতার আগে দর্শকদের যে সংক্ষিপ্ত অংশটি দেখাতে চান, সেটি লিখুন।</p></div>
       </div>
       <div className="grid gap-4 sm:grid-cols-2">
         <div><label className="block text-sm font-medium text-ink">Graduation year</label><input name="graduationYear" type="number" min="1900" max="2100" defaultValue={defaults.graduationYear ?? ""} className="mt-1 w-full rounded-md border border-border px-3 py-2 text-sm" /></div>

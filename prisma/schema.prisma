@@ -113,6 +113,8 @@ model AlumniMessage {
   nameBn         String
   messageEn      String
   messageBn      String
+  previewEn      String?
+  previewBn      String?
   graduationYear Int?
   roleEn         String?
   roleBn         String?
