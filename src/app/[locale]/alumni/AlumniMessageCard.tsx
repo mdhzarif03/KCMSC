@@ -1,45 +1,46 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { AlumniExperienceDialog } from "./AlumniExperienceDialog";
+import AlumniExperienceDialog from "./AlumniExperienceDialog";
 
-export function AlumniMessageCard({
-  name,
-  preview,
-  message,
-  readMore,
-  closeLabel,
-  label,
-}: {
+type AlumniMessageCardProps = {
   name: string;
-  preview: string;
   message: string;
-  readMore: string;
-  closeLabel: string;
   label: string;
-}) {
-  const [open, setOpen] = useState(false);
+  locale: "en" | "bn";
+};
 
-  useEffect(() => {
-    const close = () => setOpen(false);
-    window.addEventListener("kcmsc-close-alumni-dialog", close);
-    return () => window.removeEventListener("kcmsc-close-alumni-dialog", close);
-  }, []);
-
+export default function AlumniMessageCard({
+  name,
+  message,
+  label,
+  locale,
+}: AlumniMessageCardProps) {
   return (
-    <>
-      <div>
-        <span className="font-heading text-5xl leading-none text-[#b59a4a]">“</span>
-        <p className="-mt-2 max-w-3xl whitespace-pre-line font-heading text-[clamp(1.7rem,3vw,2.65rem)] leading-[1.16] tracking-[-.025em] text-[#124c36]">{preview}</p>
-        <button
-          type="button"
-          onClick={() => setOpen(true)}
-          className="mt-6 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[.12em] text-[#176b45] transition hover:text-[#124c36]"
-        >
-          {readMore}<span aria-hidden="true">→</span>
-        </button>
+    <article className="group rounded-2xl border border-border bg-background p-6 transition duration-300 hover:-translate-y-1 hover:shadow-lg sm:p-8">
+      <div className="flex h-full flex-col">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brass">
+            Alumni Experience
+          </p>
+
+          <h3 className="mt-3 font-heading text-2xl leading-tight text-ink sm:text-3xl">
+            {name}
+          </h3>
+
+          <p className="mt-4 line-clamp-5 text-sm leading-7 text-ink-muted sm:text-base">
+            {message}
+          </p>
+        </div>
+
+        <div className="mt-6">
+          <AlumniExperienceDialog
+            name={name}
+            message={message}
+            label={label}
+            locale={locale}
+          />
+        </div>
       </div>
-      <AlumniExperienceDialog open={open} name={name} message={message} label={label} closeLabel={closeLabel} />
-    </>
+    </article>
   );
 }

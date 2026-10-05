@@ -1,70 +1,71 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-export function AlumniExperienceDialog({
-  open,
+export default function AlumniExperienceDialog({
   name,
   message,
   label,
-  closeLabel,
+  locale,
 }: {
-  open: boolean;
   name: string;
   message: string;
   label: string;
-  closeLabel: string;
+  locale: "en" | "bn";
 }) {
+  const [open, setOpen] = useState(false);
+
   useEffect(() => {
     if (!open) return;
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        window.dispatchEvent(new CustomEvent("kcmsc-close-alumni-dialog"));
-      }
+      if (event.key === "Escape") setOpen(false);
     };
-    document.addEventListener("keydown", onKeyDown);
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKeyDown);
     return () => {
-      document.removeEventListener("keydown", onKeyDown);
       document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
     };
   }, [open]);
 
-  if (!open) return null;
-
   return (
-    <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-[#10251b]/60 p-4 backdrop-blur-sm sm:p-6"
-      role="dialog"
-      aria-modal="true"
-      aria-label={label}
-      onMouseDown={(event) => {
-        if (event.target === event.currentTarget) {
-          window.dispatchEvent(new CustomEvent("kcmsc-close-alumni-dialog"));
-        }
-      }}
-    >
-      <div className="max-h-[88vh] w-full max-w-3xl overflow-hidden rounded-2xl border border-[#d9d8cf] bg-[#fffdf8] shadow-2xl">
-        <div className="flex items-start justify-between gap-6 border-b border-[#d9d8cf] px-5 py-5 sm:px-7">
-          <div>
-            <p className="text-[9px] font-medium uppercase tracking-[0.18em] text-[#b59a4a]">{label}</p>
-            <h2 className="mt-2 font-heading text-2xl leading-tight text-[#124c36] sm:text-3xl">{name}</h2>
+    <>
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        className="mt-6 inline-flex items-center gap-2 border-b border-[#176b45] pb-1 text-sm font-medium text-[#176b45] transition hover:border-[#b59a4a] hover:text-[#124c36]"
+      >
+        {label}<span aria-hidden="true">↗</span>
+      </button>
+
+      {open ? (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-[#10251c]/65 p-4 backdrop-blur-sm"
+          role="dialog"
+          aria-modal="true"
+          aria-label={name}
+          onMouseDown={(event) => {
+            if (event.currentTarget === event.target) setOpen(false);
+          }}
+        >
+          <div className="relative max-h-[88vh] w-full max-w-3xl overflow-y-auto border border-[#d9d8cf] bg-[#fffdf8] px-6 py-8 shadow-2xl sm:px-10 sm:py-10">
+            <button
+              type="button"
+              onClick={() => setOpen(false)}
+              aria-label={locale === "bn" ? "বন্ধ করুন" : "Close"}
+              className="absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-full border border-[#d9d8cf] text-lg text-[#69716b] transition hover:bg-[#f1eee5] hover:text-[#124c36]"
+            >
+              ×
+            </button>
+            <span className="kc-classic-kicker">{locale === "bn" ? "সম্পূর্ণ অভিজ্ঞতা" : "Full experience"}</span>
+            <h2 className="mt-4 pr-10 font-heading text-3xl tracking-[-.03em] text-[#124c36] sm:text-4xl">{name}</h2>
+            <div className="mt-7 border-t border-[#d9d8cf] pt-7">
+              <p className="whitespace-pre-line font-heading text-lg leading-8 text-[#424a45] sm:text-xl sm:leading-9">{message}</p>
+            </div>
           </div>
-          <button
-            type="button"
-            onClick={() => window.dispatchEvent(new CustomEvent("kcmsc-close-alumni-dialog"))}
-            className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-[#d9d8cf] text-xl text-[#69716b] transition hover:bg-[#f0eee7] hover:text-[#124c36]"
-            aria-label={closeLabel}
-          >
-            ×
-          </button>
         </div>
-        <div className="max-h-[calc(88vh-96px)] overflow-y-auto px-5 py-7 sm:px-7 sm:py-9">
-          <span className="font-heading text-5xl leading-none text-[#b59a4a]">“</span>
-          <p className="mt-1 whitespace-pre-line font-heading text-[clamp(1.35rem,2.4vw,2rem)] leading-[1.55] tracking-[-.015em] text-[#124c36]">{message}</p>
-        </div>
-      </div>
-    </div>
+      ) : null}
+    </>
   );
 }

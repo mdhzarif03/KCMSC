@@ -116,6 +116,8 @@ model AlumniMessage {
   previewEn      String?
   previewBn      String?
   graduationYear Int?
+  sscBatch       String?
+  hscBatch       String?
   roleEn         String?
   roleBn         String?
   organizationEn String?
