@@ -71,8 +71,8 @@
       "role": "Principal"
     },
     {
-      "name": "Md. Sharwar Alam",
-      "role": "Vice Principal (Senior Wing)"
+      "name": "Md. Jahangir Alam ",
+      "role": "Pro Principal"
     },
     {
       "name": "Salma Fouzia Noor",
@@ -134,27 +134,11 @@
     "intro": "KCMSC follows a dual-wing structure under unified leadership: a Junior Wing covering Pre-Primary and Primary education, and a Senior Wing covering Secondary and Higher Secondary education. Both wings offer Bangla and English Versions of the National Curriculum.",
     "mediumTable": {
       "heading": "Student Enrollment by Medium of Instruction (2025)",
-      "columns": [
-        "Version",
-        "Students",
-        "Percentage"
-      ],
+      "columns": ["Version", "Students", "Percentage"],
       "rows": [
-        [
-          "Bangla",
-          "1,240",
-          "53%"
-        ],
-        [
-          "English",
-          "1,096",
-          "47%"
-        ],
-        [
-          "Total",
-          "2,336",
-          "100%"
-        ]
+        ["Bangla", "1,240", "53%"],
+        ["English", "1,096", "47%"],
+        ["Total", "2,336", "100%"]
       ]
     },
     "wingsHeading": "Wing Structure",
@@ -174,39 +158,15 @@
     ],
     "ageGroupsHeading": "Age-Appropriate Class Placement",
     "ageGroups": {
-      "columns": [
-        "Age Group",
-        "Class / Grade"
-      ],
+      "columns": ["Age Group", "Class / Grade"],
       "rows": [
-        [
-          "3.5 – 4.5 years",
-          "Playgroup"
-        ],
-        [
-          "4.5 – 5.5 years",
-          "Nursery / KG"
-        ],
-        [
-          "5.5 – 6.5 years",
-          "Class 1"
-        ],
-        [
-          "6.5 – 7.5 years",
-          "Class 2"
-        ],
-        [
-          "7.5 – 8.5 years",
-          "Class 3"
-        ],
-        [
-          "8.5 – 9.5 years",
-          "Class 4"
-        ],
-        [
-          "9.5 – 10.5 years",
-          "Class 5"
-        ]
+        ["3.5 – 4.5 years", "Playgroup"],
+        ["4.5 – 5.5 years", "Nursery / KG"],
+        ["5.5 – 6.5 years", "Class 1"],
+        ["6.5 – 7.5 years", "Class 2"],
+        ["7.5 – 8.5 years", "Class 3"],
+        ["8.5 – 9.5 years", "Class 4"],
+        ["9.5 – 10.5 years", "Class 5"]
       ]
     },
     "operatingHours": "7:45 AM – 2:30 PM, Sunday–Thursday",
