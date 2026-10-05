@@ -349,7 +349,7 @@ export function LandingExperience({
                     <span className="font-heading text-4xl leading-none text-[#b59a4a]">
                       “
                     </span>
-                    <p className="mt-1 line-clamp-5 font-heading text-[19px] leading-[1.35] text-[#124c36]">
+                    <p className="mt-1 font-heading text-[19px] leading-[1.35] text-[#124c36]">
                       {quote}
                     </p>
                     <div className="mt-6 border-t border-[#d9d8cf] pt-4">
