@@ -1,10 +1,13 @@
 // K C Model School and College — database schema
+//
 // Phase 1 scope: foundation models only (auth/RBAC, navigation, generic
 // content section, media, audit log). Content-type models named in the
 // brief (Notice, Achievement, Club, Facility, AdmissionApplication, etc.)
-// are stubbed with just enough shape to compile and to let Phase 2/3
-// build against a stable contract; their full field sets are filled in
-// when those phases are implemented against real requirements.
+// are stubbed with enough shape to provide a stable contract.
+
+// ---------------------------------------------------------------------
+// Database
+// ---------------------------------------------------------------------
 
 datasource db {
   provider = "postgresql"
@@ -15,15 +18,15 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// ---------------------------------------------------------------------
+// Authentication / RBAC
+// ---------------------------------------------------------------------
+
 enum Role {
   ADMIN
   ADMISSION_OFFICER
 }
 
-// A User can be an ADMIN or an ADMISSION_OFFICER. Deliberately no
-// super-admin flag or tier — brief §22 requires every admin to have
-// identical permissions, and the "delete own account only" rule is
-// enforced in application code (see src/lib/auth.ts), not the schema.
 model User {
   id           String   @id @default(cuid())
   email        String   @unique
@@ -33,10 +36,6 @@ model User {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
-  // Admission-officer specific relations. onDelete: SetNull so that
-  // removing an officer's account (brief §21) never deletes the
-  // applications, reviews, or audit history they touched — only
-  // detaches their name from future lookups.
   assignedApplications AdmissionApplication[] @relation("AssignedOfficer")
   reviews              AdmissionReview[]
 
@@ -44,11 +43,6 @@ model User {
   invitationsIssued AccountInvitation[] @relation("InvitationIssuedBy")
 }
 
-// Secure account-creation flow (brief §22/§41/§42): an existing admin
-// never sets another person's password directly. Instead they issue an
-// invitation; the recipient follows a one-time link to set their own
-// password. Only tokenHash is stored — the raw token exists only in the
-// URL handed to the invitee, the same pattern as a password-reset flow.
 model AccountInvitation {
   id          String    @id @default(cuid())
   email       String
@@ -61,15 +55,9 @@ model AccountInvitation {
   createdAt   DateTime  @default(now())
 }
 
-// --- Bilingual content primitives -----------------------------------
-
-// Generic pattern used across Notice/Achievement/Club/Facility/etc.:
-// every public-facing text field is duplicated titleEn/titleBn rather
-// than modeled as a separate Translation table, because the content
-// volume here doesn't warrant that complexity yet. Revisit only if a
-// future locale (a third language) is actually requested.
-
-// --- Content models (stubs — full fields land with Phase 3 CMS) -----
+// ---------------------------------------------------------------------
+// Public Content
+// ---------------------------------------------------------------------
 
 model Notice {
   id          String    @id @default(cuid())
@@ -85,73 +73,101 @@ model Notice {
 }
 
 model Achievement {
-  id          String   @id @default(cuid())
-  titleEn     String
-  titleBn     String
+  id            String   @id @default(cuid())
+  titleEn       String
+  titleBn       String
   descriptionEn String
   descriptionBn String
-  year        Int
-  category    String
-  isFeatured  Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  year          Int
+  category      String
+  isFeatured    Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }
 
 model Club {
-  id          String   @id @default(cuid())
-  nameEn      String
-  nameBn      String
+  id            String   @id @default(cuid())
+  nameEn        String
+  nameBn        String
   descriptionEn String
   descriptionBn String
-  isFeatured  Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  isFeatured    Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }
 
 model Facility {
-  id          String   @id @default(cuid())
-  titleEn     String
-  titleBn     String
+  id            String   @id @default(cuid())
+  titleEn       String
+  titleBn       String
   descriptionEn String
   descriptionBn String
-  isFeatured  Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  isFeatured    Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }
-
 
 model AlumniMessage {
-  id              String   @id @default(cuid())
-  nameEn          String
-  nameBn          String
-  messageEn       String
-  messageBn       String
-  graduationYear  Int?
-  roleEn          String?
-  roleBn          String?
-  organizationEn  String?
-  organizationBn  String?
-  photoUrl        String?
-  isFeatured      Boolean  @default(false)
-  isPublished     Boolean  @default(false)
-  sortOrder       Int      @default(0)
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  id             String   @id @default(cuid())
+  nameEn         String
+  nameBn         String
+  messageEn      String
+  messageBn      String
+  graduationYear Int?
+  roleEn         String?
+  roleBn         String?
+  organizationEn String?
+  organizationBn String?
+  photoUrl       String?
+  isFeatured     Boolean  @default(false)
+  isPublished    Boolean  @default(false)
+  sortOrder      Int      @default(0)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 }
+
+// ---------------------------------------------------------------------
+// Careers
+// ---------------------------------------------------------------------
 
 model Career {
-  id           String    @id @default(cuid())
-  titleEn      String
-  titleBn      String
+  id            String    @id @default(cuid())
+  titleEn       String
+  titleBn       String
   descriptionEn String
   descriptionBn String
-  deadline     DateTime?
-  isPublished  Boolean   @default(false)
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
+  deadline      DateTime?
+  isPublished   Boolean   @default(false)
+
+  applications CareerApplication[] @relation("CareerApplications")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
-// --- Admissions -------------------------------------------------------
+model CareerApplication {
+  id String @id @default(cuid())
+
+  careerId String
+  career   Career @relation("CareerApplications", fields: [careerId], references: [id], onDelete: Cascade)
+
+  fullName String
+  email    String
+  phone    String
+
+  qualification String?
+  experience    String?
+  coverLetter   String?
+
+  createdAt DateTime @default(now())
+
+  @@index([careerId])
+  @@index([createdAt])
+}
+
+// ---------------------------------------------------------------------
+// Admissions
+// ---------------------------------------------------------------------
 
 enum ApplicationStatus {
   UNASSIGNED
@@ -166,112 +182,118 @@ enum ApplicationStatus {
 }
 
 model AdmissionCycle {
-  id           String   @id @default(cuid())
-  nameEn       String
-  nameBn       String
-  opensAt      DateTime
-  closesAt     DateTime
+  id       String   @id @default(cuid())
+  nameEn   String
+  nameBn   String
+  opensAt  DateTime
+  closesAt DateTime
+
   applications AdmissionApplication[]
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model AdmissionApplication {
-  id                    String            @id @default(cuid())
-  cycleId               String
-  cycle                 AdmissionCycle    @relation(fields: [cycleId], references: [id])
-  status                ApplicationStatus @default(UNASSIGNED)
+  id String @id @default(cuid())
+
+  cycleId String
+  cycle   AdmissionCycle @relation(fields: [cycleId], references: [id])
+
+  status ApplicationStatus @default(UNASSIGNED)
 
   // Student information
-  fullName              String
-  dateOfBirth           DateTime
-  gender                String
-  nationality           String
-  medium                String
-  applyingClass         String
-  previousInstitution   String
-  birthRegistrationNo   String
-  certificateData       Bytes?
-  certificateName       String?
-  certificateMimeType   String?
+  fullName            String
+  dateOfBirth         DateTime
+  gender              String
+  nationality         String
+  medium              String
+  applyingClass       String
+  previousInstitution String
+  birthRegistrationNo String
+
+  certificateData     Bytes?
+  certificateName     String?
+  certificateMimeType String?
 
   // Father
-  fatherName            String
-  fatherNidNumber       String
-  fatherContactNumber   String
-  fatherOccupation      String
-  fatherNationality     String
-  fatherIsAlive         Boolean
+  fatherName          String
+  fatherNidNumber     String
+  fatherContactNumber String
+  fatherOccupation    String
+  fatherNationality   String
+  fatherIsAlive       Boolean
 
   // Mother
-  motherName            String
-  motherNidNumber       String
-  motherContactNumber   String
-  motherOccupation      String
-  motherNationality     String
-  motherIsAlive         Boolean
+  motherName          String
+  motherNidNumber     String
+  motherContactNumber String
+  motherOccupation    String
+  motherNationality   String
+  motherIsAlive       Boolean
 
-  presentAddress        String
-  permanentAddress      String
+  // Addresses
+  presentAddress   String
+  permanentAddress String
 
-  assignedOfficerId     String?
-  assignedOfficer       User?             @relation("AssignedOfficer", fields: [assignedOfficerId], references: [id], onDelete: SetNull)
+  // Assigned admission officer
+  assignedOfficerId String?
+  assignedOfficer   User?   @relation("AssignedOfficer", fields: [assignedOfficerId], references: [id], onDelete: SetNull)
 
-  guardians             AdmissionGuardian[]
-  reviews               AdmissionReview[]
-  createdAt             DateTime          @default(now())
-  updatedAt             DateTime          @updatedAt
+  guardians AdmissionGuardian[]
+  reviews   AdmissionReview[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model AdmissionGuardian {
-  id              String              @id @default(cuid())
-  applicationId   String
-  application     AdmissionApplication @relation(fields: [applicationId], references: [id], onDelete: Cascade)
-  name            String
-  relationship    String
-  nidNumber       String
-  contactNumber   String
-  occupation      String
-  nationality     String
-  isAlive         Boolean
-  createdAt       DateTime            @default(now())
+  id String @id @default(cuid())
+
+  applicationId String
+  application   AdmissionApplication @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+
+  name          String
+  relationship  String
+  nidNumber     String
+  contactNumber String
+  occupation    String
+  nationality   String
+  isAlive       Boolean
+
+  createdAt DateTime @default(now())
 }
 
-// Internal notes are kept separate from anything applicant-facing —
-// the public tracker (brief §19) must never expose this model's
-// `internalNote` field. onDelete: SetNull preserves the review history
-// itself even after the reviewing officer's account is gone.
-// Internal notes are kept separate from anything applicant-facing —
-// the public tracker (brief §19) must never expose this model's
-// `internalNote` field. `applicantMessage` is the deliberate exception:
-// an officer-written note meant to be shown to the applicant (e.g. "please
-// submit your birth certificate", or the final decision text). The public
-// tracker reads applicantMessage only, never internalNote. onDelete:
-// SetNull preserves the review history itself even after the reviewing
-// officer's account is gone.
 model AdmissionReview {
-  id             String   @id @default(cuid())
-  applicationId  String
-  application    AdmissionApplication @relation(fields: [applicationId], references: [id])
-  officerId      String?
-  officer        User?    @relation(fields: [officerId], references: [id], onDelete: SetNull)
-  internalNote   String
+  id String @id @default(cuid())
+
+  applicationId String
+  application   AdmissionApplication @relation(fields: [applicationId], references: [id])
+
+  officerId String?
+  officer   User?   @relation(fields: [officerId], references: [id], onDelete: SetNull)
+
+  internalNote     String
   applicantMessage String?
-  statusAtReview ApplicationStatus
-  createdAt      DateTime @default(now())
+  statusAtReview   ApplicationStatus
+
+  createdAt DateTime @default(now())
 }
 
-// Append-only. Never updated or deleted by application code — a
-// record of who did what, kept even after the acting user's account
-// is removed (userId nullable + SetNull, actorLabel keeps a readable
-// name for history even then).
+// ---------------------------------------------------------------------
+// Audit
+// ---------------------------------------------------------------------
+
 model AuditLog {
-  id         String   @id @default(cuid())
-  userId     String?
-  user       User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  id String @id @default(cuid())
+
+  userId String?
+  user   User?   @relation(fields: [userId], references: [id], onDelete: SetNull)
+
   actorLabel String
   action     String
   targetType String
   targetId   String
-  createdAt  DateTime @default(now())
+
+  createdAt DateTime @default(now())
 }

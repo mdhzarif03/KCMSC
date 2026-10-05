@@ -44,9 +44,8 @@ export async function middleware(request: NextRequest) {
       "/admin/administrators",
       "/admin/settings",
       "/admin/alumni",
-
-      // Notices & notifications
       "/admin/notices",
+      "/admin/careers",
     ];
 
     if (
