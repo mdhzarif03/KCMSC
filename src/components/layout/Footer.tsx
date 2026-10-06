@@ -58,7 +58,10 @@ export function Footer({ locale }: { locale: Locale }) {
       title: locale === "bn" ? "পরিচিতি" : "ABOUT",
       links: [
         [locale === "bn" ? "আমাদের গল্প" : "Our story", "about"],
-        [locale === "bn" ? "নেতৃত্বের বার্তা" : "Leadership messages", "leadership-messages"],
+        [
+          locale === "bn" ? "নেতৃত্বের বার্তা" : "Leadership messages",
+          "leadership-messages",
+        ],
         [locale === "bn" ? "একাডেমিক" : "Academics", "academics"],
       ] as const,
     },
@@ -89,8 +92,13 @@ export function Footer({ locale }: { locale: Locale }) {
               href={`/${locale}`}
               className="inline-flex items-center gap-3 text-[#124c36]"
             >
-              <span className="grid h-9 w-9 place-items-center overflow-hidden rounded-[2px] bg-[#fffdf8]">
-                <img src="/kcmsc/kcmsc-logo.png" alt="K C Model School & College logo" className="h-full w-full object-contain" />
+              {/* FIXED LOGO */}
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[2px] bg-[#fffdf8]">
+                <img
+                  src="/kcmsc/kcmsc-logo.png"
+                  alt="K C Model School & College logo"
+                  className="block h-9 w-9 object-contain"
+                />
               </span>
 
               <span className="font-heading text-[18px] font-normal">
@@ -171,14 +179,14 @@ export function Footer({ locale }: { locale: Locale }) {
                     <Link
                       href="/admin/login"
                       className="
-    block
-    text-[12px]
-    font-medium
-    text-[#176b45]
-    transition-colors
-    duration-200
-    hover:text-[#0f4d35]
-  "
+                        block
+                        text-[12px]
+                        font-medium
+                        text-[#176b45]
+                        transition-colors
+                        duration-200
+                        hover:text-[#0f4d35]
+                      "
                     >
                       {locale === "bn" ? "অ্যাডমিন লগইন" : "Admin Login"}
                     </Link>
