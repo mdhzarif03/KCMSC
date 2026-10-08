@@ -43,7 +43,9 @@ export async function createAchievementAction(formData: FormData) {
   });
 
   revalidatePath("/admin/achievements");
+  revalidatePath("/en/academics");
   revalidatePath("/en/achievements");
+  revalidatePath("/bn/academics");
   revalidatePath("/bn/achievements");
   revalidatePath("/en"); // homepage shows featured items
   revalidatePath("/bn");
@@ -64,7 +66,9 @@ export async function updateAchievementAction(id: string, formData: FormData) {
   });
 
   revalidatePath("/admin/achievements");
+  revalidatePath("/en/academics");
   revalidatePath("/en/achievements");
+  revalidatePath("/bn/academics");
   revalidatePath("/bn/achievements");
   revalidatePath("/en"); // homepage shows featured items
   revalidatePath("/bn");
@@ -85,7 +89,9 @@ export async function deleteAchievementAction(formData: FormData) {
   });
 
   revalidatePath("/admin/achievements");
+  revalidatePath("/en/academics");
   revalidatePath("/en/achievements");
+  revalidatePath("/bn/academics");
   revalidatePath("/bn/achievements");
   revalidatePath("/en"); // homepage shows featured items
   revalidatePath("/bn");

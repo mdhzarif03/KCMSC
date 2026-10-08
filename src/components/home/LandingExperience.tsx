@@ -284,7 +284,7 @@ export function LandingExperience({
                 {t.resultsBody}
               </p>
             </div>
-            <Link href={`/${locale}/achievements`} className="kc-classic-link">
+            <Link href={`/${locale}/academics`} className="kc-classic-link">
               {t.resultsLink}
               <span>↗</span>
             </Link>
